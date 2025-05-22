@@ -22,31 +22,30 @@ void mztTumtaSerial::checkByteAndUpdateVectors(int value)
 {
 	setPackage(value);
 	
-	if(isPackageReady && debugMessage)
+	if(isPackageReady)
 	{
-		// TUM
-		tum.pressure.push_back(package[0] + (package[1] * 255));
-		tum.derivative.push_back(package[4] + (package[5] * 255));
-		tum.intensity.push_back(package[8] + (package[9] * 255));
-//		setInterval(&tum.interval);
-		// TA
-		ta.pressure.push_back(package[2] + (package[3] * 255));
-		ta.derivative.push_back(package[6] + (package[7] * 255));
-		ta.intensity.push_back(package[10] + (package[11] * 255));
-//		setInterval(&ta.interval);
-	}
-	else
-	{
-//		// TUM
-//		tum.pressure.push_back(0);
-//		tum.derivative.push_back(0);
-//		tum.intensity.push_back(package[0] + (package[1] * 255));
-//		setInterval(&tum.interval);
-//		// TA
-//		ta.pressure.push_back(0);
-//		ta.derivative.push_back(0);
-//		ta.intensity.push_back(package[2] + (package[3] * 255));
-//		setInterval(&ta.interval);
+		if(debugMessage)
+		{
+			// TUM
+			tum.pressure.push_back(package[0] + (package[1] * 255));
+			tum.derivative.push_back(package[4] + (package[5] * 255));
+			tum.intensity.push_back(package[8] + (package[9] * 255));
+			// TA
+			ta.pressure.push_back(package[2] + (package[3] * 255));
+			ta.derivative.push_back(package[6] + (package[7] * 255));
+			ta.intensity.push_back(package[10] + (package[11] * 255));
+		}
+		else
+		{
+			// TUM
+			tum.pressure.push_back(0);
+			tum.derivative.push_back(0);
+			tum.intensity.push_back(package[0] + (package[1] * 255));
+			// TA
+			ta.pressure.push_back(0);
+			ta.derivative.push_back(0);
+			ta.intensity.push_back(package[2] + (package[3] * 255));
+		}
 	}
 }
 
@@ -71,11 +70,6 @@ vector<int> mztTumtaSerial::getTumIntensity()
 	return tum.intensity;
 }
 
-//vector<int> mztTumtaSerial::getTumInterval()
-//{
-//	return tum.interval;
-//}
-
 vector<int> mztTumtaSerial::getTaPressure()
 {
 	return ta.pressure;
@@ -90,30 +84,6 @@ vector<int> mztTumtaSerial::getTaIntensity()
 {
 	return ta.intensity;
 }
-
-//vector<int> mztTumtaSerial::getTaInterval()
-//{
-//	return ta.interval;
-//}
-//
-//void mztTumtaSerial::setInterval(vector<int> * intervalVector)
-//{
-//	int newValue;
-//	switch (intervalVector->size())
-//	{
-//		case 0:
-//			newValue = ofGetElapsedTimeMillis();
-//			break;
-//		case 1:
-//			newValue = (*intervalVector)[0] - ofGetElapsedTimeMillis();
-//			break;
-//		default:
-//			newValue = (*intervalVector)[intervalVector->size() - 1] - (*intervalVector)[intervalVector->size() - 2];
-//			break;
-//	}
-//	
-//	intervalVector->push_back(newValue);
-//}
 
 void mztTumtaSerial::setPackage(int newChar)
 {
@@ -220,12 +190,12 @@ void mztTumtaSerial::setPackage(int newChar)
 			break;
 		case 14:
 			packageChecksum = newChar; // Debug Message Checksum
-			unsigned char localChecksum = 0;
+			unsigned char localDebuggingChecksum = 0;
 			for(int i = 0; i < 12; i++)
 			{
-				localChecksum += package[i];
+				localDebuggingChecksum += package[i];
 			}
-			if(packageChecksum == localChecksum)
+			if(packageChecksum == localDebuggingChecksum)
 			{
 				isPackageReady = true;
 			}
@@ -236,13 +206,12 @@ void mztTumtaSerial::setPackage(int newChar)
 
 void mztTumtaSerial::emptyValues()
 {
+	// TUM
 	tum.pressure.clear();
 	tum.derivative.clear();
 	tum.intensity.clear();
-//	tum.interval.clear();
-	
+	// TA
 	ta.pressure.clear();
 	ta.derivative.clear();
 	ta.intensity.clear();
-//	ta.interval.clear();
 }

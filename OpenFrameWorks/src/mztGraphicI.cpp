@@ -16,7 +16,7 @@ void mztGraphicI::draw()
 	ofPushMatrix();
 	ofTranslate(pos->x, pos->y);
 	ofSetColor(fillColor);
-	ofSetLineWidth(1);
+	ofSetLineWidth(0);
    	ofBeginShape();
     ofVertex(0, size->y);
     for(unsigned x = 0; x < value->size(); x++)

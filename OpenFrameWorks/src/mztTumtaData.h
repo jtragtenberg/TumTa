@@ -12,7 +12,7 @@ class mztTumtaData
 {
 public:
     void setup();
-	void update(int tumPressure, int tumDerivative, int tumIntensity, int tumInterval, int taPressure, int taDerivative, int taIntensity, int taInterval);
+	void update(int tumPressure, int tumDerivative, int tumIntensity, int taPressure, int taDerivative, int taIntensity);
 	void updateWithDataGui();
 	
 	// DATA - SETTERS
@@ -73,11 +73,11 @@ private:
 	void setValueToVector(float newValue, vector<float> * vec);
 	void setValueToVector(bool newValue, vector<bool> * vec);
 	void setInterval(vector<int> * intervalVector);
+	unsigned long long lastElapsedTimeMillis;
 	
     
     // GUI
 	void iniGui();
     
 };
-
 #endif

@@ -72,40 +72,10 @@ void ofApp::updateData()
 	}
 	else
 	{
-		// Tum
 		for(int i = 0; i < serial.getTumPressure().size(); i++)
 		{
-			data.setTumPressure(serial.getTumPressure()[i]);
+			data.update(serial.getTumPressure()[i], serial.getTumDerivative()[i], serial.getTumIntensity()[i], serial.getTaPressure()[i], serial.getTaDerivative()[i], serial.getTaIntensity()[i]);
 		}
-		for(int i = 0; i < serial.getTumDerivative().size(); i++)
-		{
-			data.setTumDerivative(serial.getTumDerivative()[i]);
-		}
-		for(int i = 0; i < serial.getTumIntensity().size(); i++)
-		{
-			data.setTumIntensity(serial.getTumIntensity()[i]);
-		}
-//		for(int i = 0; i < serial.getTumInterval().size(); i++)
-//		{
-//			data.setTumInterval(serial.getTumInterval()[i]);
-//		}
-		// Ta
-		for(int i = 0; i < serial.getTaPressure().size(); i++)
-		{
-			data.setTaPressure(serial.getTaPressure()[i]);
-		}
-		for(int i = 0; i < serial.getTaDerivative().size(); i++)
-		{
-			data.setTaDerivative(serial.getTaDerivative()[i]);
-		}
-		for(int i = 0; i < serial.getTaIntensity().size(); i++)
-		{
-			data.setTaIntensity(serial.getTaIntensity()[i]);
-		}
-//		for(int i = 0; i < serial.getTaInterval().size(); i++)
-//		{
-//			data.setTaInterval(serial.getTaInterval()[i]);
-//		}
 	}
 }
 

@@ -6,25 +6,24 @@ void mztTumtaData::setup()
     iniGui();
 }
 
-void mztTumtaData::update(int tumPressure, int tumDerivative, int tumIntensity, int tumInterval, int taPressure, int taDerivative, int taIntensity, int taInterval)
+void mztTumtaData::update(int tumPressure, int tumDerivative, int tumIntensity, int taPressure, int taDerivative, int taIntensity)
 {
 	// Tum
 	setValueToVector(tumPressure, &tum.pressure);
 	setValueToVector(tumDerivative, &tum.derivative);
 	setValueToVector(tumIntensity, &tum.intensity);
-	setValueToVector(tumInterval, &tum.interval);
+	setInterval(&tum.interval);
 	// Ta
 	setValueToVector(taPressure, &ta.pressure);
 	setValueToVector(taDerivative, &ta.derivative);
 	setValueToVector(taIntensity, &ta.intensity);
-	setValueToVector(taInterval, &ta.interval);
+	setInterval(&ta.interval);
 }
 
 void mztTumtaData::updateWithDataGui()
 {
-	update(paramTumPressure, paramTumDerivative, paramTumIntensity, paramTumInterval, paramTaPressure, paramTaDerivative, paramTaIntensity, paramTaInterval);
+	update(paramTumPressure, paramTumDerivative, paramTumIntensity, paramTaPressure, paramTaDerivative, paramTaIntensity);
 }
-
 
 // DATA
 void mztTumtaData::iniData()
@@ -115,6 +114,13 @@ void mztTumtaData::setValueToVector(bool newValue, vector<bool> * vec)
 	{
 		vec->erase(vec->begin());
 	}
+}
+
+void mztTumtaData::setInterval(vector<int> * intervalVector)
+{
+	int newValue = ofGetElapsedTimeMillis() - lastElapsedTimeMillis;
+	setValueToVector(newValue, intervalVector);
+	lastElapsedTimeMillis = ofGetElapsedTimeMillis();
 }
 
 // DATA - GETTERS

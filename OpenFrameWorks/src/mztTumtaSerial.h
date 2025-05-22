@@ -34,11 +34,9 @@ public:
 	vector<int> getTumPressure();
 	vector<int> getTumDerivative();
 	vector<int> getTumIntensity();
-//	vector<int> getTumInterval();
 	vector<int> getTaPressure();
 	vector<int> getTaDerivative();
 	vector<int> getTaIntensity();
-//	vector<int> getTaInterval();
 	
 private:
 	// DATA
@@ -47,14 +45,12 @@ private:
 		vector<int> pressure;
 		vector<int> derivative;
 		vector<int> intensity;
-//		vector<int> interval;
 	};
 	Tumta tum, ta; // Vector of serial Values from this loop
 	
 	bool debugMessage;
 	
 	void emptyValues();
-//	void setInterval(vector<int> * intervalVector);
 	
 	// Serial
 	ofSerial serial;
