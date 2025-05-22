@@ -83,8 +83,8 @@ void mztTumtaMidi::iniGui()
 	parametersTum.setName("Tum");
 	// Intensity
 	parametersTumIntensity.setName("Intensity");
-	parametersTumIntensity.add(paramTumIntensityMin.set("Tum Intensity Min", 0, 0, 500));
-	parametersTumIntensity.add(paramTumIntensityMax.set("Tum Intensity Max", 0, 0, 500));
+	parametersTumIntensity.add(paramTumIntensityMin.set("Tum Intensity Min", 0, 0, 1023));
+	parametersTumIntensity.add(paramTumIntensityMax.set("Tum Intensity Max", 0, 0, 1023));
 	parametersTum.add(parametersTumIntensity);
 	// Midi
 	parametersTumMidi.setName("Midi");
@@ -99,8 +99,8 @@ void mztTumtaMidi::iniGui()
 	parametersTa.setName("Ta");
 	// Intensity
 	parametersTaIntensity.setName("Intensity");
-	parametersTaIntensity.add(paramTaIntensityMin.set("Ta Intensity Min", 0, 0, 500));
-	parametersTaIntensity.add(paramTaIntensityMax.set("Ta Intensity Max", 0, 0, 500));
+	parametersTaIntensity.add(paramTaIntensityMin.set("Ta Intensity Min", 0, 0, 1023));
+	parametersTaIntensity.add(paramTaIntensityMax.set("Ta Intensity Max", 0, 0, 1023));
 	parametersTa.add(parametersTaIntensity);
 	// Midi
 	parametersTaMidi.add(paramTaChannel.set("Ta MIDI Channel", 0, 1, 16));
