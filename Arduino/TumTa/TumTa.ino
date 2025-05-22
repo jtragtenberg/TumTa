@@ -12,7 +12,9 @@
 const int numReadings = 5;
 int threshold = 20;
 
-// ---- Estrutura de dados para cada canal ----
+const unsigned long processInterval = 1; // intervalo mínimo entre processamentos (ms)
+unsigned long lastProcessTime = 0;
+
 typedef struct {
   int debounceTime = 150;
   int derivative = 0;
@@ -44,10 +46,12 @@ float getDerivative(ChannelState *ch, int value) {
   }
   ch->derivativeWindow[0] = value;
 
-  // Derivada com coeficientes de diferença finita
-  float derivative = 2.08 * ch->derivativeWindow[0] - 4.0 * ch->derivativeWindow[1] 
-                   + 3.0 * ch->derivativeWindow[2] - 1.33 * ch->derivativeWindow[3] 
+  float derivative = 2.08 * ch->derivativeWindow[0] 
+                   - 4.0 * ch->derivativeWindow[1] 
+                   + 3.0 * ch->derivativeWindow[2] 
+                   - 1.33 * ch->derivativeWindow[3] 
                    + 0.25 * ch->derivativeWindow[4];
+
   return derivative;
 }
 
@@ -69,100 +73,4 @@ int computeIntensity(ChannelState *ch, int newDerivative, int threshold) {
 
   if (ch->debouncing && ch->waitingForPeak) {
     if (newDerivative > ch->maxDerivative) {
-      ch->maxDerivative = newDerivative;
-    } else {
-      ch->intensity = ch->maxDerivative;
-      ch->waitingForPeak = false;
-      digitalWrite(LED_PIN, HIGH);
-      Serial.write(ch->intensity / 10);
-    }
-  }
-  return ch->intensity;
-}
-
-void setDebugMessage(int tumPressure, int taPressure, int tumDerivative, int taDerivative, int tumIntensity, int taIntensity) {
-  debugMessage[0] = 0xFF;
-  debugMessage[1] = 0xFF;
-  debugMessage[2] = lowByte(tumPressure);
-  debugMessage[3] = highByte(tumPressure);
-  debugMessage[4] = lowByte(taPressure);
-  debugMessage[5] = highByte(taPressure);
-  debugMessage[6] = lowByte(tumDerivative);
-  debugMessage[7] = highByte(tumDerivative);
-  debugMessage[8] = lowByte(taDerivative);
-  debugMessage[9] = highByte(taDerivative);
-  debugMessage[10] = lowByte(tumIntensity);
-  debugMessage[11] = highByte(tumIntensity);
-  debugMessage[12] = lowByte(taIntensity);
-  debugMessage[13] = highByte(taIntensity);
-
-  debugMessage[14] = 0;
-  for (int i = 2; i < 14; i++) {
-    debugMessage[14] += debugMessage[i];
-  }
-
-  Serial.write(debugMessage, sizeof(debugMessage));
-}
-
-void setLiveMessage(int tumIntensity, int taIntensity) {
-  liveMessage[0] = 0xFE;
-  liveMessage[1] = 0xFE;
-  liveMessage[2] = lowByte(tumIntensity);
-  liveMessage[3] = highByte(tumIntensity);
-  liveMessage[4] = lowByte(taIntensity);
-  liveMessage[5] = highByte(taIntensity);
-
-  liveMessage[6] = 0;
-  for (int i = 2; i < 6; i++) {
-    liveMessage[6] += liveMessage[i];
-  }
-
-  Serial.write(liveMessage, sizeof(liveMessage));
-}
-
-// ---- Setup ----
-void setup() {
-  Serial.begin(38400);
-
-  pinMode(TUM_PIN, INPUT);
-  pinMode(TA_PIN, INPUT);
-  pinMode(MODE_SWITCH_PIN, INPUT);
-  pinMode(THRESHOLD_PIN, INPUT);
-  pinMode(STANDBY_SWITCH_PIN, INPUT);
-  pinMode(LED_PIN, OUTPUT);
-}
-
-// ---- Loop ----
-void loop() {
-  standby = digitalRead(STANDBY_SWITCH_PIN);
-  threshold = analogRead(THRESHOLD_PIN);
-
-  unsigned long now = millis();
-
-  if (standby) {
-    if (now - tempoStandby > tempoBlink) {
-      digitalWrite(LED_PIN, blinkFlag ? LOW : HIGH);
-      tempoStandby = now;
-      blinkFlag = !blinkFlag;
-    }
-  } else {
-    isDebugging = digitalRead(MODE_SWITCH_PIN);
-
-    int tumValue = analogRead(TUM_PIN);
-    int taValue = analogRead(TA_PIN);
-
-    float tumDerivative = getDerivative(&channels[TUM_CHANNEL], tumValue);
-    float taDerivative = getDerivative(&channels[TA_CHANNEL], taValue);
-
-    int tumIntensity = computeIntensity(&channels[TUM_CHANNEL], tumDerivative, threshold);
-    int taIntensity = computeIntensity(&channels[TA_CHANNEL], taDerivative, threshold);
-
-    if (isDebugging) {
-      setDebugMessage(tumValue, taValue, (int)tumDerivative, (int)taDerivative, tumIntensity, taIntensity);
-    } else {
-      setLiveMessage(tumIntensity, taIntensity);
-    }
-
-    delayMicroseconds(1000);
-  }
-}
+      ch->maxDerivative = ne
