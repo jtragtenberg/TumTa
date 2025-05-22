@@ -1,3 +1,7 @@
+//V.1.1.0:
+//Acrescentei uma suavização maior para o Ta do que para o Tum. Agora tem dois NumReadings no filtro de média para serem considerados para os dois pés independentemente.
+
+
 // Tum
 #define TUM_PIN A0
 #define TUM_CHANNEL 0
@@ -48,7 +52,7 @@ bool blinkFlag = false;
 void loop()
 {
   standby = digitalRead(STANDBY_SWITCH_PIN);
-  threshold = analogRead(THRESHOLD_PIN) / 32; //novidade da versao
+  threshold = analogRead(THRESHOLD_PIN) / 32; //novidade da versao 1.0.1
 
   if (standby)
   {
@@ -144,8 +148,11 @@ void setLiveMessage(int tumIntensity, int taIntensity)
 
 // Avarage
 
-#define numReadings 5
-int values[2][numReadings];
+//#define numReadings 5
+int numReadings[2] = {5, 6};
+#define maxNumReadings 6
+//int values[2][numReadings];
+int values[2][maxNumReadings];
 int total[2];
 int index = 0;
 int avrg = 0;
@@ -158,11 +165,12 @@ int getAvarage(int channel, int value)
   total[channel] = total[channel] + values[channel][index];
   index = index + 1;
 
-  if (index >= numReadings)
+  if (index >= numReadings[channel])
   {
     index = 0;
   }
-  avrg = (int) total[channel] / numReadings;
+  
+  avrg = (int) total[channel] / numReadings[channel];
   return avrg;
 }
 
