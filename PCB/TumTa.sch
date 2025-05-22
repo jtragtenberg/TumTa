@@ -3287,6 +3287,11 @@ LILYPAD- DIO-09910&lt;br&gt;
 <pinref part="SUPPLY6" gate="G$1" pin="3.3V"/>
 <wire x1="-60.96" y1="-22.86" x2="-68.58" y2="-22.86" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="POT_THRESHOLD" gate="R?" pin="CW"/>
+<pinref part="SUPPLY3" gate="G$1" pin="3.3V"/>
+<wire x1="38.1" y1="-43.18" x2="48.26" y2="-43.18" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="A0" class="0">
 <segment>
@@ -3350,13 +3355,6 @@ LILYPAD- DIO-09910&lt;br&gt;
 <pinref part="FIO_SHIELD" gate="G$1" pin="D12"/>
 <wire x1="-25.4" y1="-12.7" x2="-17.78" y2="-12.7" width="0.1524" layer="91"/>
 <pinref part="STANDBY" gate="G$1" pin="P"/>
-</segment>
-</net>
-<net name="3.3V" class="0">
-<segment>
-<pinref part="POT_THRESHOLD" gate="R?" pin="CW"/>
-<pinref part="SUPPLY3" gate="G$1" pin="3.3V"/>
-<wire x1="38.1" y1="-43.18" x2="48.26" y2="-43.18" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$6" class="0">
