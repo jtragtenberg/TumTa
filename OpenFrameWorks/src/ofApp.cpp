@@ -87,6 +87,7 @@ void ofApp::iniSerial()
 
 void ofApp::updateSerial()
 {
+	serial.update();
 	serial.updateSerialValues();
 }
 
@@ -118,10 +119,12 @@ void ofApp::iniGraphic()
 	lineI[0].setup("Tum Sensor Intensity Min", ofVec2f(midi.paramTumIntensityMin.getMin(), midi.paramTumIntensityMin.getMax()));
 	lineI[1].setup("Tum Sensor Intensity Max", ofVec2f(midi.paramTumIntensityMax.getMin(), midi.paramTumIntensityMax.getMax()));
 	lineI[2].setup("Tum Midi Velocity Min", ofVec2f(midi.paramTumVelocityMin.getMin(), midi.paramTumVelocityMin.getMax()));
+	lineI[3].setup("Tum Midi Velocity Max", ofVec2f(midi.paramTumVelocityMax.getMin(), midi.paramTumVelocityMin.getMax()));
 	// MIDI Ta
-	lineI[3].setup("Ta Sensor Intensity Min", ofVec2f(midi.paramTaIntensityMin.getMin(), midi.paramTaIntensityMin.getMax()));
-	lineI[4].setup("Ta Sensor Intensity Max", ofVec2f(midi.paramTaIntensityMax.getMin(), midi.paramTaIntensityMax.getMax()));
-	lineI[5].setup("Ta Midi Velocity Min", ofVec2f(midi.paramTaVelocityMin.getMin(), midi.paramTaVelocityMin.getMax()));
+	lineI[4].setup("Ta Sensor Intensity Min", ofVec2f(midi.paramTaIntensityMin.getMin(), midi.paramTaIntensityMin.getMax()));
+	lineI[5].setup("Ta Sensor Intensity Max", ofVec2f(midi.paramTaIntensityMax.getMin(), midi.paramTaIntensityMax.getMax()));
+	lineI[6].setup("Ta Midi Velocity Min", ofVec2f(midi.paramTaVelocityMin.getMin(), midi.paramTaVelocityMin.getMax()));
+	lineI[7].setup("Ta Midi Velocity Max", ofVec2f(midi.paramTaVelocityMax.getMin(), midi.paramTaVelocityMin.getMax()));
 	
 }
 
@@ -141,10 +144,12 @@ void ofApp::updateGraphic()
 	lineI[0].update(midi.paramTumIntensityMin);
 	lineI[1].update(midi.paramTumIntensityMax);
 	lineI[2].update(midi.paramTumVelocityMin);
+	lineI[3].update(midi.paramTumVelocityMax);
 	// MIDI Ta
-	lineI[3].update(midi.paramTaIntensityMin);
-	lineI[4].update(midi.paramTaIntensityMax);
-	lineI[5].update(midi.paramTaVelocityMin);
+	lineI[4].update(midi.paramTaIntensityMin);
+	lineI[5].update(midi.paramTaIntensityMax);
+	lineI[6].update(midi.paramTaVelocityMin);
+	lineI[7].update(midi.paramTaVelocityMax);
 }
 
 void ofApp::drawGraphic()
@@ -163,37 +168,60 @@ void ofApp::drawGraphic()
 	lineI[0].draw();
 	lineI[1].draw();
 	lineI[2].draw();
-	// MIDI Ta
 	lineI[3].draw();
+	// MIDI Ta
 	lineI[4].draw();
 	lineI[5].draw();
+	lineI[6].draw();
+	lineI[7].draw();
 }
 
 // GUI
 void ofApp::iniGui()
 {
 	showGui = false;
-	parameters.add(isDebugWithoutSensorsEnabled.set("Debug (no Sensors)", true));
-	parameters.add(data.parameters);
-	parameters.add(midi.parameters);
+	
+	// LIVE
+	parametersLive.setName("Calibracao");
+	parametersLive.add(midi.parametersTum);
+	parametersLive.add(midi.parametersTa);
+
+	// SERIAL
+	parametersSerial.setName("Serial");
+	parametersSerial.add(serial.parameters);
+	
+	// DEBUG
+	parametersDebug.setName("Debug");
+	parametersDebug.add(isDebugWithoutSensorsEnabled.set("Debug (no Sensors)", true));
+	parametersDebug.add(data.parameters);
+	parametersDebug.add(midi.parametersTum);
+	parametersDebug.add(midi.parametersTa);
 	// Tum
-	parameters.add(graphicI[0].parameters);
-	parameters.add(graphicI[1].parameters);
-	parameters.add(graphicI[2].parameters);
-	parameters.add(graphicI[3].parameters);
+	parametersDebug.add(graphicI[0].parameters);
+	parametersDebug.add(graphicI[1].parameters);
+	parametersDebug.add(graphicI[2].parameters);
+	parametersDebug.add(graphicI[3].parameters);
 	// Ta
-	parameters.add(graphicI[4].parameters);
-	parameters.add(graphicI[5].parameters);
-	parameters.add(graphicI[6].parameters);
-	parameters.add(graphicI[7].parameters);
+	parametersDebug.add(graphicI[4].parameters);
+	parametersDebug.add(graphicI[5].parameters);
+	parametersDebug.add(graphicI[6].parameters);
+	parametersDebug.add(graphicI[7].parameters);
 	// Midi Tum
-	parameters.add(lineI[0].parameters);
-	parameters.add(lineI[1].parameters);
-	parameters.add(lineI[2].parameters);
+	parametersDebug.add(lineI[0].parameters);
+	parametersDebug.add(lineI[1].parameters);
+	parametersDebug.add(lineI[2].parameters);
+	parametersDebug.add(lineI[3].parameters);
 	// Midi Ta
-	parameters.add(lineI[3].parameters);
-	parameters.add(lineI[4].parameters);
-	parameters.add(lineI[5].parameters);
+	parametersDebug.add(lineI[4].parameters);
+	parametersDebug.add(lineI[5].parameters);
+	parametersDebug.add(lineI[6].parameters);
+	parametersDebug.add(lineI[7].parameters);
+
+	parameters.setName("TumTa");
+	parameters.add(parametersLive);
+	parameters.add(parametersSerial);
+	parameters.add(parametersDebug);
+	
 	gui.setup(parameters);
 	gui.loadFromFile("settings.xml");
 	gui.minimizeAll();

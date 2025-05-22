@@ -7,18 +7,30 @@
 #include "ofxGui.h"
 #include "mztTumtaData.h"
 
-#define MIDI_TUMTA_CHANNEL 1
-#define MIDI_NOTE_TUM 30
-#define MIDI_NOTE_TA 31
-
 class mztTumtaMidi
 {
 public:
 	void setup();
 	void updateWithData(mztTumtaData * data);
 	
-	ofParameterGroup parameters;
-	ofParameter<int> paramTumIntensityMin, paramTumIntensityMax, paramTumVelocityMin, paramTumNoteDelay, paramTaIntensityMin, paramTaIntensityMax, paramTaVelocityMin, paramTaNoteDelay;
+	ofParameterGroup parametersTum, parametersTumIntensity,parametersTumMidi, parametersTa, parametersTaIntensity, parametersTaMidi;
+	ofParameter<int>
+		paramTumIntensityMin,
+		paramTumIntensityMax,
+		paramTumVelocityMin,
+		paramTumVelocityMax,
+		paramTumNote,
+		paramTumChannel,
+		paramTumNoteDuration,
+		paramTaIntensityMin,
+		paramTaIntensityMax,
+		paramTaVelocityMin,
+		paramTaVelocityMax,
+		paramTaNote,
+		paramTaChannel,
+		paramTaNoteDuration;
+	
+//	ofParameter<bool> serial;
 	
 private:
 	ofxMidiOut midiOut;
@@ -28,6 +40,10 @@ private:
 	void sendMidiNoteOff(int channel, int pitch);
 	
 	void iniGui();
+	
+	bool noteOffFlag[2] = {false, false};
+	bool noteOnFlag[2] = {false, false};
+	unsigned long long elapsedTime[2];
 };
 
 #endif

@@ -207,11 +207,11 @@ void mztTumtaData::iniGui()
 	// Tum
 	parameters.add(paramTumPressure.set("Tum Pressure", 0, 0, 1023));
   	parameters.add(paramTumDerivative.set("Tum Derivative", 0, 0, 1023));
-   	parameters.add(paramTumIntensity.set("Tum Intensity", 0, 0, 1023));
+   	parameters.add(paramTumIntensity.set("Tum Intensity", 0, 0, 500));
    	parameters.add(paramTumInterval.set("Tum Interval", 0, 0, 1023));
 	// Ta
 	parameters.add(paramTaPressure.set("Ta Pressure", 0, 0, 1023));
 	parameters.add(paramTaDerivative.set("Ta Derivative", 0, 0, 1023));
-	parameters.add(paramTaIntensity.set("Ta Intensity", 0, 0, 1023));
+	parameters.add(paramTaIntensity.set("Ta Intensity", 0, 0, 500));
 	parameters.add(paramTaInterval.set("Ta Interval", 0, 0, 1023));
 }

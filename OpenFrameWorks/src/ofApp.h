@@ -35,7 +35,7 @@ public:
 	
 	// GRAPHIC
 	mztGraphicI graphicI[8];
-	mztLineI lineI[6];
+	mztLineI lineI[8];
 	void iniGraphic();
 	void updateGraphic();
 	void drawGraphic();
@@ -43,7 +43,11 @@ public:
 	// GUI
 	bool showGui;
 	ofxPanel gui;
-	ofParameterGroup parameters;
+	ofParameterGroup
+		parameters,
+		parametersLive,
+		parametersSerial,
+		parametersDebug;
 	ofParameter<bool> isDebugWithoutSensorsEnabled;
 	void iniGui();
 };

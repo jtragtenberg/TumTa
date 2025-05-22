@@ -26,6 +26,7 @@ class mztTumtaSerial
 {
 public:
 	void setup();
+	void update();
 	void updateSerialValues();
 	void checkByteAndUpdateVectors(int serialRead);
 	void close();
@@ -38,6 +39,11 @@ public:
 	vector<int> getTaDerivative();
 	vector<int> getTaIntensity();
 	
+	// GUI
+	ofParameterGroup parameters, parameterGroupSerialPort;
+	ofParameter<bool> paramSerialOn;
+	vector<ofParameter<bool> > paramSerialDeviceName;
+
 private:
 	// DATA
 	struct Tumta
@@ -54,10 +60,18 @@ private:
 	
 	// Serial
 	ofSerial serial;
+	void iniSerial(int serialDeviceId);
+	void setGuiSerialDeviceName();
+	void checkGuiSerialDeviceName();
+	int paramSerialDeviceNameSelected;
+	
 	int package[12], contPackage, packageChecksum;
 	bool isPackageReady;
 	void setPackage(int newChar);
+	bool serialActive;
 	
+	// Gui
+	void iniGui();
 };
 
 #endif

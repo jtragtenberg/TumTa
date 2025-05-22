@@ -2,19 +2,30 @@
 
 void mztTumtaSerial::setup()
 {
-	serial.setup(0, SERIAL_BAUDS);
-	serial.flush();
+
+	
+	iniSerial(0);
 	isPackageReady = false;
 	contPackage = 0;
+	serialActive = true;
+	iniGui();
+}
+
+void mztTumtaSerial::update()
+{
+	checkGuiSerialDeviceName();
 }
 
 void mztTumtaSerial::updateSerialValues()
 {
-	emptyValues();
-	int serialRead;
-	while((serialRead = serial.readByte()) >= 0)
+	if(paramSerialOn)
 	{
-		checkByteAndUpdateVectors(serialRead);
+		emptyValues();
+		int serialRead;
+		while((serialRead = serial.readByte()) >= 0)
+		{
+			checkByteAndUpdateVectors(serialRead);
+		}
 	}
 }
 
@@ -214,4 +225,62 @@ void mztTumtaSerial::emptyValues()
 	ta.pressure.clear();
 	ta.derivative.clear();
 	ta.intensity.clear();
+}
+
+// SERIAL
+void mztTumtaSerial::iniSerial(int serialDeviceId = 0)
+{
+	if(serial.isInitialized())
+	{
+		serial.close();
+	}
+	serial.setup(serialDeviceId, SERIAL_BAUDS);
+	paramSerialDeviceNameSelected = serialDeviceId;
+	serial.flush();
+}
+
+void mztTumtaSerial::setGuiSerialDeviceName()
+{
+	paramSerialDeviceName.empty();
+	vector<ofSerialDeviceInfo> serialDeviceList = serial.getDeviceList();
+	for(int i = 0; i < serialDeviceList.size(); i++)
+	{
+		ofParameter<bool> serialDevice;
+		serialDevice.set(serialDeviceList[i].getDeviceName(), false);
+		paramSerialDeviceName.push_back(serialDevice);
+	}
+}
+
+void mztTumtaSerial::checkGuiSerialDeviceName()
+{
+	paramSerialDeviceName[paramSerialDeviceNameSelected] = true;
+	for(int i = 0; i < paramSerialDeviceName.size(); i++)
+	{
+		if(paramSerialDeviceName[i] && paramSerialDeviceNameSelected != i)
+		{
+			paramSerialDeviceName[paramSerialDeviceNameSelected] = false;
+			paramSerialDeviceNameSelected = i;
+			paramSerialDeviceName[i] = true;
+			iniSerial(paramSerialDeviceNameSelected);
+		}
+	}
+}
+
+// GUI
+void mztTumtaSerial::iniGui()
+{
+	parameters.setName("Serial");
+	parameters.add(paramSerialOn.set("Active", true));
+	// Serial Port Names
+	parameterGroupSerialPort.setName("Serial Ports");
+	setGuiSerialDeviceName();
+	for(int i = 0; i < paramSerialDeviceName.size(); i++)
+	{
+		parameterGroupSerialPort.add(paramSerialDeviceName[i]);
+		if(i == paramSerialDeviceNameSelected)
+		{
+			paramSerialDeviceName[paramSerialDeviceNameSelected] = true;
+		}
+	}
+	parameters.add(parameterGroupSerialPort);
 }
