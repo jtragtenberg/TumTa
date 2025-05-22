@@ -36,7 +36,7 @@ void setup()
   pinMode(LED_PIN, OUTPUT);
   //analogReference(EXTERNAL);
 
-  digitalWrite(LED_PIN, LOW);
+  
 }
 
 boolean standby = false;
