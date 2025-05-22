@@ -15,7 +15,7 @@ int tumPressure = 0;
 int tumIntensity = 0;
 
 int threshold = 100;
-int debounceTime = 50;//80;
+int debounceTime = 30;//80;
 int midiNoteTum = 60;
 int midiChannelTum = 0;
 
@@ -23,6 +23,7 @@ int midiChannelTum = 0;
 int intensityMax = 700;
 int midiVelocityMin = 20;
 int midiVelocityMax = 127;
+unsigned long noteDuration = 80;
 
 
 void setup() {
@@ -35,7 +36,7 @@ void setup() {
   Timer1.initialize(300); //500us
   Timer1.attachInterrupt(readTum);
 
-  Timer3.initialize(500); //5ms
+  Timer3.initialize(5000); //5ms
   Timer3.attachInterrupt(sendMessage);
 }
 
@@ -46,7 +47,6 @@ void loop() {
 int c = 0; //zera contador
 bool noteOnFlag = false;
 unsigned long noteTime;
-unsigned long noteDuration = 200;
 
 
 void readTum() {
@@ -65,12 +65,14 @@ void readTum() {
 
 
   if (tumIntensity > 0 && !noteOnFlag) {
+    noteTime = millis();
     //Serial.println("Sending note on");
     int midiVelocityTum = truncamento(mapeamento(tumIntensity, threshold, intensityMax, midiVelocityMin, midiVelocityMax), midiVelocityMin, midiVelocityMax);
     noteOn(midiChannelTum, midiNoteTum, midiVelocityTum);   // Channel 0, middle C, normal velocity
     MidiUSB.flush();
     noteOnFlag = true;
   }
+  //if ((millis() - noteTime > noteDuration) && noteOnFlag) {
   if (tumIntensity <= 0 && noteOnFlag) {
     //Serial.println("Sending note off");
     noteOff(midiChannelTum, midiNoteTum, 0);  // Channel 0, middle C, normal velocity
@@ -154,6 +156,7 @@ int getIntensity(int channel, int newDerivative)
         aindaNao[channel] = false;                         //a pisada ja rolou
       }
     }
+    
   }
   return intensity[channel];
 }
