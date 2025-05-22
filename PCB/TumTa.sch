@@ -1805,14 +1805,14 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="3.1" y1="-3.1" x2="2.4" y2="-4.6" width="0.127" layer="21"/>
 <wire x1="2.4" y1="-4.6" x2="1.2" y2="-3.8" width="0.127" layer="21"/>
 <wire x1="1.2" y1="-3.8" x2="0.1" y2="-5.1" width="0.127" layer="21"/>
-<wire x1="-0.3" y1="5.7" x2="-0.3" y2="2.5" width="0.254" layer="21"/>
-<wire x1="-0.3" y1="2.5" x2="-0.3" y2="-1.9" width="0.254" layer="21"/>
-<wire x1="0.7" y1="5.7" x2="0.7" y2="2.5" width="0.254" layer="21"/>
-<wire x1="0.7" y1="2.5" x2="0.7" y2="-2" width="0.254" layer="21"/>
-<wire x1="0.7" y1="5.7" x2="0.7" y2="2.5" width="0.254" layer="21" curve="-180"/>
-<wire x1="-0.4" y1="2.5" x2="-0.3" y2="5.7" width="0.254" layer="21" curve="-180"/>
-<wire x1="0.7" y1="2.5" x2="0.7" y2="-2" width="0.254" layer="21" curve="-180"/>
-<wire x1="-0.3" y1="-1.9" x2="-0.3" y2="2.5" width="0.254" layer="21" curve="-180"/>
+<wire x1="-0.3" y1="5.065" x2="-0.3" y2="2.5" width="0.254" layer="21"/>
+<wire x1="-0.3" y1="2.5" x2="-0.3" y2="-0.63" width="0.254" layer="21"/>
+<wire x1="0.7" y1="5.065" x2="0.7" y2="2.5" width="0.254" layer="21"/>
+<wire x1="0.7" y1="2.5" x2="0.7" y2="-0.73" width="0.254" layer="21"/>
+<wire x1="0.7" y1="5.065" x2="0.7" y2="2.5" width="0.254" layer="21" curve="-180"/>
+<wire x1="-0.4" y1="2.5" x2="-0.3" y2="5.065" width="0.254" layer="21" curve="-180"/>
+<wire x1="0.7" y1="2.5" x2="0.7" y2="-0.73" width="0.254" layer="21" curve="-180"/>
+<wire x1="-0.3" y1="-0.63" x2="-0.3" y2="2.5" width="0.254" layer="21" curve="-180"/>
 <text x="-8.255" y="-9.525" size="1.27" layer="21" font="vector">Artesania Digital</text>
 </package>
 </packages>
@@ -1916,8 +1916,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <sheet>
 <plain>
 <text x="48.26" y="-83.82" size="2.54" layer="94" font="fixed">JOÃO TRAGTENBERG</text>
-<text x="120.65" y="-84.328" size="2.54" layer="94" font="fixed">0.2.5</text>
-<text x="81.28" y="-73.66" size="1.778" layer="94" font="vector">Versao com trilhas</text>
+<text x="120.65" y="-84.328" size="2.54" layer="94" font="fixed">0.2.6</text>
+<text x="81.28" y="-73.66" size="1.778" layer="94" font="vector">Versao com rats nests</text>
 </plain>
 <instances>
 <instance part="FIO_SHIELD" gate="G$1" x="0" y="2.54"/>
