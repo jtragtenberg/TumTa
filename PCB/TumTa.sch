@@ -1112,6 +1112,78 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </deviceset>
 </devicesets>
 </library>
+<library name="SparkFun-Electromechanical">
+<description>&lt;h3&gt;SparkFun Electronics' preferred foot prints&lt;/h3&gt;
+In this library you'll find anything that moves- switches, relays, buttons, potentiometers. Also, anything that goes on a board but isn't electrical in nature- screws, standoffs, etc.&lt;br&gt;&lt;br&gt;
+We've spent an enormous amount of time creating and checking these footprints and parts, but it is the end user's responsibility to ensure correctness and suitablity for a given componet or application. If you enjoy using this library, please buy one of our products at www.sparkfun.com.
+&lt;br&gt;&lt;br&gt;
+&lt;b&gt;Licensing:&lt;/b&gt; Creative Commons ShareAlike 4.0 International - https://creativecommons.org/licenses/by-sa/4.0/ 
+&lt;br&gt;&lt;br&gt;
+You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
+<packages>
+<package name="TRIMPOT_MULTIVOLTAS">
+<circle x="2.2" y="2" radius="0.2286" width="0.0254" layer="51"/>
+<circle x="4.74" y="2" radius="0.2286" width="0.0254" layer="51"/>
+<circle x="7.28" y="2" radius="0.2286" width="0.0254" layer="51"/>
+<wire x1="0" y1="-0.5" x2="0.4" y2="-0.5" width="0.2032" layer="21"/>
+<wire x1="9.5" y1="4" x2="1" y2="4" width="0.2032" layer="21"/>
+<wire x1="1" y1="4" x2="0" y2="4" width="0.2032" layer="21"/>
+<wire x1="0" y1="4" x2="0" y2="-0.5" width="0.2032" layer="21"/>
+<pad name="1" x="2.2376" y="2.0052" drill="0.7366" diameter="1.6764" shape="square"/>
+<pad name="2" x="4.7" y="2.0052" drill="0.7366" diameter="1.6764"/>
+<pad name="3" x="7.3224" y="2.0052" drill="0.7366" diameter="1.6764"/>
+<wire x1="9.5" y1="4" x2="9.5" y2="-0.5" width="0.2032" layer="21"/>
+<wire x1="9.1" y1="-0.5" x2="9.4" y2="-0.5" width="0.2032" layer="21"/>
+<wire x1="0.4" y1="-0.5" x2="0.4" y2="0" width="0.2032" layer="21"/>
+<wire x1="9.1" y1="-0.5" x2="9.1" y2="0" width="0.2032" layer="21"/>
+<wire x1="0.4" y1="0" x2="9.1" y2="0" width="0.2032" layer="21"/>
+<circle x="1" y="3" radius="1" width="0.127" layer="21"/>
+<wire x1="1" y1="2" x2="1" y2="4" width="0.127" layer="21"/>
+<text x="1.27" y="-1.905" size="1.27" layer="21">&gt;NAME</text>
+</package>
+</packages>
+<symbols>
+<symbol name="TRIMPOT">
+<wire x1="-2.54" y1="0" x2="-2.159" y2="1.016" width="0.1524" layer="94"/>
+<wire x1="-2.159" y1="1.016" x2="-1.524" y2="-1.016" width="0.1524" layer="94"/>
+<wire x1="-1.524" y1="-1.016" x2="-0.889" y2="1.016" width="0.1524" layer="94"/>
+<wire x1="-0.889" y1="1.016" x2="-0.254" y2="-1.016" width="0.1524" layer="94"/>
+<wire x1="-0.254" y1="-1.016" x2="0.381" y2="1.016" width="0.1524" layer="94"/>
+<wire x1="0.381" y1="1.016" x2="1.016" y2="-1.016" width="0.1524" layer="94"/>
+<wire x1="1.016" y1="-1.016" x2="1.651" y2="1.016" width="0.1524" layer="94"/>
+<wire x1="1.651" y1="1.016" x2="2.286" y2="-1.016" width="0.1524" layer="94"/>
+<wire x1="2.286" y1="-1.016" x2="2.54" y2="0" width="0.1524" layer="94"/>
+<wire x1="0" y1="1.524" x2="0.635" y2="2.54" width="0.1524" layer="94"/>
+<wire x1="-0.635" y1="2.54" x2="0" y2="1.524" width="0.1524" layer="94"/>
+<wire x1="0" y1="2.54" x2="0" y2="1.524" width="0.1524" layer="94"/>
+<text x="2.54" y="2.2606" size="1.778" layer="95">&gt;NAME</text>
+<text x="-3.81" y="-3.302" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="WIPER" x="0" y="5.08" visible="off" length="short" direction="pas" swaplevel="1" rot="R270"/>
+<pin name="CCW" x="-5.08" y="0" visible="off" length="short" direction="pas" swaplevel="1"/>
+<pin name="CW" x="5.08" y="0" visible="off" length="short" direction="pas" swaplevel="1" rot="R180"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="TRIMPOT_MULTIVOLTAS" prefix="T">
+<description>Trimpot multivoltas (untested)</description>
+<gates>
+<gate name="G$1" symbol="TRIMPOT" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="TRIMPOT_MULTIVOLTAS">
+<connects>
+<connect gate="G$1" pin="CCW" pad="1"/>
+<connect gate="G$1" pin="CW" pad="3"/>
+<connect gate="G$1" pin="WIPER" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 <library name="SparkFun-Passives">
 <description>&lt;h3&gt;SparkFun Electronics' preferred foot prints&lt;/h3&gt;
 In this library you'll find resistors, capacitors, inductors, test points, jumper pads, etc.&lt;br&gt;&lt;br&gt;
@@ -1798,713 +1870,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </deviceset>
 </devicesets>
 </library>
-<library name="SparkFun-Electromechanical">
-<description>&lt;h3&gt;SparkFun Electronics' preferred foot prints&lt;/h3&gt;
-In this library you'll find anything that moves- switches, relays, buttons, potentiometers. Also, anything that goes on a board but isn't electrical in nature- screws, standoffs, etc.&lt;br&gt;&lt;br&gt;
-We've spent an enormous amount of time creating and checking these footprints and parts, but it is the end user's responsibility to ensure correctness and suitablity for a given componet or application. If you enjoy using this library, please buy one of our products at www.sparkfun.com.
-&lt;br&gt;&lt;br&gt;
-&lt;b&gt;Licensing:&lt;/b&gt; Creative Commons ShareAlike 4.0 International - https://creativecommons.org/licenses/by-sa/4.0/ 
-&lt;br&gt;&lt;br&gt;
-You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
-<packages>
-<package name="TRIMPOT_TC33">
-<wire x1="-1.55" y1="-1.65" x2="1.55" y2="-1.65" width="0.127" layer="51"/>
-<wire x1="1.55" y1="-1.65" x2="1.55" y2="1.45" width="0.127" layer="51"/>
-<wire x1="1.55" y1="1.45" x2="-1.55" y2="1.45" width="0.127" layer="51"/>
-<wire x1="-1.55" y1="1.45" x2="-1.55" y2="-1.65" width="0.127" layer="51"/>
-<wire x1="-0.75" y1="1.45" x2="-1.55" y2="1.45" width="0.127" layer="21"/>
-<wire x1="-1.55" y1="1.45" x2="-1.55" y2="-1.65" width="0.127" layer="21"/>
-<wire x1="-1.55" y1="-1.65" x2="-1.5" y2="-1.65" width="0.127" layer="21"/>
-<wire x1="-0.3" y1="-1.65" x2="0.3" y2="-1.65" width="0.127" layer="21"/>
-<wire x1="1.5" y1="-1.65" x2="1.55" y2="-1.65" width="0.127" layer="21"/>
-<wire x1="1.55" y1="-1.65" x2="1.55" y2="1.45" width="0.127" layer="21"/>
-<wire x1="1.55" y1="1.45" x2="0.75" y2="1.45" width="0.127" layer="21"/>
-<smd name="1" x="-0.91" y="-1.45" dx="1.1" dy="0.9" layer="1"/>
-<smd name="2" x="0" y="1.45" dx="1.1" dy="0.9" layer="1"/>
-<smd name="3" x="0.91" y="-1.45" dx="1.1" dy="0.9" layer="1"/>
-<text x="2" y="1" size="1.016" layer="27">&gt;Value</text>
-<text x="2" y="-2" size="1.016" layer="25">&gt;Name</text>
-</package>
-<package name="3386U">
-<description>&lt;h3&gt;TSR-3386U Trimpot&lt;/h3&gt;
-Trimpot with a knob&lt;br&gt;
-For COM-09806 in the SparkFun catalog&lt;br&gt;</description>
-<circle x="0" y="0.575" radius="4" width="0.127" layer="51"/>
-<wire x1="-4.765" y1="-4.765" x2="-4" y2="-4.765" width="0.2032" layer="21"/>
-<wire x1="4" y1="-4.765" x2="4.765" y2="-4.765" width="0.2032" layer="21"/>
-<wire x1="4.765" y1="-4.765" x2="4.765" y2="4.765" width="0.2032" layer="21"/>
-<wire x1="4.765" y1="4.765" x2="-4.765" y2="4.765" width="0.2032" layer="21"/>
-<wire x1="-4.765" y1="4.765" x2="-4.765" y2="-4.765" width="0.2032" layer="21"/>
-<wire x1="-1.5" y1="2.2" x2="-0.5" y2="2.2" width="0.127" layer="51"/>
-<wire x1="-0.5" y1="2.2" x2="-0.5" y2="-1.8" width="0.127" layer="51"/>
-<wire x1="-0.5" y1="-1.8" x2="0.5" y2="-1.8" width="0.127" layer="51"/>
-<wire x1="0.5" y1="-1.8" x2="0.5" y2="2.2" width="0.127" layer="51"/>
-<wire x1="0.5" y1="2.2" x2="1.5" y2="2.2" width="0.127" layer="51"/>
-<wire x1="0" y1="3.7" x2="-1.5" y2="2.2" width="0.127" layer="51"/>
-<wire x1="1.5" y1="2.2" x2="0" y2="3.7" width="0.127" layer="51"/>
-<wire x1="-4" y1="-4.765" x2="-4" y2="-4.365" width="0.2032" layer="21"/>
-<wire x1="-4" y1="-4.365" x2="4" y2="-4.365" width="0.2032" layer="21"/>
-<wire x1="4" y1="-4.365" x2="4" y2="-4.765" width="0.2032" layer="21"/>
-<pad name="1" x="-2.54" y="-0.015" drill="1.016" diameter="1.8796" shape="square"/>
-<pad name="2" x="0" y="-0.015" drill="1.016" diameter="1.8796"/>
-<pad name="3" x="2.54" y="-0.015" drill="1.016" diameter="1.8796"/>
-<text x="-5.08" y="5.08" size="1.27" layer="27">&gt;Value</text>
-<text x="-5.08" y="-6.35" size="1.27" layer="25">&gt;Name</text>
-</package>
-<package name="TRIMPOT-3MM-2">
-<wire x1="-1.1016" y1="1.6" x2="-2.0064" y2="1.6" width="0.2032" layer="21"/>
-<wire x1="-2.0064" y1="1.6" x2="-2.0064" y2="-1.5238" width="0.2032" layer="21"/>
-<wire x1="1.1016" y1="1.6" x2="2.0064" y2="1.6" width="0.2032" layer="21"/>
-<wire x1="2.0064" y1="1.6" x2="2.0064" y2="-1.5238" width="0.2032" layer="21"/>
-<smd name="1" x="-1.1548" y="-1.4214" dx="1.0922" dy="1.6002" layer="1"/>
-<smd name="2" x="0" y="1.4214" dx="1.6002" dy="1.6002" layer="1"/>
-<smd name="3" x="1.1548" y="-1.4214" dx="1.0922" dy="1.6002" layer="1"/>
-<text x="-0.762" y="0.508" size="0.3048" layer="25">&gt;NAME</text>
-<text x="-0.762" y="0" size="0.3048" layer="27">&gt;VALUE</text>
-</package>
-<package name="3362U-2">
-<circle x="0" y="0" radius="1.397" width="0.127" layer="51"/>
-<circle x="3.1496" y="2.5908" radius="0.1481" width="0.127" layer="51"/>
-<wire x1="-3.81" y1="-3.556" x2="3.81" y2="-3.556" width="0.2032" layer="21"/>
-<wire x1="3.81" y1="-3.556" x2="3.81" y2="3.1496" width="0.2032" layer="21"/>
-<wire x1="3.81" y1="3.1496" x2="-3.81" y2="3.1496" width="0.2032" layer="21"/>
-<wire x1="-3.81" y1="3.1496" x2="-3.81" y2="-3.556" width="0.2032" layer="21"/>
-<wire x1="-3.81" y1="-3.81" x2="3.81" y2="-3.81" width="0.2032" layer="51"/>
-<wire x1="0" y1="1.397" x2="0" y2="-1.397" width="0.127" layer="51"/>
-<wire x1="1.397" y1="0" x2="-1.397" y2="0" width="0.127" layer="51"/>
-<pad name="1" x="-2.54" y="-0.3048" drill="1.016" diameter="1.8796" shape="square"/>
-<pad name="2" x="0" y="-0.3048" drill="1.016" diameter="1.8796"/>
-<pad name="3" x="2.54" y="-0.3048" drill="1.016" diameter="1.8796"/>
-</package>
-<package name="TRIM_POT_PTH">
-<circle x="0" y="0" radius="2.008" width="0.127" layer="21"/>
-<wire x1="2.54" y1="2.54" x2="-2.54" y2="2.54" width="0.127" layer="21"/>
-<wire x1="-2.54" y1="2.54" x2="-2.54" y2="-2.54" width="0.127" layer="21"/>
-<wire x1="-2.54" y1="-2.54" x2="2.54" y2="-2.54" width="0.127" layer="21"/>
-<wire x1="2.54" y1="-2.54" x2="2.54" y2="2.54" width="0.127" layer="21"/>
-<wire x1="0" y1="-1.27" x2="0" y2="0" width="0.127" layer="21"/>
-<wire x1="-1.27" y1="0" x2="0" y2="0" width="0.127" layer="21"/>
-<wire x1="0" y1="1.27" x2="0" y2="0" width="0.127" layer="21"/>
-<wire x1="0" y1="0" x2="1.27" y2="0" width="0.127" layer="21"/>
-<pad name="1" x="-2.54" y="-2.54" drill="1" diameter="1.8796" rot="R180"/>
-<pad name="2" x="0" y="2.54" drill="1" diameter="1.8796" rot="R180"/>
-<pad name="3" x="2.54" y="-2.54" drill="1" diameter="1.8796" rot="R180"/>
-<text x="3.175" y="1.27" size="0.6096" layer="25">&gt;Name</text>
-<text x="3.175" y="0" size="0.6096" layer="27">&gt;Value</text>
-</package>
-<package name="TRIMPOT-3MM">
-<wire x1="-1" y1="1.6" x2="-1.6" y2="1.6" width="0.2032" layer="21"/>
-<wire x1="-1.6" y1="1.6" x2="-1.6" y2="-1.6" width="0.2032" layer="21"/>
-<wire x1="1" y1="1.6" x2="1.6" y2="1.6" width="0.2032" layer="21"/>
-<wire x1="1.6" y1="1.6" x2="1.6" y2="-1.6" width="0.2032" layer="21"/>
-<smd name="1" x="-0.85" y="-1.65" dx="1" dy="0.9" layer="1"/>
-<smd name="2" x="0" y="1.65" dx="1.1" dy="0.9" layer="1"/>
-<smd name="3" x="0.85" y="-1.65" dx="1" dy="0.9" layer="1"/>
-<text x="-0.762" y="0.508" size="0.3048" layer="25">&gt;NAME</text>
-<text x="-0.762" y="0" size="0.3048" layer="27">&gt;VALUE</text>
-</package>
-<package name="TRIMPOT-5MM">
-<wire x1="0" y1="-2.14" x2="-2.5" y2="-2.14" width="0.127" layer="51"/>
-<wire x1="-2.5" y1="-2.14" x2="-2.5" y2="2.86" width="0.127" layer="51"/>
-<wire x1="-2.5" y1="2.86" x2="2.5" y2="2.86" width="0.127" layer="51"/>
-<wire x1="2.5" y1="2.86" x2="2.5" y2="-2.14" width="0.127" layer="51"/>
-<wire x1="2.5" y1="-2.14" x2="0" y2="-2.14" width="0.127" layer="51"/>
-<wire x1="-1.4" y1="2.96" x2="-2.6" y2="2.96" width="0.127" layer="21"/>
-<wire x1="-2.6" y1="2.96" x2="-2.6" y2="1.56" width="0.127" layer="21"/>
-<wire x1="1.3" y1="2.96" x2="2.6" y2="2.96" width="0.127" layer="21"/>
-<wire x1="2.6" y1="2.96" x2="2.6" y2="1.56" width="0.127" layer="21"/>
-<wire x1="-2" y1="-2.24" x2="-2.6" y2="-2.24" width="0.127" layer="21"/>
-<wire x1="-2.6" y1="-2.24" x2="-2.6" y2="-1.54" width="0.127" layer="21"/>
-<wire x1="2.1" y1="-2.24" x2="2.6" y2="-2.24" width="0.127" layer="21"/>
-<wire x1="2.6" y1="-2.24" x2="2.6" y2="-1.54" width="0.127" layer="21"/>
-<smd name="A" x="1.15" y="-2.54" dx="1.3" dy="1.3" layer="1"/>
-<smd name="B" x="0" y="2.96" dx="2" dy="1.3" layer="1" rot="R180"/>
-<smd name="C" x="-1.15" y="-2.54" dx="1.3" dy="1.3" layer="1"/>
-<text x="-2.159" y="1.27" size="0.4064" layer="25">&gt;NAME</text>
-<text x="-2.159" y="0" size="0.4064" layer="27">&gt;VALUE</text>
-</package>
-<package name="TRIMPOT_PTH_S3_LOCK">
-<circle x="0" y="0" radius="1.397" width="0.127" layer="51"/>
-<circle x="3.1496" y="2.5908" radius="0.1481" width="0.127" layer="21"/>
-<circle x="-2.54" y="-0.2794" radius="0.2286" width="0.0254" layer="51"/>
-<circle x="0" y="-0.2794" radius="0.2286" width="0.0254" layer="51"/>
-<circle x="2.54" y="-0.2794" radius="0.2286" width="0.0254" layer="51"/>
-<wire x1="-3.81" y1="-3.556" x2="3.81" y2="-3.556" width="0.2032" layer="21"/>
-<wire x1="3.81" y1="-3.556" x2="3.81" y2="3.1496" width="0.2032" layer="21"/>
-<wire x1="3.81" y1="3.1496" x2="-3.81" y2="3.1496" width="0.2032" layer="21"/>
-<wire x1="-3.81" y1="3.1496" x2="-3.81" y2="-3.556" width="0.2032" layer="21"/>
-<wire x1="-3.81" y1="-3.81" x2="3.81" y2="-3.81" width="0.2032" layer="51"/>
-<wire x1="0" y1="1.397" x2="0" y2="-1.397" width="0.127" layer="51"/>
-<wire x1="1.397" y1="0" x2="-1.397" y2="0" width="0.127" layer="51"/>
-<pad name="1" x="-2.6924" y="-0.3048" drill="0.7366" diameter="1.6764" shape="square"/>
-<pad name="2" x="0" y="-0.3048" drill="0.7366" diameter="1.6764"/>
-<pad name="3" x="2.6924" y="-0.3048" drill="0.7366" diameter="1.6764"/>
-</package>
-<package name="TRIMPOT-5MM-V2">
-<wire x1="-2.5" y1="-2.14" x2="-2.5" y2="2.86" width="0.127" layer="51"/>
-<wire x1="-2.5" y1="2.86" x2="2.5" y2="2.86" width="0.127" layer="51"/>
-<wire x1="2.5" y1="2.86" x2="2.5" y2="-2.14" width="0.127" layer="51"/>
-<wire x1="2.5" y1="-2.14" x2="-2.5" y2="-2.14" width="0.127" layer="51"/>
-<wire x1="-1.4" y1="2.96" x2="-2.6" y2="2.96" width="0.127" layer="21"/>
-<wire x1="-2.6" y1="2.96" x2="-2.6" y2="1.56" width="0.127" layer="21"/>
-<wire x1="1.409221875" y1="2.96" x2="2.6" y2="2.96" width="0.127" layer="21"/>
-<wire x1="2.6" y1="2.96" x2="2.6" y2="1.56" width="0.127" layer="21"/>
-<wire x1="-2.09398125" y1="-2.24" x2="-2.6" y2="-2.24" width="0.127" layer="21"/>
-<wire x1="-2.6" y1="-2.24" x2="-2.6" y2="-1.54" width="0.127" layer="21"/>
-<wire x1="2.1" y1="-2.24" x2="2.6" y2="-2.24" width="0.127" layer="21"/>
-<wire x1="2.6" y1="-2.24" x2="2.6" y2="-1.54" width="0.127" layer="21"/>
-<smd name="A" x="1.15" y="-2.54" dx="1.3" dy="1.3" layer="1"/>
-<smd name="B" x="0" y="3.2385" dx="2" dy="1.4016" layer="1" rot="R270"/>
-<smd name="C" x="-1.15" y="-2.54" dx="1.3" dy="1.3" layer="1"/>
-<text x="-2.159" y="1.27" size="0.4064" layer="25">&gt;NAME</text>
-<text x="-2.159" y="0" size="0.4064" layer="27">&gt;VALUE</text>
-</package>
-<package name="TRIMPOT_5MM">
-<wire x1="-2.5" y1="-2.14" x2="-2.5" y2="2.86" width="0.127" layer="51"/>
-<wire x1="-2.5" y1="2.86" x2="2.5" y2="2.86" width="0.127" layer="51"/>
-<wire x1="2.5" y1="2.86" x2="2.5" y2="-2.14" width="0.127" layer="51"/>
-<wire x1="2.5" y1="-2.14" x2="-2.5" y2="-2.14" width="0.127" layer="51"/>
-<wire x1="-1.4" y1="2.96" x2="-2.6" y2="2.96" width="0.127" layer="21"/>
-<wire x1="-2.6" y1="2.96" x2="-2.6" y2="1.56" width="0.127" layer="21"/>
-<wire x1="1.409221875" y1="2.96" x2="2.6" y2="2.96" width="0.127" layer="21"/>
-<wire x1="2.6" y1="2.96" x2="2.6" y2="1.56" width="0.127" layer="21"/>
-<wire x1="-2.09398125" y1="-2.24" x2="-2.6" y2="-2.24" width="0.127" layer="21"/>
-<wire x1="-2.6" y1="-2.24" x2="-2.6" y2="-1.54" width="0.127" layer="21"/>
-<wire x1="2.1" y1="-2.24" x2="2.6" y2="-2.24" width="0.127" layer="21"/>
-<wire x1="2.6" y1="-2.24" x2="2.6" y2="-1.54" width="0.127" layer="21"/>
-<smd name="A" x="1.15" y="-2.54" dx="1.3" dy="1.3" layer="1"/>
-<smd name="B" x="0" y="3.2385" dx="2" dy="1.4016" layer="1" rot="R270"/>
-<smd name="C" x="-1.15" y="-2.54" dx="1.3" dy="1.3" layer="1"/>
-<text x="-2.159" y="1.27" size="0.4064" layer="25">&gt;NAME</text>
-<text x="-2.159" y="0" size="0.4064" layer="27">&gt;VALUE</text>
-</package>
-<package name="TRIM_POT_BR">
-<circle x="0" y="0" radius="2.008" width="0.127" layer="21"/>
-<wire x1="4.75" y1="4.75" x2="-4.75" y2="4.75" width="0.127" layer="21"/>
-<wire x1="-4.75" y1="4.75" x2="-4.75" y2="-4.75" width="0.127" layer="21"/>
-<wire x1="4.75" y1="-4.75" x2="4.75" y2="4.75" width="0.127" layer="21"/>
-<wire x1="0" y1="-1.27" x2="0" y2="0" width="0.127" layer="21"/>
-<wire x1="-1.27" y1="0" x2="0" y2="0" width="0.127" layer="21"/>
-<wire x1="0" y1="1.27" x2="0" y2="0" width="0.127" layer="21"/>
-<wire x1="0" y1="0" x2="1.27" y2="0" width="0.127" layer="21"/>
-<pad name="1" x="-2.54" y="2.54" drill="1" diameter="1.8796" rot="R180"/>
-<pad name="2" x="0" y="-2.54" drill="1" diameter="1.8796" rot="R180"/>
-<pad name="3" x="2.54" y="2.54" drill="1" diameter="1.8796" rot="R180"/>
-<text x="5.175" y="1.27" size="0.6096" layer="25">&gt;Name</text>
-<text x="5.175" y="0" size="0.6096" layer="27">&gt;Value</text>
-<wire x1="-4.75" y1="-4.75" x2="-4.25" y2="-4.75" width="0.127" layer="21"/>
-<wire x1="-4.25" y1="-4.75" x2="-4.25" y2="-4.3" width="0.127" layer="21"/>
-<wire x1="-4.25" y1="-4.3" x2="4.25" y2="-4.3" width="0.127" layer="21"/>
-<wire x1="4.25" y1="-4.3" x2="4.25" y2="-4.75" width="0.127" layer="21"/>
-<wire x1="4.25" y1="-4.75" x2="4.75" y2="-4.75" width="0.127" layer="21"/>
-</package>
-<package name="TRIMPOT_MULTIVOLTAS">
-<circle x="2.2" y="2" radius="0.2286" width="0.0254" layer="51"/>
-<circle x="4.74" y="2" radius="0.2286" width="0.0254" layer="51"/>
-<circle x="7.28" y="2" radius="0.2286" width="0.0254" layer="51"/>
-<wire x1="0" y1="-0.5" x2="0.4" y2="-0.5" width="0.2032" layer="21"/>
-<wire x1="9.5" y1="4" x2="1" y2="4" width="0.2032" layer="21"/>
-<wire x1="1" y1="4" x2="0" y2="4" width="0.2032" layer="21"/>
-<wire x1="0" y1="4" x2="0" y2="-0.5" width="0.2032" layer="21"/>
-<pad name="1" x="2.2376" y="2.0052" drill="0.7366" diameter="1.6764" shape="square"/>
-<pad name="2" x="4.7" y="2.0052" drill="0.7366" diameter="1.6764"/>
-<pad name="3" x="7.3224" y="2.0052" drill="0.7366" diameter="1.6764"/>
-<wire x1="9.5" y1="4" x2="9.5" y2="-0.5" width="0.2032" layer="21"/>
-<wire x1="9.1" y1="-0.5" x2="9.4" y2="-0.5" width="0.2032" layer="21"/>
-<wire x1="0.4" y1="-0.5" x2="0.4" y2="0" width="0.2032" layer="21"/>
-<wire x1="9.1" y1="-0.5" x2="9.1" y2="0" width="0.2032" layer="21"/>
-<wire x1="0.4" y1="0" x2="9.1" y2="0" width="0.2032" layer="21"/>
-<circle x="1" y="3" radius="1" width="0.127" layer="21"/>
-<wire x1="1" y1="2" x2="1" y2="4" width="0.127" layer="21"/>
-<text x="1.27" y="-1.905" size="1.27" layer="21">&gt;NAME</text>
-</package>
-<package name="SWITCH-SPDT">
-<wire x1="2.175" y1="5.815" x2="-2.175" y2="5.815" width="0.2032" layer="21"/>
-<wire x1="-2.175" y1="5.815" x2="-2.175" y2="-5.815" width="0.2032" layer="21"/>
-<wire x1="-2.175" y1="-5.815" x2="2.175" y2="-5.815" width="0.2032" layer="21"/>
-<wire x1="2.175" y1="-5.815" x2="2.175" y2="5.815" width="0.2032" layer="21"/>
-<pad name="1" x="0" y="2.54" drill="1.016" diameter="1.8796"/>
-<pad name="2" x="0" y="0" drill="1.016" diameter="1.8796"/>
-<pad name="3" x="0" y="-2.54" drill="1.016" diameter="1.8796"/>
-<text x="-3.81" y="7.62" size="1.778" layer="25" ratio="10">&gt;NAME</text>
-<text x="-3.81" y="-9.525" size="1.778" layer="27" ratio="10">&gt;VALUE</text>
-</package>
-<package name="AYZ0202">
-<description>&lt;b&gt;DPDT Slide Switch SMD&lt;/b&gt;
-www.SparkFun.com SKU : Comp-SMDS</description>
-<wire x1="-3.6" y1="1.75" x2="-3.6" y2="-1.75" width="0.2032" layer="21"/>
-<wire x1="-3.6" y1="-1.75" x2="3.6" y2="-1.75" width="0.2032" layer="21"/>
-<wire x1="3.6" y1="-1.75" x2="3.6" y2="1.75" width="0.2032" layer="21"/>
-<wire x1="3.6" y1="1.75" x2="-3.6" y2="1.75" width="0.2032" layer="21"/>
-<smd name="3" x="2.5" y="2.825" dx="1" dy="1.15" layer="1"/>
-<smd name="2" x="0" y="2.825" dx="1" dy="1.15" layer="1"/>
-<smd name="1" x="-2.5" y="2.825" dx="1" dy="1.15" layer="1"/>
-<smd name="6" x="2.5" y="-2.825" dx="1" dy="1.15" layer="1"/>
-<smd name="5" x="0" y="-2.825" dx="1" dy="1.15" layer="1"/>
-<smd name="4" x="-2.5" y="-2.825" dx="1" dy="1.15" layer="1"/>
-<text x="-2.54" y="1.143" size="0.4064" layer="25">&gt;Name</text>
-<text x="0.508" y="1.143" size="0.4064" layer="27">&gt;Value</text>
-<hole x="1.5" y="0" drill="0.85"/>
-<hole x="-1.5" y="0" drill="0.85"/>
-</package>
-<package name="SWITCHE-DPDT">
-<wire x1="8" y1="3.25" x2="-8" y2="3.25" width="0.127" layer="51"/>
-<wire x1="-8" y1="3.25" x2="-8" y2="-3.25" width="0.127" layer="51"/>
-<wire x1="-8" y1="-3.25" x2="8" y2="-3.25" width="0.127" layer="51"/>
-<wire x1="8" y1="-3.25" x2="8" y2="3.25" width="0.127" layer="51"/>
-<wire x1="-6" y1="3.25" x2="6" y2="3.25" width="0.2032" layer="21"/>
-<wire x1="8" y1="1" x2="8" y2="-1" width="0.2032" layer="21"/>
-<wire x1="6" y1="-3.25" x2="-6" y2="-3.25" width="0.2032" layer="21"/>
-<wire x1="-8" y1="-1" x2="-8" y2="1" width="0.2032" layer="21"/>
-<pad name="P$1" x="-7.5" y="3" drill="1.5" diameter="2.54"/>
-<pad name="P$2" x="-7.5" y="-3" drill="1.5" diameter="2.54"/>
-<pad name="P$3" x="7.5" y="3" drill="1.5" diameter="2.54"/>
-<pad name="P$4" x="7.5" y="-3" drill="1.5" diameter="2.54"/>
-<pad name="1" x="-4" y="1.25" drill="0.7" diameter="1.6764"/>
-<pad name="2" x="0" y="1.25" drill="0.7" diameter="1.6764"/>
-<pad name="3" x="4" y="1.25" drill="0.7" diameter="1.6764"/>
-<pad name="4" x="-4" y="-1.25" drill="0.7" diameter="1.6764"/>
-<pad name="5" x="0" y="-1.25" drill="0.7" diameter="1.6764"/>
-<pad name="6" x="4" y="-1.25" drill="0.7" diameter="1.6764"/>
-</package>
-<package name="R_SW_TH">
-<wire x1="-1.651" y1="19.2532" x2="-1.651" y2="-1.3716" width="0.2032" layer="21"/>
-<wire x1="-1.651" y1="-1.3716" x2="-1.651" y2="-2.2352" width="0.2032" layer="21"/>
-<wire x1="-1.651" y1="19.2532" x2="13.589" y2="19.2532" width="0.2032" layer="21"/>
-<wire x1="13.589" y1="19.2532" x2="13.589" y2="-2.2352" width="0.2032" layer="21"/>
-<wire x1="13.589" y1="-2.2352" x2="-1.651" y2="-2.2352" width="0.2032" layer="21"/>
-<pad name="P$1" x="0" y="0" drill="1.6002"/>
-<pad name="P$2" x="0" y="16.9926" drill="1.6002"/>
-<pad name="P$3" x="12.0904" y="15.494" drill="1.6002"/>
-<pad name="P$4" x="12.0904" y="8.4582" drill="1.6002"/>
-</package>
-<package name="SWITCH-SPDT-SMD">
-<wire x1="-4.5" y1="1.75" x2="-4.5" y2="-1.75" width="0.127" layer="51"/>
-<wire x1="-4.5" y1="-1.75" x2="4.5" y2="-1.75" width="0.127" layer="51"/>
-<wire x1="4.5" y1="-1.75" x2="4.5" y2="1.75" width="0.127" layer="51"/>
-<wire x1="4.5" y1="1.75" x2="2" y2="1.75" width="0.127" layer="51"/>
-<wire x1="2" y1="1.75" x2="0.5" y2="1.75" width="0.127" layer="51"/>
-<wire x1="0.5" y1="1.75" x2="-4.5" y2="1.75" width="0.127" layer="51"/>
-<wire x1="0.5" y1="1.75" x2="0.5" y2="3.75" width="0.127" layer="51"/>
-<wire x1="0.5" y1="3.75" x2="2" y2="3.75" width="0.127" layer="51"/>
-<wire x1="2" y1="3.75" x2="2" y2="1.75" width="0.127" layer="51"/>
-<wire x1="-4" y1="-1.75" x2="-4.5" y2="-1.75" width="0.2032" layer="21"/>
-<wire x1="-4.5" y1="-1.75" x2="-4.5" y2="1.75" width="0.2032" layer="21"/>
-<wire x1="-4.5" y1="1.75" x2="4.5" y2="1.75" width="0.2032" layer="21"/>
-<wire x1="4.5" y1="1.75" x2="4.5" y2="-1.75" width="0.2032" layer="21"/>
-<wire x1="4.5" y1="-1.75" x2="4" y2="-1.75" width="0.2032" layer="21"/>
-<smd name="1" x="-2.5" y="-2.75" dx="1.2" dy="2.5" layer="1" rot="R180"/>
-<smd name="2" x="0" y="-2.75" dx="1.2" dy="2.5" layer="1" rot="R180"/>
-<smd name="3" x="2.5" y="-2.75" dx="1.2" dy="2.5" layer="1" rot="R180"/>
-<text x="-1.27" y="0.635" size="0.6096" layer="25">&gt;Name</text>
-<text x="-1.27" y="-1.27" size="0.6096" layer="27">&gt;Value</text>
-<hole x="-3.55" y="0" drill="0.9"/>
-<hole x="3.55" y="0" drill="0.9"/>
-</package>
-<package name="SWITCH-SPDT_LOCK.007S">
-<wire x1="2.175" y1="5.815" x2="-2.175" y2="5.815" width="0.2032" layer="21"/>
-<wire x1="-2.175" y1="5.815" x2="-2.175" y2="-5.815" width="0.2032" layer="21"/>
-<wire x1="-2.175" y1="-5.815" x2="2.175" y2="-5.815" width="0.2032" layer="21"/>
-<wire x1="2.175" y1="-5.815" x2="2.175" y2="5.815" width="0.2032" layer="21"/>
-<pad name="1" x="0" y="2.7178" drill="1.016" diameter="1.8796"/>
-<pad name="2" x="0" y="0" drill="1.016" diameter="1.8796"/>
-<pad name="3" x="0" y="-2.7178" drill="1.016" diameter="1.8796"/>
-<text x="-3.81" y="7.62" size="1.778" layer="25" ratio="10">&gt;NAME</text>
-<text x="-3.81" y="-9.525" size="1.778" layer="27" ratio="10">&gt;VALUE</text>
-<rectangle x1="-0.2286" y1="-0.3048" x2="0.2286" y2="0.3048" layer="51"/>
-<rectangle x1="-0.2286" y1="2.2352" x2="0.2286" y2="2.8448" layer="51"/>
-<rectangle x1="-0.2286" y1="-2.8448" x2="0.2286" y2="-2.2352" layer="51"/>
-</package>
-<package name="SWITCH-SPDT_KIT">
-<description>&lt;h3&gt;SWITCH-SPDT_KIT&lt;/h3&gt;
-Through-hole SPDT Switch&lt;br&gt;
-&lt;br&gt;
-&lt;b&gt;Warning:&lt;/b&gt; This is the KIT version of this package. This package has a smaller diameter top stop mask, which doesn't cover the diameter of the pad. This means only the bottom side of the pads' copper will be exposed. You'll only be able to solder to the bottom side.</description>
-<wire x1="2.175" y1="5.815" x2="-2.175" y2="5.815" width="0.2032" layer="21"/>
-<wire x1="-2.175" y1="5.815" x2="-2.175" y2="-5.815" width="0.2032" layer="21"/>
-<wire x1="-2.175" y1="-5.815" x2="2.175" y2="-5.815" width="0.2032" layer="21"/>
-<wire x1="2.175" y1="-5.815" x2="2.175" y2="5.815" width="0.2032" layer="21"/>
-<pad name="1" x="0" y="2.7178" drill="1.016" diameter="1.8796" stop="no"/>
-<pad name="2" x="0" y="0" drill="1.016" diameter="1.8796" stop="no"/>
-<pad name="3" x="0" y="-2.7178" drill="1.016" diameter="1.8796" stop="no"/>
-<text x="-3.81" y="7.62" size="1.778" layer="25" ratio="10">&gt;NAME</text>
-<text x="-3.81" y="-9.525" size="1.778" layer="27" ratio="10">&gt;VALUE</text>
-<rectangle x1="-0.2286" y1="-0.3048" x2="0.2286" y2="0.3048" layer="51"/>
-<rectangle x1="-0.2286" y1="2.2352" x2="0.2286" y2="2.8448" layer="51"/>
-<rectangle x1="-0.2286" y1="-2.8448" x2="0.2286" y2="-2.2352" layer="51"/>
-<polygon width="0.127" layer="30">
-<vertex x="-0.0178" y="1.8414" curve="-90.039946"/>
-<vertex x="-0.8787" y="2.6975" curve="-90"/>
-<vertex x="-0.0026" y="3.5916" curve="-90.006409"/>
-<vertex x="0.8738" y="2.6975" curve="-90.03214"/>
-</polygon>
-<polygon width="0.127" layer="30">
-<vertex x="-0.0051" y="-3.5967" curve="-90.006558"/>
-<vertex x="-0.8788" y="-2.7431" curve="-90.037923"/>
-<vertex x="0.0128" y="-1.8363" curve="-90.006318"/>
-<vertex x="0.8814" y="-2.7432" curve="-90.038792"/>
-</polygon>
-<polygon width="0.127" layer="30">
-<vertex x="-0.0102" y="-0.8738" curve="-90.019852"/>
-<vertex x="-0.8762" y="-0.0203" curve="-90.019119"/>
-<vertex x="0.0153" y="0.8789" curve="-90"/>
-<vertex x="0.8739" y="-0.0077" curve="-90.038897"/>
-</polygon>
-<polygon width="0.127" layer="29">
-<vertex x="0" y="2.2758" curve="-90.012891"/>
-<vertex x="-0.4445" y="2.7" curve="-90"/>
-<vertex x="0" y="3.1673" curve="-90"/>
-<vertex x="0.4419" y="2.7102" curve="-90.012967"/>
-</polygon>
-<polygon width="0.127" layer="29">
-<vertex x="0.0026" y="-3.1648" curve="-90.012891"/>
-<vertex x="-0.4419" y="-2.7406" curve="-90"/>
-<vertex x="0.0026" y="-2.2733" curve="-90"/>
-<vertex x="0.4445" y="-2.7304" curve="-90.012967"/>
-</polygon>
-<polygon width="0.127" layer="29">
-<vertex x="0.0102" y="-0.4471" curve="-90.012891"/>
-<vertex x="-0.4343" y="-0.0229" curve="-90"/>
-<vertex x="0.0102" y="0.4444" curve="-90"/>
-<vertex x="0.4521" y="-0.0127" curve="-90.012967"/>
-</polygon>
-</package>
-<package name="SWITCH-SPST-SMD-A">
-<wire x1="-3.35" y1="1.3" x2="-3.35" y2="-1.3" width="0.127" layer="51"/>
-<wire x1="-3.35" y1="-1.3" x2="3.35" y2="-1.3" width="0.127" layer="51"/>
-<wire x1="3.35" y1="-1.3" x2="3.35" y2="1.3" width="0.127" layer="51"/>
-<wire x1="3.35" y1="1.3" x2="-0.1" y2="1.3" width="0.127" layer="51"/>
-<wire x1="-0.1" y1="1.3" x2="-1.4" y2="1.3" width="0.127" layer="51"/>
-<wire x1="-1.4" y1="1.3" x2="-3.35" y2="1.3" width="0.127" layer="51"/>
-<wire x1="-0.1" y1="1.3" x2="-0.1" y2="2.8" width="0.127" layer="51"/>
-<wire x1="-0.1" y1="2.8" x2="-1.4" y2="2.8" width="0.127" layer="51"/>
-<wire x1="-1.4" y1="2.8" x2="-1.4" y2="1.3" width="0.127" layer="51"/>
-<wire x1="-3.35" y1="0.3" x2="-3.35" y2="-0.3" width="0.2032" layer="21"/>
-<wire x1="3.35" y1="0.3" x2="3.35" y2="-0.3" width="0.2032" layer="21"/>
-<wire x1="2.7" y1="1.3" x2="-2.7" y2="1.3" width="0.2032" layer="21"/>
-<wire x1="1.5" y1="-1.3" x2="0" y2="-1.3" width="0.2032" layer="21"/>
-<smd name="1" x="-2.25" y="-1.75" dx="0.7" dy="1.5" layer="1" rot="R180"/>
-<smd name="2" x="-0.75" y="-1.75" dx="0.7" dy="1.5" layer="1" rot="R180"/>
-<smd name="3" x="2.25" y="-1.75" dx="0.7" dy="1.5" layer="1" rot="R180"/>
-<smd name="GND1" x="-3.65" y="1" dx="1" dy="0.6" layer="1"/>
-<smd name="GND2" x="-3.65" y="-1.1" dx="1" dy="0.8" layer="1"/>
-<smd name="GND3" x="3.65" y="1" dx="1" dy="0.6" layer="1"/>
-<smd name="GND4" x="3.65" y="-1.1" dx="1" dy="0.8" layer="1"/>
-<text x="-1.27" y="0.635" size="0.6096" layer="25">&gt;Name</text>
-<text x="-1.27" y="-1.27" size="0.6096" layer="27">&gt;Value</text>
-<hole x="-1.5" y="0" drill="0.9"/>
-<hole x="1.5" y="0" drill="0.9"/>
-</package>
-</packages>
-<symbols>
-<symbol name="TRIMPOT-1">
-<wire x1="-2.54" y1="0" x2="-2.159" y2="1.016" width="0.1524" layer="94"/>
-<wire x1="-2.159" y1="1.016" x2="-1.524" y2="-1.016" width="0.1524" layer="94"/>
-<wire x1="-1.524" y1="-1.016" x2="-0.889" y2="1.016" width="0.1524" layer="94"/>
-<wire x1="-0.889" y1="1.016" x2="-0.254" y2="-1.016" width="0.1524" layer="94"/>
-<wire x1="-0.254" y1="-1.016" x2="0.381" y2="1.016" width="0.1524" layer="94"/>
-<wire x1="0.381" y1="1.016" x2="1.016" y2="-1.016" width="0.1524" layer="94"/>
-<wire x1="1.016" y1="-1.016" x2="1.651" y2="1.016" width="0.1524" layer="94"/>
-<wire x1="1.651" y1="1.016" x2="2.286" y2="-1.016" width="0.1524" layer="94"/>
-<wire x1="2.286" y1="-1.016" x2="2.54" y2="0" width="0.1524" layer="94"/>
-<wire x1="0" y1="1.524" x2="0.635" y2="2.54" width="0.1524" layer="94"/>
-<wire x1="-0.635" y1="2.54" x2="0" y2="1.524" width="0.1524" layer="94"/>
-<wire x1="0" y1="2.54" x2="0" y2="1.524" width="0.1524" layer="94"/>
-<pin name="CCW" x="-5.08" y="0" visible="off" length="short" direction="pas" swaplevel="1"/>
-<pin name="CW" x="5.08" y="0" visible="off" length="short" direction="pas" swaplevel="1" rot="R180"/>
-<pin name="WIPER" x="0" y="5.08" visible="off" length="short" direction="pas" swaplevel="1" rot="R270"/>
-<text x="-11.43" y="1.4986" size="1.778" layer="95">&gt;NAME</text>
-<text x="-3.81" y="-3.302" size="1.778" layer="96">&gt;VALUE</text>
-</symbol>
-<symbol name="TRIMPOT">
-<wire x1="-2.54" y1="0" x2="-2.159" y2="1.016" width="0.1524" layer="94"/>
-<wire x1="-2.159" y1="1.016" x2="-1.524" y2="-1.016" width="0.1524" layer="94"/>
-<wire x1="-1.524" y1="-1.016" x2="-0.889" y2="1.016" width="0.1524" layer="94"/>
-<wire x1="-0.889" y1="1.016" x2="-0.254" y2="-1.016" width="0.1524" layer="94"/>
-<wire x1="-0.254" y1="-1.016" x2="0.381" y2="1.016" width="0.1524" layer="94"/>
-<wire x1="0.381" y1="1.016" x2="1.016" y2="-1.016" width="0.1524" layer="94"/>
-<wire x1="1.016" y1="-1.016" x2="1.651" y2="1.016" width="0.1524" layer="94"/>
-<wire x1="1.651" y1="1.016" x2="2.286" y2="-1.016" width="0.1524" layer="94"/>
-<wire x1="2.286" y1="-1.016" x2="2.54" y2="0" width="0.1524" layer="94"/>
-<wire x1="0" y1="1.524" x2="0.635" y2="2.54" width="0.1524" layer="94"/>
-<wire x1="-0.635" y1="2.54" x2="0" y2="1.524" width="0.1524" layer="94"/>
-<wire x1="0" y1="2.54" x2="0" y2="1.524" width="0.1524" layer="94"/>
-<text x="2.54" y="2.2606" size="1.778" layer="95">&gt;NAME</text>
-<text x="-3.81" y="-3.302" size="1.778" layer="96">&gt;VALUE</text>
-<pin name="WIPER" x="0" y="5.08" visible="off" length="short" direction="pas" swaplevel="1" rot="R270"/>
-<pin name="CCW" x="-5.08" y="0" visible="off" length="short" direction="pas" swaplevel="1"/>
-<pin name="CW" x="5.08" y="0" visible="off" length="short" direction="pas" swaplevel="1" rot="R180"/>
-</symbol>
-<symbol name="TOGGLE">
-<wire x1="0" y1="0" x2="2.54" y2="1.27" width="0.254" layer="94"/>
-<wire x1="2.54" y1="-2.54" x2="3.175" y2="-2.54" width="0.127" layer="94"/>
-<wire x1="2.54" y1="2.54" x2="3.175" y2="2.54" width="0.1524" layer="94"/>
-<circle x="2.54" y="2.54" radius="0.3592" width="0.2032" layer="94"/>
-<circle x="2.54" y="-2.54" radius="0.3592" width="0.2032" layer="94"/>
-<circle x="0" y="0" radius="0.3592" width="0.2032" layer="94"/>
-<text x="-1.905" y="-6.35" size="1.778" layer="95">&gt;NAME</text>
-<text x="-2.54" y="3.81" size="1.778" layer="96">&gt;VALUE</text>
-<pin name="P" x="-2.54" y="0" visible="off" length="short" direction="pas"/>
-<pin name="S" x="5.08" y="-2.54" visible="off" length="short" direction="pas" rot="R180"/>
-<pin name="O" x="5.08" y="2.54" visible="off" length="short" direction="pas" rot="R180"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="TRIMPOT" prefix="R" uservalue="yes">
-<description>Various small potentiometers for "set-and-forget" applications</description>
-<gates>
-<gate name="R?" symbol="TRIMPOT-1" x="0" y="0"/>
-</gates>
-<devices>
-<device name="-2" package="TRIMPOT_TC33">
-<connects>
-<connect gate="R?" pin="CCW" pad="1"/>
-<connect gate="R?" pin="CW" pad="3"/>
-<connect gate="R?" pin="WIPER" pad="2"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="-PTH-KNOB" package="3386U">
-<connects>
-<connect gate="R?" pin="CCW" pad="1"/>
-<connect gate="R?" pin="CW" pad="3"/>
-<connect gate="R?" pin="WIPER" pad="2"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="PROD_ID" value="RES-09730" constant="no"/>
-<attribute name="VALUE" value="TSR-3386" constant="no"/>
-</technology>
-</technologies>
-</device>
-<device name="3MM-2" package="TRIMPOT-3MM-2">
-<connects>
-<connect gate="R?" pin="CCW" pad="1"/>
-<connect gate="R?" pin="CW" pad="3"/>
-<connect gate="R?" pin="WIPER" pad="2"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="PROD_ID" value="RES-08048" constant="no"/>
-<attribute name="VALUE" value="10K" constant="no"/>
-</technology>
-</technologies>
-</device>
-<device name="3362U-2" package="3362U-2">
-<connects>
-<connect gate="R?" pin="CCW" pad="1"/>
-<connect gate="R?" pin="CW" pad="3"/>
-<connect gate="R?" pin="WIPER" pad="2"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="PTH" package="TRIM_POT_PTH">
-<connects>
-<connect gate="R?" pin="CCW" pad="1"/>
-<connect gate="R?" pin="CW" pad="3"/>
-<connect gate="R?" pin="WIPER" pad="2"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="SMD" package="TRIMPOT-3MM">
-<connects>
-<connect gate="R?" pin="CCW" pad="1"/>
-<connect gate="R?" pin="CW" pad="3"/>
-<connect gate="R?" pin="WIPER" pad="2"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="TRIMPOT-5MM" package="TRIMPOT-5MM">
-<connects>
-<connect gate="R?" pin="CCW" pad="A"/>
-<connect gate="R?" pin="CW" pad="C"/>
-<connect gate="R?" pin="WIPER" pad="B"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="TRIMPOT_PTH_S3_LOCK" package="TRIMPOT_PTH_S3_LOCK">
-<connects>
-<connect gate="R?" pin="CCW" pad="1"/>
-<connect gate="R?" pin="CW" pad="3"/>
-<connect gate="R?" pin="WIPER" pad="2"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="" package="TRIMPOT-5MM-V2">
-<connects>
-<connect gate="R?" pin="CCW" pad="A"/>
-<connect gate="R?" pin="CW" pad="C"/>
-<connect gate="R?" pin="WIPER" pad="B"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="RES-11156" package="TRIMPOT_5MM">
-<connects>
-<connect gate="R?" pin="CCW" pad="A"/>
-<connect gate="R?" pin="CW" pad="C"/>
-<connect gate="R?" pin="WIPER" pad="B"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="PROD_ID" value="RES-11156"/>
-</technology>
-</technologies>
-</device>
-<device name="RES-09285" package="TRIMPOT-3MM">
-<connects>
-<connect gate="R?" pin="CCW" pad="1"/>
-<connect gate="R?" pin="CW" pad="3"/>
-<connect gate="R?" pin="WIPER" pad="2"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="PROD_ID" value="RES-09285"/>
-<attribute name="VALUE" value="10k"/>
-</technology>
-</technologies>
-</device>
-<device name="BR" package="TRIM_POT_BR">
-<connects>
-<connect gate="R?" pin="CCW" pad="1"/>
-<connect gate="R?" pin="CW" pad="3"/>
-<connect gate="R?" pin="WIPER" pad="2"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-<deviceset name="TRIMPOT_MULTIVOLTAS" prefix="T">
-<description>Trimpot multivoltas (untested)</description>
-<gates>
-<gate name="G$1" symbol="TRIMPOT" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="TRIMPOT_MULTIVOLTAS">
-<connects>
-<connect gate="G$1" pin="CCW" pad="1"/>
-<connect gate="G$1" pin="CW" pad="3"/>
-<connect gate="G$1" pin="WIPER" pad="2"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-<deviceset name="SWITCH-SPDT" prefix="S" uservalue="yes">
-<description>&lt;b&gt;SPDT Switch&lt;/b&gt;&lt;br&gt;
-Simple slide switch, Spark Fun Electronics SKU : COM-00102&lt;br&gt;
-DPDT SMT slide switch, AYZ0202, SWCH-08179</description>
-<gates>
-<gate name="1" symbol="TOGGLE" x="-2.54" y="0"/>
-</gates>
-<devices>
-<device name="PTH" package="SWITCH-SPDT">
-<connects>
-<connect gate="1" pin="O" pad="1"/>
-<connect gate="1" pin="P" pad="2"/>
-<connect gate="1" pin="S" pad="3"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="PROD_ID" value="SWCH-08261"/>
-</technology>
-</technologies>
-</device>
-<device name="SMD" package="AYZ0202">
-<connects>
-<connect gate="1" pin="O" pad="1"/>
-<connect gate="1" pin="P" pad="2"/>
-<connect gate="1" pin="S" pad="3"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="PROD_ID" value="SWCH-08179" constant="no"/>
-</technology>
-</technologies>
-</device>
-<device name="PTH2" package="SWITCHE-DPDT">
-<connects>
-<connect gate="1" pin="O" pad="1"/>
-<connect gate="1" pin="P" pad="2"/>
-<connect gate="1" pin="S" pad="3"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="PTH3" package="R_SW_TH">
-<connects>
-<connect gate="1" pin="O" pad="P$1"/>
-<connect gate="1" pin="P" pad="P$2"/>
-<connect gate="1" pin="S" pad="P$3"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="SMD2" package="SWITCH-SPDT-SMD">
-<connects>
-<connect gate="1" pin="O" pad="1"/>
-<connect gate="1" pin="P" pad="2"/>
-<connect gate="1" pin="S" pad="3"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="PTH_LOCK" package="SWITCH-SPDT_LOCK.007S">
-<connects>
-<connect gate="1" pin="O" pad="1"/>
-<connect gate="1" pin="P" pad="2"/>
-<connect gate="1" pin="S" pad="3"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="KIT" package="SWITCH-SPDT_KIT">
-<connects>
-<connect gate="1" pin="O" pad="1"/>
-<connect gate="1" pin="P" pad="2"/>
-<connect gate="1" pin="S" pad="3"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="PROD_ID" value="SWCH-08261" constant="no"/>
-</technology>
-</technologies>
-</device>
-<device name="-SMD-A" package="SWITCH-SPST-SMD-A">
-<connects>
-<connect gate="1" pin="O" pad="1"/>
-<connect gate="1" pin="P" pad="2"/>
-<connect gate="1" pin="S" pad="3"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 </libraries>
 <attributes>
 </attributes>
@@ -2516,78 +1881,68 @@ DPDT SMT slide switch, AYZ0202, SWCH-08179</description>
 </classes>
 <parts>
 <part name="FIO_SHIELD" library="SparkFun-Boards" deviceset="ARDUINO_FIO_SHIELD" device="&quot;"/>
+<part name="R1" library="SparkFun-Resistors" deviceset="10OHM-1/10W-1%(0603)" device="SMD" value="100"/>
 <part name="R2" library="SparkFun-Resistors" deviceset="10OHM-1/10W-1%(0603)" device="SMD" value="100"/>
 <part name="R4" library="SparkFun-Resistors" deviceset="4.7KOHM-1/10W-1%(0603)" device="" value="4.7K"/>
+<part name="LED1(VERDE)" library="SparkFun-Connectors" deviceset="SCREWTERMINAL-2" device="5MM"/>
 <part name="LED2(AMARELO)" library="SparkFun-Connectors" deviceset="SCREWTERMINAL-2" device="5MM"/>
 <part name="SWITCH_STANDBY" library="SparkFun-Connectors" deviceset="SCREWTERMINAL-2" device="5MM"/>
 <part name="GND2" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="GND3" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="GND4" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="CAL_TETO" library="SparkFun-Electromechanical" deviceset="TRIMPOT_MULTIVOLTAS" device=""/>
 <part name="JP1" library="SparkFun-Connectors" deviceset="ARDUINO_SERIAL_PROGRAM" device="PTH"/>
 <part name="GND5" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY1" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
-<part name="TUM" library="SparkFun-Connectors" deviceset="SCREWTERMINAL-2" device="5MM"/>
-<part name="TA" library="SparkFun-Connectors" deviceset="SCREWTERMINAL-2" device="5MM"/>
-<part name="FL1" library="SparkFun-Retired" deviceset="FRAME-LETTER_BATEBIT" device=""/>
-<part name="C2" library="SparkFun-Passives" deviceset="CAP_POL" device="PTH2"/>
-<part name="C5" library="SparkFun-Passives" deviceset="CAP_POL" device="PTH2"/>
-<part name="GND1" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="GND11" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND6" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="SUPPLY4" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
-<part name="SUPPLY5" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
-<part name="GND7" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="AREF" library="SparkFun-Electromechanical" deviceset="TRIMPOT" device="BR"/>
+<part name="TUM" library="SparkFun-Connectors" deviceset="SCREWTERMINAL-2" device="5MM"/>
 <part name="SUPPLY2" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
-<part name="TA_CALIB" library="SparkFun-Electromechanical" deviceset="TRIMPOT_MULTIVOLTAS" device=""/>
-<part name="TUM_CALIB" library="SparkFun-Electromechanical" deviceset="TRIMPOT_MULTIVOLTAS" device=""/>
-<part name="R3" library="SparkFun-Electromechanical" deviceset="TRIMPOT" device="BR"/>
-<part name="GND4" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="SUPPLY3" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
 <part name="GND8" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="S1" library="SparkFun-Electromechanical" deviceset="SWITCH-SPDT" device="PTH"/>
-<part name="R5" library="SparkFun-Resistors" deviceset="4.7KOHM-1/10W-1%(0603)" device="" value="4.7K"/>
+<part name="CAL_TUM" library="SparkFun-Electromechanical" deviceset="TRIMPOT_MULTIVOLTAS" device=""/>
+<part name="GND7" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="TA" library="SparkFun-Connectors" deviceset="SCREWTERMINAL-2" device="5MM"/>
+<part name="SUPPLY3" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
 <part name="GND9" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="SUPPLY6" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
+<part name="CAL_TA" library="SparkFun-Electromechanical" deviceset="TRIMPOT_MULTIVOLTAS" device=""/>
+<part name="C1" library="SparkFun-Passives" deviceset="CAP_POL" device="PTH2"/>
+<part name="C2" library="SparkFun-Passives" deviceset="CAP_POL" device="PTH2"/>
+<part name="FL1" library="SparkFun-Retired" deviceset="FRAME-LETTER_BATEBIT" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
 <text x="48.26" y="-83.82" size="2.54" layer="94" font="fixed">JOÃO TRAGTENBERG</text>
-<text x="120.65" y="-84.328" size="2.54" layer="94" font="fixed">0.2.9 unrouted</text>
+<text x="120.65" y="-84.328" size="2.54" layer="94" font="fixed">0.2.2</text>
 </plain>
 <instances>
 <instance part="FIO_SHIELD" gate="G$1" x="0" y="2.54"/>
-<instance part="R2" gate="G$1" x="-38.1" y="-7.62"/>
-<instance part="R4" gate="G$1" x="-38.1" y="5.08"/>
-<instance part="LED2(AMARELO)" gate="G$1" x="-55.88" y="-7.62"/>
-<instance part="SWITCH_STANDBY" gate="G$1" x="-55.88" y="5.08"/>
-<instance part="GND2" gate="1" x="-50.8" y="-12.7"/>
-<instance part="JP1" gate="G$1" x="104.14" y="35.56" rot="MR0"/>
+<instance part="R1" gate="G$1" x="-30.48" y="-15.24"/>
+<instance part="R2" gate="G$1" x="-30.48" y="-25.4"/>
+<instance part="R4" gate="G$1" x="-30.48" y="2.54"/>
+<instance part="LED1(VERDE)" gate="G$1" x="-55.88" y="-15.24"/>
+<instance part="LED2(AMARELO)" gate="G$1" x="-68.58" y="-25.4"/>
+<instance part="SWITCH_STANDBY" gate="G$1" x="-53.34" y="2.54"/>
+<instance part="GND2" gate="1" x="-60.96" y="-30.48"/>
+<instance part="GND3" gate="1" x="-45.72" y="-20.32"/>
+<instance part="GND4" gate="1" x="-43.18" y="-2.54"/>
+<instance part="CAL_TETO" gate="G$1" x="50.8" y="10.16"/>
+<instance part="JP1" gate="G$1" x="83.82" y="15.24" rot="MR0"/>
 <instance part="GND5" gate="1" x="43.18" y="7.62"/>
-<instance part="SUPPLY1" gate="G$1" x="58.42" y="10.16"/>
-<instance part="TUM" gate="G$1" x="93.98" y="2.54" rot="MR0"/>
-<instance part="TA" gate="G$1" x="93.98" y="-17.78" rot="MR0"/>
+<instance part="SUPPLY1" gate="G$1" x="68.58" y="10.16"/>
+<instance part="GND6" gate="1" x="66.04" y="-15.24"/>
+<instance part="TUM" gate="G$1" x="81.28" y="0" rot="MR0"/>
+<instance part="SUPPLY2" gate="G$1" x="33.02" y="-7.62"/>
+<instance part="GND8" gate="1" x="73.66" y="-5.08"/>
+<instance part="CAL_TUM" gate="G$1" x="40.64" y="-7.62"/>
+<instance part="GND7" gate="1" x="66.04" y="-38.1"/>
+<instance part="TA" gate="G$1" x="81.28" y="-22.86" rot="MR0"/>
+<instance part="SUPPLY3" gate="G$1" x="33.02" y="-30.48"/>
+<instance part="GND9" gate="1" x="73.66" y="-27.94"/>
+<instance part="CAL_TA" gate="G$1" x="40.64" y="-30.48"/>
+<instance part="C1" gate="G$1" x="66.04" y="-5.08"/>
+<instance part="C2" gate="G$1" x="66.04" y="-27.94"/>
 <instance part="FL1" gate="G$1" x="-116.84" y="-91.44"/>
 <instance part="FL1" gate="G$2" x="30.734" y="-91.44"/>
-<instance part="C2" gate="G$1" x="48.26" y="-2.54"/>
-<instance part="C5" gate="G$1" x="48.26" y="-25.4"/>
-<instance part="GND1" gate="1" x="48.26" y="-33.02"/>
-<instance part="GND11" gate="1" x="48.26" y="-7.62"/>
-<instance part="GND6" gate="1" x="66.04" y="-7.62"/>
-<instance part="SUPPLY4" gate="G$1" x="81.28" y="-5.08"/>
-<instance part="SUPPLY5" gate="G$1" x="83.82" y="-27.94"/>
-<instance part="GND7" gate="1" x="66.04" y="-30.48"/>
-<instance part="AREF" gate="R?" x="50.8" y="10.16"/>
-<instance part="SUPPLY2" gate="G$1" x="-27.94" y="5.08"/>
-<instance part="TA_CALIB" gate="G$1" x="73.66" y="-27.94"/>
-<instance part="TUM_CALIB" gate="G$1" x="73.66" y="-5.08"/>
-<instance part="R3" gate="R?" x="33.02" y="-43.18"/>
-<instance part="GND4" gate="1" x="25.4" y="-45.72"/>
-<instance part="SUPPLY3" gate="G$1" x="40.64" y="-43.18"/>
-<instance part="GND8" gate="1" x="-43.18" y="0"/>
-<instance part="S1" gate="1" x="-35.56" y="-25.4" rot="R180"/>
-<instance part="R5" gate="G$1" x="-48.26" y="-22.86"/>
-<instance part="GND9" gate="1" x="-50.8" y="-30.48"/>
-<instance part="SUPPLY6" gate="G$1" x="-60.96" y="-22.86"/>
 </instances>
 <busses>
 </busses>
@@ -2596,108 +1951,110 @@ DPDT SMT slide switch, AYZ0202, SWCH-08179</description>
 <segment>
 <pinref part="R4" gate="G$1" pin="1"/>
 <pinref part="SWITCH_STANDBY" gate="G$1" pin="ESQ"/>
-<wire x1="-43.18" y1="5.08" x2="-45.72" y2="5.08" width="0.1524" layer="91"/>
-<junction x="-45.72" y="5.08"/>
-<wire x1="-45.72" y1="5.08" x2="-50.8" y2="5.08" width="0.1524" layer="91"/>
-<wire x1="-45.72" y1="5.08" x2="-45.72" y2="12.7" width="0.1524" layer="91"/>
-<pinref part="FIO_SHIELD" gate="G$1" pin="D2"/>
-<wire x1="-45.72" y1="12.7" x2="-17.78" y2="12.7" width="0.1524" layer="91"/>
+<wire x1="-35.56" y1="2.54" x2="-48.26" y2="2.54" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="D10" class="0">
+<net name="N$3" class="0">
 <segment>
+<pinref part="R1" gate="G$1" pin="1"/>
+<pinref part="LED1(VERDE)" gate="G$1" pin="ESQ"/>
+<wire x1="-35.56" y1="-15.24" x2="-50.8" y2="-15.24" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$4" class="0">
+<segment>
+<pinref part="R1" gate="G$1" pin="2"/>
+<wire x1="-25.4" y1="-5.08" x2="-25.4" y2="-15.24" width="0.1524" layer="91"/>
+<pinref part="FIO_SHIELD" gate="G$1" pin="D9*"/>
+<wire x1="-25.4" y1="-5.08" x2="-17.78" y2="-5.08" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$5" class="0">
+<segment>
+<wire x1="-22.86" y1="-7.62" x2="-22.86" y2="-25.4" width="0.1524" layer="91"/>
 <pinref part="R2" gate="G$1" pin="2"/>
-<wire x1="-25.4" y1="-7.62" x2="-33.02" y2="-7.62" width="0.1524" layer="91"/>
-<wire x1="-25.4" y1="-7.62" x2="-25.4" y2="2.54" width="0.1524" layer="91"/>
-<pinref part="FIO_SHIELD" gate="G$1" pin="D6*"/>
-<wire x1="-25.4" y1="2.54" x2="-17.78" y2="2.54" width="0.1524" layer="91"/>
+<wire x1="-22.86" y1="-25.4" x2="-25.4" y2="-25.4" width="0.1524" layer="91"/>
+<pinref part="FIO_SHIELD" gate="G$1" pin="D10*"/>
+<wire x1="-22.86" y1="-7.62" x2="-17.78" y2="-7.62" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$7" class="0">
 <segment>
 <pinref part="R2" gate="G$1" pin="1"/>
 <pinref part="LED2(AMARELO)" gate="G$1" pin="ESQ"/>
-<wire x1="-43.18" y1="-7.62" x2="-50.8" y2="-7.62" width="0.1524" layer="91"/>
+<wire x1="-35.56" y1="-25.4" x2="-63.5" y2="-25.4" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="GND" class="0">
 <segment>
 <pinref part="LED2(AMARELO)" gate="G$1" pin="DIR"/>
 <pinref part="GND2" gate="1" pin="GND"/>
+<wire x1="-63.5" y1="-27.94" x2="-60.96" y2="-27.94" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="JP1" gate="G$1" pin="GND"/>
-<wire x1="99.06" y1="43.18" x2="96.52" y2="43.18" width="0.1524" layer="91"/>
-<label x="96.52" y="43.18" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="FIO_SHIELD" gate="G$1" pin="GND@15"/>
-<wire x1="17.78" y1="17.78" x2="25.4" y2="17.78" width="0.1524" layer="91"/>
-<label x="20.32" y="17.78" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="GND5" gate="1" pin="GND"/>
-<wire x1="45.72" y1="10.16" x2="43.18" y2="10.16" width="0.1524" layer="91"/>
-<pinref part="AREF" gate="R?" pin="CCW"/>
-</segment>
-<segment>
-<pinref part="FIO_SHIELD" gate="G$1" pin="GND@2"/>
-<wire x1="-17.78" y1="15.24" x2="-22.86" y2="15.24" width="0.1524" layer="91"/>
-<label x="-22.86" y="15.24" size="1.778" layer="95" font="vector"/>
-</segment>
-<segment>
-<pinref part="C2" gate="G$1" pin="-"/>
-<pinref part="GND11" gate="1" pin="GND"/>
-<wire x1="48.26" y1="-7.62" x2="48.26" y2="-5.08" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="GND7" gate="1" pin="GND"/>
-<wire x1="68.58" y1="-27.94" x2="66.04" y2="-27.94" width="0.1524" layer="91"/>
-<pinref part="TA_CALIB" gate="G$1" pin="CCW"/>
-</segment>
-<segment>
-<pinref part="GND6" gate="1" pin="GND"/>
-<wire x1="66.04" y1="-5.08" x2="68.58" y2="-5.08" width="0.1524" layer="91"/>
-<pinref part="TUM_CALIB" gate="G$1" pin="CCW"/>
-</segment>
-<segment>
-<pinref part="GND1" gate="1" pin="GND"/>
-<pinref part="C5" gate="G$1" pin="-"/>
-</segment>
-<segment>
-<pinref part="GND4" gate="1" pin="GND"/>
-<pinref part="R3" gate="R?" pin="CCW"/>
-<wire x1="25.4" y1="-43.18" x2="27.94" y2="-43.18" width="0.1524" layer="91"/>
+<pinref part="LED1(VERDE)" gate="G$1" pin="DIR"/>
+<pinref part="GND3" gate="1" pin="GND"/>
+<wire x1="-50.8" y1="-17.78" x2="-45.72" y2="-17.78" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="SWITCH_STANDBY" gate="G$1" pin="DIR"/>
-<pinref part="GND8" gate="1" pin="GND"/>
-<wire x1="-50.8" y1="2.54" x2="-43.18" y2="2.54" width="0.1524" layer="91"/>
+<pinref part="GND4" gate="1" pin="GND"/>
+<wire x1="-48.26" y1="0" x2="-43.18" y2="0" width="0.1524" layer="91"/>
 </segment>
 <segment>
+<pinref part="JP1" gate="G$1" pin="GND"/>
+<wire x1="78.74" y1="22.86" x2="76.2" y2="22.86" width="0.1524" layer="91"/>
+<label x="76.2" y="22.86" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="FIO_SHIELD" gate="G$1" pin="GND@15"/>
+<wire x1="17.78" y1="17.78" x2="20.32" y2="17.78" width="0.1524" layer="91"/>
+<label x="20.32" y="17.78" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="CAL_TETO" gate="G$1" pin="CCW"/>
+<pinref part="GND5" gate="1" pin="GND"/>
+<wire x1="45.72" y1="10.16" x2="43.18" y2="10.16" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="GND6" gate="1" pin="GND"/>
+<wire x1="66.04" y1="-10.16" x2="66.04" y2="-12.7" width="0.1524" layer="91"/>
+<pinref part="C1" gate="G$1" pin="-"/>
+</segment>
+<segment>
+<pinref part="TUM" gate="G$1" pin="DIR"/>
+<wire x1="76.2" y1="-2.54" x2="73.66" y2="-2.54" width="0.1524" layer="91"/>
+<pinref part="GND8" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="GND7" gate="1" pin="GND"/>
+<wire x1="66.04" y1="-33.02" x2="66.04" y2="-35.56" width="0.1524" layer="91"/>
+<pinref part="C2" gate="G$1" pin="-"/>
+</segment>
+<segment>
+<wire x1="76.2" y1="-25.4" x2="73.66" y2="-25.4" width="0.1524" layer="91"/>
+<pinref part="TA" gate="G$1" pin="DIR"/>
 <pinref part="GND9" gate="1" pin="GND"/>
-<pinref part="S1" gate="1" pin="O"/>
-<wire x1="-50.8" y1="-27.94" x2="-40.64" y2="-27.94" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="AREF" class="0">
 <segment>
 <pinref part="JP1" gate="G$1" pin="CTS"/>
-<wire x1="99.06" y1="40.64" x2="96.52" y2="40.64" width="0.1524" layer="91"/>
-<label x="96.52" y="40.64" size="1.778" layer="95"/>
+<wire x1="78.74" y1="20.32" x2="76.2" y2="20.32" width="0.1524" layer="91"/>
+<label x="76.2" y="20.32" size="1.778" layer="95"/>
 </segment>
 <segment>
 <pinref part="FIO_SHIELD" gate="G$1" pin="AREF"/>
 <label x="20.32" y="15.24" size="1.778" layer="95"/>
+<pinref part="CAL_TETO" gate="G$1" pin="WIPER"/>
 <wire x1="17.78" y1="15.24" x2="50.8" y2="15.24" width="0.1524" layer="91"/>
-<pinref part="AREF" gate="R?" pin="WIPER"/>
 </segment>
 </net>
 <net name="RXI" class="0">
 <segment>
 <pinref part="JP1" gate="G$1" pin="TXO"/>
-<wire x1="99.06" y1="35.56" x2="96.52" y2="35.56" width="0.1524" layer="91"/>
-<label x="96.52" y="35.56" size="1.778" layer="95"/>
+<wire x1="78.74" y1="15.24" x2="76.2" y2="15.24" width="0.1524" layer="91"/>
+<label x="76.2" y="15.24" size="1.778" layer="95"/>
 </segment>
 <segment>
 <pinref part="FIO_SHIELD" gate="G$1" pin="RXI"/>
@@ -2708,8 +2065,8 @@ DPDT SMT slide switch, AYZ0202, SWCH-08179</description>
 <net name="TXO" class="0">
 <segment>
 <pinref part="JP1" gate="G$1" pin="RXI"/>
-<wire x1="99.06" y1="33.02" x2="96.52" y2="33.02" width="0.1524" layer="91"/>
-<label x="96.52" y="33.02" size="1.778" layer="95"/>
+<wire x1="78.74" y1="12.7" x2="76.2" y2="12.7" width="0.1524" layer="91"/>
+<label x="76.2" y="12.7" size="1.778" layer="95"/>
 </segment>
 <segment>
 <pinref part="FIO_SHIELD" gate="G$1" pin="TX0"/>
@@ -2720,8 +2077,8 @@ DPDT SMT slide switch, AYZ0202, SWCH-08179</description>
 <net name="DTR" class="0">
 <segment>
 <pinref part="JP1" gate="G$1" pin="DTR"/>
-<wire x1="99.06" y1="30.48" x2="96.52" y2="30.48" width="0.1524" layer="91"/>
-<label x="96.52" y="30.48" size="1.778" layer="95"/>
+<wire x1="78.74" y1="10.16" x2="76.2" y2="10.16" width="0.1524" layer="91"/>
+<label x="76.2" y="10.16" size="1.778" layer="95"/>
 </segment>
 <segment>
 <pinref part="FIO_SHIELD" gate="G$1" pin="DTR"/>
@@ -2737,117 +2094,73 @@ DPDT SMT slide switch, AYZ0202, SWCH-08179</description>
 </segment>
 <segment>
 <pinref part="JP1" gate="G$1" pin="VCC"/>
-<wire x1="99.06" y1="38.1" x2="96.52" y2="38.1" width="0.1524" layer="91"/>
-<label x="96.52" y="38.1" size="1.778" layer="95"/>
+<wire x1="78.74" y1="17.78" x2="76.2" y2="17.78" width="0.1524" layer="91"/>
+<label x="76.2" y="17.78" size="1.778" layer="95"/>
 </segment>
 <segment>
+<pinref part="CAL_TETO" gate="G$1" pin="CW"/>
 <pinref part="SUPPLY1" gate="G$1" pin="3.3V"/>
-<wire x1="55.88" y1="10.16" x2="58.42" y2="10.16" width="0.1524" layer="91"/>
-<pinref part="AREF" gate="R?" pin="CW"/>
-</segment>
-<segment>
-<pinref part="FIO_SHIELD" gate="G$1" pin="3V3@1"/>
-<wire x1="-17.78" y1="17.78" x2="-22.86" y2="17.78" width="0.1524" layer="91"/>
-<label x="-22.86" y="17.78" size="1.778" layer="95" font="vector"/>
-</segment>
-<segment>
-<pinref part="SUPPLY5" gate="G$1" pin="3.3V"/>
-<wire x1="78.74" y1="-27.94" x2="83.82" y2="-27.94" width="0.1524" layer="91"/>
-<pinref part="TA" gate="G$1" pin="DIR"/>
-<wire x1="83.82" y1="-27.94" x2="88.9" y2="-27.94" width="0.1524" layer="91"/>
-<wire x1="88.9" y1="-27.94" x2="88.9" y2="-20.32" width="0.1524" layer="91"/>
-<pinref part="TA_CALIB" gate="G$1" pin="CW"/>
-</segment>
-<segment>
-<pinref part="SUPPLY4" gate="G$1" pin="3.3V"/>
-<wire x1="78.74" y1="-5.08" x2="81.28" y2="-5.08" width="0.1524" layer="91"/>
-<pinref part="TUM" gate="G$1" pin="DIR"/>
-<wire x1="81.28" y1="-5.08" x2="88.9" y2="-5.08" width="0.1524" layer="91"/>
-<wire x1="88.9" y1="-5.08" x2="88.9" y2="0" width="0.1524" layer="91"/>
-<pinref part="TUM_CALIB" gate="G$1" pin="CW"/>
-</segment>
-<segment>
-<pinref part="R3" gate="R?" pin="CW"/>
-<pinref part="SUPPLY3" gate="G$1" pin="3.3V"/>
-<wire x1="38.1" y1="-43.18" x2="40.64" y2="-43.18" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="R4" gate="G$1" pin="2"/>
-<wire x1="-33.02" y1="5.08" x2="-27.94" y2="5.08" width="0.1524" layer="91"/>
-<pinref part="SUPPLY2" gate="G$1" pin="3.3V"/>
-</segment>
-<segment>
-<pinref part="R5" gate="G$1" pin="1"/>
-<pinref part="SUPPLY6" gate="G$1" pin="3.3V"/>
-<wire x1="-53.34" y1="-22.86" x2="-60.96" y2="-22.86" width="0.1524" layer="91"/>
+<wire x1="55.88" y1="10.16" x2="68.58" y2="10.16" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="A0" class="0">
+<net name="N$9" class="0">
 <segment>
-<pinref part="TUM" gate="G$1" pin="ESQ"/>
-<wire x1="48.26" y1="2.54" x2="73.66" y2="2.54" width="0.1524" layer="91"/>
-<wire x1="73.66" y1="2.54" x2="88.9" y2="2.54" width="0.1524" layer="91"/>
-<pinref part="FIO_SHIELD" gate="G$1" pin="A0"/>
-<wire x1="48.26" y1="2.54" x2="17.78" y2="2.54" width="0.1524" layer="91"/>
-<junction x="48.26" y="2.54"/>
-<pinref part="C2" gate="G$1" pin="+"/>
-<wire x1="48.26" y1="2.54" x2="48.26" y2="0" width="0.1524" layer="91"/>
-<wire x1="73.66" y1="2.54" x2="73.66" y2="0" width="0.1524" layer="91"/>
-<junction x="73.66" y="2.54"/>
-<pinref part="TUM_CALIB" gate="G$1" pin="WIPER"/>
-</segment>
-</net>
-<net name="A1" class="0">
-<segment>
-<wire x1="27.94" y1="0" x2="27.94" y2="-17.78" width="0.1524" layer="91"/>
 <pinref part="FIO_SHIELD" gate="G$1" pin="A1"/>
-<wire x1="17.78" y1="0" x2="27.94" y2="0" width="0.1524" layer="91"/>
+<pinref part="TUM" gate="G$1" pin="ESQ"/>
+<wire x1="66.04" y1="0" x2="76.2" y2="0" width="0.1524" layer="91"/>
+<wire x1="66.04" y1="0" x2="66.04" y2="-2.54" width="0.1524" layer="91"/>
+<wire x1="17.78" y1="0" x2="40.64" y2="0" width="0.1524" layer="91"/>
+<junction x="66.04" y="0"/>
+<junction x="40.64" y="0"/>
+<wire x1="40.64" y1="0" x2="66.04" y2="0" width="0.1524" layer="91"/>
+<wire x1="40.64" y1="0" x2="40.64" y2="-2.54" width="0.1524" layer="91"/>
+<pinref part="CAL_TUM" gate="G$1" pin="WIPER"/>
+<pinref part="C1" gate="G$1" pin="+"/>
 </segment>
+</net>
+<net name="3.3V" class="0">
+<segment>
+<wire x1="35.56" y1="-7.62" x2="33.02" y2="-7.62" width="0.1524" layer="91"/>
+<pinref part="SUPPLY2" gate="G$1" pin="3.3V"/>
+<pinref part="CAL_TUM" gate="G$1" pin="CCW"/>
+</segment>
+<segment>
+<pinref part="SUPPLY3" gate="G$1" pin="3.3V"/>
+<pinref part="CAL_TA" gate="G$1" pin="CCW"/>
+<wire x1="33.02" y1="-30.48" x2="35.56" y2="-30.48" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$11" class="0">
+<segment>
+<pinref part="FIO_SHIELD" gate="G$1" pin="A3"/>
+<wire x1="17.78" y1="-5.08" x2="27.94" y2="-5.08" width="0.1524" layer="91"/>
+<wire x1="27.94" y1="-5.08" x2="27.94" y2="-22.86" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$12" class="0">
 <segment>
 <pinref part="TA" gate="G$1" pin="ESQ"/>
-<wire x1="48.26" y1="-17.78" x2="73.66" y2="-17.78" width="0.1524" layer="91"/>
-<wire x1="73.66" y1="-17.78" x2="88.9" y2="-17.78" width="0.1524" layer="91"/>
-<wire x1="27.94" y1="-17.78" x2="48.26" y2="-17.78" width="0.1524" layer="91"/>
-<junction x="48.26" y="-17.78"/>
-<pinref part="C5" gate="G$1" pin="+"/>
-<wire x1="48.26" y1="-17.78" x2="48.26" y2="-22.86" width="0.1524" layer="91"/>
-<wire x1="73.66" y1="-22.86" x2="73.66" y2="-17.78" width="0.1524" layer="91"/>
-<junction x="73.66" y="-17.78"/>
-<pinref part="TA_CALIB" gate="G$1" pin="WIPER"/>
+<wire x1="66.04" y1="-22.86" x2="76.2" y2="-22.86" width="0.1524" layer="91"/>
+<wire x1="66.04" y1="-22.86" x2="66.04" y2="-25.4" width="0.1524" layer="91"/>
+<wire x1="27.94" y1="-22.86" x2="40.64" y2="-22.86" width="0.1524" layer="91"/>
+<junction x="66.04" y="-22.86"/>
+<junction x="40.64" y="-22.86"/>
+<wire x1="40.64" y1="-22.86" x2="66.04" y2="-22.86" width="0.1524" layer="91"/>
+<wire x1="40.64" y1="-22.86" x2="40.64" y2="-25.4" width="0.1524" layer="91"/>
+<pinref part="CAL_TA" gate="G$1" pin="WIPER"/>
+<pinref part="C2" gate="G$1" pin="+"/>
 </segment>
 </net>
 <net name="N$1" class="0">
 <segment>
-<pinref part="FIO_SHIELD" gate="G$1" pin="A7"/>
-<wire x1="17.78" y1="-15.24" x2="22.86" y2="-15.24" width="0.1524" layer="91"/>
-<wire x1="22.86" y1="-15.24" x2="22.86" y2="-33.02" width="0.1524" layer="91"/>
-<pinref part="R3" gate="R?" pin="WIPER"/>
-<wire x1="22.86" y1="-33.02" x2="33.02" y2="-33.02" width="0.1524" layer="91"/>
-<wire x1="33.02" y1="-33.02" x2="33.02" y2="-38.1" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$4" class="0">
-<segment>
-<pinref part="S1" gate="1" pin="S"/>
-<pinref part="R5" gate="G$1" pin="2"/>
-<wire x1="-40.64" y1="-22.86" x2="-43.18" y2="-22.86" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$3" class="0">
-<segment>
-<pinref part="S1" gate="1" pin="P"/>
-<wire x1="-33.02" y1="-25.4" x2="-25.4" y2="-25.4" width="0.1524" layer="91"/>
-<wire x1="-25.4" y1="-25.4" x2="-25.4" y2="-12.7" width="0.1524" layer="91"/>
-<pinref part="FIO_SHIELD" gate="G$1" pin="D12"/>
-<wire x1="-25.4" y1="-12.7" x2="-17.78" y2="-12.7" width="0.1524" layer="91"/>
+<pinref part="R4" gate="G$1" pin="2"/>
+<pinref part="FIO_SHIELD" gate="G$1" pin="D6*"/>
+<wire x1="-25.4" y1="2.54" x2="-17.78" y2="2.54" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
 </sheet>
 </sheets>
-<errors>
-<approved hash="102,1,68.58,10.16,3.3V,3V3,,,,"/>
-</errors>
 </schematic>
 </drawing>
 </eagle>
