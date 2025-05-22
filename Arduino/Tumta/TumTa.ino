@@ -1,158 +1,99 @@
-//V.1.1.0:
-//Acrescentei uma suavização maior para o Ta do que para o Tum. Agora tem dois NumReadings no filtro de média para serem considerados para os dois pés independentemente.
-
+#include "TimerOne.h"
+#include "TimerThree.h"
+#include "MIDIUSB.h"
 
 // Tum
 #define TUM_PIN A0
 #define TUM_CHANNEL 0
-// Ta
-#define TA_PIN A1
-#define TA_CHANNEL 1
-
-//Mode Switch
-#define MODE_SWITCH_PIN 2 //changes
 
 //Threshold Pot
-#define THRESHOLD_PIN A7
+#define THRESHOLD_PIN A5
 
-//Standby Switch
-#define STANDBY_SWITCH_PIN 12 //changes
+const int LED_PIN = LED_BUILTIN;  // the pin with a LED
 
-//Led
-#define LED_PIN 6
+int tumPressure = 0;
+int tumIntensity = 0;
+
+int threshold = 100;
+int debounceTime = 50;//80;
+int midiNoteTum = 60;
+int midiChannelTum = 0;
+
+//mapeamento
+int intensityMax = 700;
+int midiVelocityMin = 20;
+int midiVelocityMax = 127;
 
 
-bool isDebugging = false;
-byte debugMessage[15];
-byte liveMessage[7];
-
-int threshold = 20;
-int debounceTime = 150;
-
-void setup()
-{
-  Serial.begin(38400);
-  pinMode(TUM_PIN, INPUT);
-  pinMode(TA_PIN, INPUT);
-  pinMode(MODE_SWITCH_PIN, INPUT);
-  pinMode(THRESHOLD_PIN, INPUT);
-  pinMode(STANDBY_SWITCH_PIN, INPUT);
+void setup() {
+  Serial.begin(57600);
   pinMode(LED_PIN, OUTPUT);
-  analogReference(EXTERNAL);
+  pinMode(TUM_PIN, INPUT);
+  pinMode(THRESHOLD_PIN, INPUT);
 
-  digitalWrite(LED_PIN, HIGH);
+
+  Timer1.initialize(300); //500us
+  Timer1.attachInterrupt(readTum);
+
+  Timer3.initialize(500); //5ms
+  Timer3.attachInterrupt(sendMessage);
 }
 
-boolean standby = false;
+void loop() {
 
-long tempoStandby; //joao
-int tempoBlink = 500;
-bool blinkFlag = false;
-
-void loop()
-{
-  standby = digitalRead(STANDBY_SWITCH_PIN);
-  threshold = analogRead(THRESHOLD_PIN) / 32; //novidade da versao 1.0.1
-
-  if (standby)
-  {
-    if (millis() - tempoStandby > tempoBlink) {
-      if (blinkFlag) {
-        digitalWrite(LED_PIN, LOW);
-      }
-      else {
-        digitalWrite(LED_PIN, HIGH);
-      }
-      tempoStandby = millis();
-      blinkFlag = !blinkFlag;
-    }
-  }
-  else
-  {
-    digitalWrite(LED_PIN, HIGH);
-    isDebugging = digitalRead(MODE_SWITCH_PIN);
-
-    // Tum
-    int tumPressure = getAvarage(TUM_CHANNEL, analogRead(TUM_PIN));
-    int tumDerivative = getDerivative(TUM_CHANNEL, tumPressure);
-    int tumIntensity = getIntensity(TUM_CHANNEL, tumDerivative);
-    // Ta
-    int taPressure = getAvarage(TA_CHANNEL, analogRead(TA_PIN));
-    int taDerivative = getDerivative(TA_CHANNEL, taPressure);
-    int taIntensity = getIntensity(TA_CHANNEL, taDerivative);
-    // Message
-    if (isDebugging)
-    {
-      setDebugMessage(tumPressure, taPressure, tumDerivative + 512, taDerivative + 512, tumIntensity, taIntensity);
-      Serial.write(debugMessage, sizeof(debugMessage));
-    }
-    else
-    {
-      setLiveMessage(tumIntensity, taIntensity);
-      Serial.write(liveMessage, sizeof(liveMessage));
-    }
-    delay(5);
-  }
 }
 
-// MESSAGE
-void setDebugMessage(int tumPressure, int taPressure, int tumDerivative, int taDerivative, int tumIntensity, int taIntensity)
-{
-  // Start Header
-  debugMessage[0] = 0xFF;
-  debugMessage[1] = 0xFF;
-  // Pressure Tum
-  debugMessage[2] = lowByte(tumPressure);
-  debugMessage[3] = highByte(tumPressure);
-  // Pressure Ta
-  debugMessage[4] = lowByte(taPressure);
-  debugMessage[5] = highByte(taPressure);
-  // Derivative Tum
-  debugMessage[6] = lowByte(tumDerivative);
-  debugMessage[7] = highByte(tumDerivative);
-  // Derivative Ta
-  debugMessage[8] = lowByte(taDerivative);
-  debugMessage[9] = highByte(taDerivative);
-  // Derivative Tum
-  debugMessage[10] = lowByte(tumIntensity);
-  debugMessage[11] = highByte(tumIntensity);
-  // Derivative Ta
-  debugMessage[12] = lowByte(taIntensity);
-  debugMessage[13] = highByte(taIntensity);
-  // Checksum
-  debugMessage[14] = 0;
-  for (int i = 2; i < 14; i++)
-  {
-    debugMessage[14] += debugMessage[i];
+int c = 0; //zera contador
+bool noteOnFlag = false;
+unsigned long noteTime;
+unsigned long noteDuration = 200;
+
+
+void readTum() {
+  //leitura mais lenta do potenciometro que define o threshold
+  c++;
+  if (c > 1000) { //a cada 500 leituras do sensor ele lê uma vez o pot do threshold
+    threshold = analogRead(THRESHOLD_PIN);
+    c = 0;
   }
+
+  //leitura do sensor do Tum
+  tumPressure = analogRead(TUM_PIN);
+
+  //algoritmo de detecção de pisada
+  tumIntensity = getIntensity(TUM_CHANNEL, tumPressure);
+
+
+  if (tumIntensity > 0 && !noteOnFlag) {
+    //Serial.println("Sending note on");
+    int midiVelocityTum = truncamento(mapeamento(tumIntensity, threshold, intensityMax, midiVelocityMin, midiVelocityMax), midiVelocityMin, midiVelocityMax);
+    noteOn(midiChannelTum, midiNoteTum, midiVelocityTum);   // Channel 0, middle C, normal velocity
+    MidiUSB.flush();
+    noteOnFlag = true;
+  }
+  if (tumIntensity <= 0 && noteOnFlag) {
+    //Serial.println("Sending note off");
+    noteOff(midiChannelTum, midiNoteTum, 0);  // Channel 0, middle C, normal velocity
+    MidiUSB.flush();
+    noteOnFlag = false;
+  }
+
 }
 
-void setLiveMessage(int tumIntensity, int taIntensity)
-{
-  // Start Header
-  liveMessage[0] = 0xFE;
-  liveMessage[1] = 0xFE;
-  // Intensity Tum
-  liveMessage[2] = lowByte(tumIntensity);
-  liveMessage[3] = highByte(tumIntensity);
-  // Intensity Ta
-  liveMessage[4] = lowByte(taIntensity);
-  liveMessage[5] = highByte(taIntensity);
-  // Checksum
-  liveMessage[6] = 0;
-  for (int i = 2; i < 6; i++)
-  {
-    liveMessage[6] += liveMessage[i];
-  }
+void sendMessage() {
+  Serial.print(1023);
+  Serial.print(" ");
+  Serial.print(threshold);
+  Serial.print(" ");
+  Serial.print(tumPressure);
+  Serial.print(" ");
+  Serial.println(tumIntensity);
 }
 
 // Avarage
 
-//#define numReadings 5
-int numReadings[2] = {5, 6};
-#define maxNumReadings 6
-//int values[2][numReadings];
-int values[2][maxNumReadings];
+#define numReadings 5
+int values[2][numReadings];
 int total[2];
 int index = 0;
 int avrg = 0;
@@ -165,33 +106,15 @@ int getAvarage(int channel, int value)
   total[channel] = total[channel] + values[channel][index];
   index = index + 1;
 
-  if (index >= numReadings[channel])
+  if (index >= numReadings)
   {
     index = 0;
   }
-  
-  avrg = (int) total[channel] / numReadings[channel];
+  avrg = (int) total[channel] / numReadings;
   return avrg;
 }
 
-// Derivative
 
-int valuesForDerivative[2][5];
-float derivativeValues[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-
-int getDerivative(int channel, int value)
-{
-  // Derivada
-  valuesForDerivative[channel][4] = valuesForDerivative[channel][3];
-  valuesForDerivative[channel][3] = valuesForDerivative[channel][2];
-  valuesForDerivative[channel][2] = valuesForDerivative[channel][1];
-  valuesForDerivative[channel][1] = valuesForDerivative[channel][0];
-  valuesForDerivative[channel][0] = value;
-
-  derivativeValues[0] = 2.08 * valuesForDerivative[channel][0] - 4 * valuesForDerivative[channel][1] + 3 * valuesForDerivative[channel][2] - 1.33 * valuesForDerivative[channel][3] + 0.25 * valuesForDerivative[channel][4];
-  //faz o calculo da derivada com coeficientes de diferenca finita (http://en.wikipedia.org/wiki/Finite_difference_coefficients)
-  return derivativeValues[0];
-}
 
 // Intensity
 
@@ -205,11 +128,10 @@ int maximo[2];
 int getIntensity(int channel, int newDerivative)
 {
 
-  if (!debouncing[channel]) {                   //se nao estiver no meio de uma outro pisada
-    if (newDerivative > threshold) {     //define a pisada quando a derivada passa de um threshold
-      lastDebounceTime[channel] = millis();     //guarda na memoria o instante que aconteceu a pisada no Tum
-      debouncing[channel] = true;                                      //diz que ainda esta debouncing
-    }
+
+  if (newDerivative > threshold) {     //define a pisada quando a derivada passa de um threshold
+    lastDebounceTime[channel] = millis();     //guarda na memoria o instante que aconteceu a pisada no Tum
+    debouncing[channel] = true;                                      //diz que ainda esta debouncing
   }
 
   //Agoritmo para controlar o estado de debounce
@@ -237,4 +159,24 @@ int getIntensity(int channel, int newDerivative)
 }
 
 
+void noteOn(byte channel, byte pitch, byte velocity) {
+  midiEventPacket_t noteOn = {0x09, 0x90 | channel, pitch, velocity};
+  MidiUSB.sendMIDI(noteOn);
+}
+
+void noteOff(byte channel, byte pitch, byte velocity) {
+  midiEventPacket_t noteOff = {0x08, 0x80 | channel, pitch, velocity};
+  MidiUSB.sendMIDI(noteOff);
+}
+
+int mapeamento(float inputVal, float inputMin, float inputMax, float outputMin, float outputMax){ 
+  float m = (outputMax - outputMin)/(inputMax - inputMin);
+  return round(outputMin + m*(inputVal - inputMin)); //equacao da reta a partir de dois pontos
+}
+
+int truncamento(int inputVal, int minVal, int maxVal){
+  if (inputVal > maxVal) return maxVal;
+  else if (inputVal < minVal) return minVal;  
+  else return inputVal;
+}
 
