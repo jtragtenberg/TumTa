@@ -22,7 +22,7 @@ void mztTumtaSerial::checkByteAndUpdateVectors(int value)
 {
 	setPackage(value);
 	
-	if(isPackageReady)
+	if(isPackageReady && debugMessage)
 	{
 		// TUM
 		tum.pressure.push_back(package[0] + (package[1] * 255));
@@ -33,6 +33,19 @@ void mztTumtaSerial::checkByteAndUpdateVectors(int value)
 		ta.pressure.push_back(package[6] + (package[7] * 255));
 		ta.derivative.push_back(package[8] + (package[9] * 255));
 		ta.intensity.push_back(package[10] + (package[11] * 255));
+		setInterval(&ta.interval);
+	}
+	else
+	{
+		// TUM
+		tum.pressure.push_back(0);
+		tum.derivative.push_back(0);
+		tum.intensity.push_back(package[0] + (package[1] * 255));
+		setInterval(&tum.interval);
+		// TA
+		ta.pressure.push_back(0);
+		ta.derivative.push_back(0);
+		ta.intensity.push_back(package[2] + (package[3] * 255));
 		setInterval(&ta.interval);
 	}
 }
@@ -98,6 +111,12 @@ void mztTumtaSerial::setPackage(int newChar)
 			if(newChar == 255)
 			{
 				contPackage++;
+				debugMessage = true;
+			}
+			else if(newChar == 254)
+			{
+				contPackage++;
+				debugMessage = false;
 			}
 			else
 			{
@@ -105,34 +124,58 @@ void mztTumtaSerial::setPackage(int newChar)
 			}
 			break;
 		case 1:
-			if(newChar == 255)
+			if(newChar == 255 && debugMessage)
 			{
 				contPackage++;
+				debugMessage = true;
+			}
+			else if(newChar == 254 && !debugMessage)
+			{
+				contPackage++;
+				debugMessage = false;
 			}
 			else
 			{
 				contPackage = 0;
+				debugMessage = false;
 			}
 			break;
 		case 2:
-			package[0] = newChar;  // [0] Pressure Tum DataLow
+			package[0] = newChar;  // [0] Pressure Tum DataLow or [0] Intensity Tum DataLow
 			contPackage++;
 			break;
 		case 3:
-			package[1] = newChar; // [1] Pressure Tum DataHigh
+			package[1] = newChar; // [1] Pressure Tum DataHigh or [1] Intensity Tum DataHigh
 			contPackage++;
 			break;
 		case 4:
-			package[2] = newChar; // [2] Pressure Ta DataLow
+			package[2] = newChar; // [2] Pressure Ta DataLow or [2] Intensity Ta DataLow
 			contPackage++;
 			break;
 		case 5:
-			package[3] = newChar; // [3] Pressure Ta DataHigh
+			package[3] = newChar; // [3] Pressure Ta DataHigh or [3] Intensity Ta DataLow
 			contPackage++;
 			break;
 		case 6:
-			package[4] = newChar; // [4] Derivative Tum DataLow
-			contPackage++;
+			if(!debugMessage)
+			{
+				packageChecksum = newChar; // Live Message Checksum
+				unsigned char localChecksum = 0;
+				for(int i = 0; i < 4; i++)
+				{
+					localChecksum += package[i];
+				}
+				if(packageChecksum == localChecksum)
+				{
+					isPackageReady = true;
+				}
+				contPackage = 0;
+			}
+			else
+			{
+				package[4] = newChar; // [4] Derivative Tum DataLow
+				contPackage++;
+			}
 			break;
 		case 7:
 			package[5] = newChar; // [5] Derivative Tum DataHigh
@@ -163,8 +206,16 @@ void mztTumtaSerial::setPackage(int newChar)
 			contPackage++;
 			break;
 		case 14:
-			packageChecksum = newChar; // Checksum
-			isPackageReady = true;
+			packageChecksum = newChar; // Debug Message Checksum
+			unsigned char localChecksum = 0;
+			for(int i = 0; i < 12; i++)
+			{
+				localChecksum += package[i];
+			}
+			if(packageChecksum == localChecksum)
+			{
+				isPackageReady = true;
+			}
 			contPackage = 0;
 			break;
 	}

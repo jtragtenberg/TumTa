@@ -51,6 +51,8 @@ private:
 	};
 	Tumta tum, ta; // Vector of serial Values from this loop
 	
+	bool debugMessage;
+	
 	void emptyValues();
 	void setInterval(vector<int> * intervalVector);
 	
