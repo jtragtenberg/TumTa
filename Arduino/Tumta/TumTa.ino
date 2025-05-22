@@ -94,132 +94,133 @@ void loop(){
   digitalWrite(led1Pin, HIGH);
   butao = digitalRead(butaoPin);
   if (!butao) digitalWrite(led2Pin, LOW);
-  if (butao) {
-  digitalWrite(led2Pin, HIGH);
-  if (Serial.available() > 0){
-    serialIn = Serial.read();
-    if (serialIn == EXECUCAOBYTE || serialIn == CALIBRACAOBYTE) {
-      modo = serialIn;                                  //recebe na variavel serialIn o modo de operacao, que pode ser o byte do
-      delay(50);
-    }                                                   //EXECUCAOBYTE ou CALIBRACAOBYTE
-    if (serialIn == THRESHOLDTUMBYTE){
-      threshold[0] = Serial.read();                        //threshold do Tum (ja vem de 0 a 127)      
-      delay(50);
-    }
-    if (serialIn == THRESHOLDTABYTE){
-      threshold[1] = Serial.read();                        //threshold do Ta 
-      delay(50);
-    }
-    if (serialIn == DEBOUNCETIMEBYTE){
-      debounceTime = map(Serial.read(),0,127,0,1000);    //mapeia o valor que vem de 0-127 para um debounceTime de 0 a 400
-      delay(50);
-    }
-  }
-
-
-  //TUM
-  valorTum[4] = valorTum[3];
-  valorTum[3] = valorTum[2];
-  valorTum[2] = valorTum[1];
-  valorTum[1] = valorTum[0];             //carrega os valores anterior na memoria
-  valorTum[0] = analogRead(tumPin);      // faz a leitura do Tum na porta A0
-
-  //derivadaTum[1] = derivadaTum[0]; //carrega o valor anterior da derivada na memoria
-  derivadaTum[0] = 2.08*valorTum[0] - 4*valorTum[1] + 3*valorTum[2] - 1.33*valorTum[3] + 0.25*valorTum[4]; //faz o calculo da derivada com coeficientes de diferenca finita (http://en.wikipedia.org/wiki/Finite_difference_coefficients)
-
-  //segundaDerivadaTum[0] = derivadaTum[0] - derivadaTum[1]; //faz o calculo da segunda derivada
-
-  if (!debouncing[0]){                    //se nao estiver no meio de uma outro pisada
-    if(derivadaTum[0] > threshold[0]){       //define a pisada quando a derivada passa de um threshold
-      lastDebounceTime[0] = millis();     //guarda na memoria o instante que aconteceu a pisada no Tum
-      debouncing[0] = true;                                      //diz que ainda esta debouncing      
-    }
-  }
-
-  //Agoritmo para controlar o estado de debounce
-  if ((millis() - lastDebounceTime[0]) > debounceTime) {       //Controla quando esta debouncing. Se ja passou o tempo de debounce
-    debouncing[0] = false;                                     //apos a ultima pisada diz que ja saiu do debounce
-    intensidade[0] = 0;                             //avisa que parou o tempo de debounce do Ta
-    aindaNao[0] = true;                             //reinicia o aindaNao para permitir que a proxima pisada venha e que nao role outro noteOff...
-    maximo[0] = 0;                                  //zera o valor do maximo para a proxima poder chegar...    
-  } 
-
-
-  //Algoritmo para deteccao da pisada
-  if (debouncing[0]) {                               //enquanto estiver no tempo do debounce
-    if (aindaNao[0]){                                //se ainda nao tiver descoberto o maximo d  a derivada (a intensidade da pisada)
-      if (derivadaTum[0] > maximo[0]){               //se o grafico da derivada esta crescendo
-        maximo[0] = derivadaTum[0];                  //continue colocando no valor da derivada na variavel maximo
+  if (butao){
+    digitalWrite(led2Pin, HIGH);
+    if (Serial.available() > 0){
+      serialIn = Serial.read();
+      if (serialIn == EXECUCAOBYTE || serialIn == CALIBRACAOBYTE) {
+        modo = serialIn;                                  //recebe na variavel serialIn o modo de operacao, que pode ser o byte do
+        delay(50);
+      }                                                   //EXECUCAOBYTE ou CALIBRACAOBYTE
+      if (serialIn == THRESHOLDTUMBYTE){
+        threshold[0] = Serial.read();                        //threshold do Tum (ja vem de 0 a 127)      
+        delay(50);
       }
-      else {                                         //se o grafico da derivada parar de crescer
-        intensidade[0] = maximo[0];                  //pega o ultimo valor do maximo e guarda o valor na variavel intensidade
-        //===============================================  MODO EXECUCAO  ==============================================================
-        if(modo == EXECUCAOBYTE) {                   //se estiver no modo execucao
-          serialExec(TUMBYTE, intensidade[0]);       //ja manda um noteOn com a intensidade da pisada
+      if (serialIn == THRESHOLDTABYTE){
+        threshold[1] = Serial.read();                        //threshold do Ta 
+        delay(50);
+      }
+      if (serialIn == DEBOUNCETIMEBYTE){
+        debounceTime = map(Serial.read(),0,127,0,1000);    //mapeia o valor que vem de 0-127 para um debounceTime de 0 a 400
+        delay(50);
+      }
+    }
+
+
+    //TUM
+    valorTum[4] = valorTum[3];
+    valorTum[3] = valorTum[2];
+    valorTum[2] = valorTum[1];
+    valorTum[1] = valorTum[0];             //carrega os valores anterior na memoria
+    valorTum[0] = analogRead(tumPin);      // faz a leitura do Tum na porta A0
+
+    //derivadaTum[1] = derivadaTum[0]; //carrega o valor anterior da derivada na memoria
+    derivadaTum[0] = 2.08*valorTum[0] - 4*valorTum[1] + 3*valorTum[2] - 1.33*valorTum[3] + 0.25*valorTum[4]; //faz o calculo da derivada com coeficientes de diferenca finita (http://en.wikipedia.org/wiki/Finite_difference_coefficients)
+
+    //segundaDerivadaTum[0] = derivadaTum[0] - derivadaTum[1]; //faz o calculo da segunda derivada
+
+    if (!debouncing[0]){                    //se nao estiver no meio de uma outro pisada
+      if(derivadaTum[0] > threshold[0]){       //define a pisada quando a derivada passa de um threshold
+        lastDebounceTime[0] = millis();     //guarda na memoria o instante que aconteceu a pisada no Tum
+        debouncing[0] = true;                                      //diz que ainda esta debouncing      
+      }
+    }
+
+    //Agoritmo para controlar o estado de debounce
+    if ((millis() - lastDebounceTime[0]) > debounceTime) {       //Controla quando esta debouncing. Se ja passou o tempo de debounce
+      debouncing[0] = false;                                     //apos a ultima pisada diz que ja saiu do debounce
+      intensidade[0] = 0;                             //avisa que parou o tempo de debounce do Ta
+      aindaNao[0] = true;                             //reinicia o aindaNao para permitir que a proxima pisada venha e que nao role outro noteOff...
+      maximo[0] = 0;                                  //zera o valor do maximo para a proxima poder chegar...    
+    } 
+
+
+    //Algoritmo para deteccao da pisada
+    if (debouncing[0]) {                               //enquanto estiver no tempo do debounce
+      if (aindaNao[0]){                                //se ainda nao tiver descoberto o maximo d  a derivada (a intensidade da pisada)
+        if (derivadaTum[0] > maximo[0]){               //se o grafico da derivada esta crescendo
+          maximo[0] = derivadaTum[0];                  //continue colocando no valor da derivada na variavel maximo
         }
-        //==============================================================================================================================
-        aindaNao[0] = false;                         //a pisada ja rolou
-      }
-    }
-  }
-
-
-
-  //TA
-  valorTa[4] = valorTa[3];
-  valorTa[3] = valorTa[2];
-  valorTa[2] = valorTa[1];
-  valorTa[1] = valorTa[0];                         //carrega o valor anterior na memoria
-  valorTa[0] = analogRead(taPin);                  // faz a leitura do Ta na porta A1
-
-  //  derivadaTa[1] = derivadaTa[0]; //carrega o valor anterior da derivada na memoria
-  derivadaTa[0] = 2.08*valorTa[0] - 4*valorTa[1] + 3*valorTa[2] - 1.33*valorTa[3] + 0.25*valorTa[4];    //faz o calculo da derivada com coeficientes de diferenca finita
-
-  //  segundaDerivadaTa[0] = derivadaTa[0] - derivadaTa[1]; //faz o calculo da segunda derivada
-
-  if (!debouncing[1]){                                              //se nao estiver no meio de outra pisada
-    if(derivadaTa[0] > threshold[1]){                                  //define a pisada quando a derivada passar de um limite
-      lastDebounceTime[1] = millis();                               //guarda na memoria o instante que aconteceu a pisada no Ta
-      debouncing[1] = true;                                           //ainda esta debouncing no Ta
-    }
-  }
-
-  if ((millis() - lastDebounceTime[1]) > debounceTime) {            //se ja passou o tempo de debounce apos a ultima pisada no Ta
-    debouncing[1] = false;                                          //diz que ja saiu do debounce do Ta
-    intensidade[1] = 0;                        //avisa que parou o tempo de debounce do Ta
-    aindaNao[1] = true;                       //reinicia o aindaNao para permitir que a proxima pisada venha e que nao mande outro noteOff...
-    maximo[1] = 0;                            //zera o valor do maximo para a proxima poder chegar...    
-  } 
-
-  if (debouncing[1]) {                                //enquanto estiver no tempo do debounce
-    if (aindaNao[1]){                                 //se ainda nao tiver descoberto o maximo da derivada (a intensidade da pisada)
-      if (derivadaTa[0] > maximo[1]){                 //se o grafico da derivada esta crescendo
-        maximo[1] = derivadaTa[0];                    //continue colocando no valor da derivada na variavel maximo
-      }
-      else {                                          //se o grafico da derivada parar de crescer
-        intensidade[1] = maximo[1];                   //pega o ultimo valor do maximo e guarda o valor na variavel intensidade
-        //===============================================  MODO EXECUCAO  ==============================================================
-        if(modo == EXECUCAOBYTE) {                    //se estiver no modo execucao
-          serialExec(TABYTE, intensidade[1]);         //ja manda um noteOn com a intensidade da pisada
+        else {                                         //se o grafico da derivada parar de crescer
+          intensidade[0] = maximo[0];                  //pega o ultimo valor do maximo e guarda o valor na variavel intensidade
+          //===============================================  MODO EXECUCAO  ==============================================================
+          if(modo == EXECUCAOBYTE) {                   //se estiver no modo execucao
+            serialExec(TUMBYTE, intensidade[0]);       //ja manda um noteOn com a intensidade da pisada
+          }
+          //==============================================================================================================================
+          aindaNao[0] = false;                         //a pisada ja rolou
         }
-        //==============================================================================================================================
-        aindaNao[1] = false;                          //a pisada ja rolou
       }
     }
+
+
+
+    //TA
+    valorTa[4] = valorTa[3];
+    valorTa[3] = valorTa[2];
+    valorTa[2] = valorTa[1];
+    valorTa[1] = valorTa[0];                         //carrega o valor anterior na memoria
+    valorTa[0] = analogRead(taPin);                  // faz a leitura do Ta na porta A1
+
+    //  derivadaTa[1] = derivadaTa[0]; //carrega o valor anterior da derivada na memoria
+    derivadaTa[0] = 2.08*valorTa[0] - 4*valorTa[1] + 3*valorTa[2] - 1.33*valorTa[3] + 0.25*valorTa[4];    //faz o calculo da derivada com coeficientes de diferenca finita
+
+    //  segundaDerivadaTa[0] = derivadaTa[0] - derivadaTa[1]; //faz o calculo da segunda derivada
+
+    if (!debouncing[1]){                                              //se nao estiver no meio de outra pisada
+      if(derivadaTa[0] > threshold[1]){                                  //define a pisada quando a derivada passar de um limite
+        lastDebounceTime[1] = millis();                               //guarda na memoria o instante que aconteceu a pisada no Ta
+        debouncing[1] = true;                                           //ainda esta debouncing no Ta
+      }
+    }
+
+    if ((millis() - lastDebounceTime[1]) > debounceTime) {            //se ja passou o tempo de debounce apos a ultima pisada no Ta
+      debouncing[1] = false;                                          //diz que ja saiu do debounce do Ta
+      intensidade[1] = 0;                        //avisa que parou o tempo de debounce do Ta
+      aindaNao[1] = true;                       //reinicia o aindaNao para permitir que a proxima pisada venha e que nao mande outro noteOff...
+      maximo[1] = 0;                            //zera o valor do maximo para a proxima poder chegar...    
+    } 
+
+    if (debouncing[1]) {                                //enquanto estiver no tempo do debounce
+      if (aindaNao[1]){                                 //se ainda nao tiver descoberto o maximo da derivada (a intensidade da pisada)
+        if (derivadaTa[0] > maximo[1]){                 //se o grafico da derivada esta crescendo
+          maximo[1] = derivadaTa[0];                    //continue colocando no valor da derivada na variavel maximo
+        }
+        else {                                          //se o grafico da derivada parar de crescer
+          intensidade[1] = maximo[1];                   //pega o ultimo valor do maximo e guarda o valor na variavel intensidade
+          //===============================================  MODO EXECUCAO  ==============================================================
+          if(modo == EXECUCAOBYTE) {                    //se estiver no modo execucao
+            serialExec(TABYTE, intensidade[1]);         //ja manda um noteOn com a intensidade da pisada
+          }
+          //==============================================================================================================================
+          aindaNao[1] = false;                          //a pisada ja rolou
+        }
+      }
+    }
+
+
+    //==============================================  MODO CALIBRACAO  =============================================================
+    if (modo == CALIBRACAOBYTE) {
+      intensidade[0] = round(map(intensidade[0],0,250,0,127));
+      serialCalib(valorTum[0], derivadaTum[0], intensidade[0], valorTa[0], derivadaTa[0], intensidade[1]);
+    }
+    //==============================================================================================================================
+
+
+
+
+    delay(3);
   }
-
-
-  //==============================================  MODO CALIBRACAO  =============================================================
-  if (modo == CALIBRACAOBYTE) {
-    serialCalib(valorTum[0], derivadaTum[0], intensidade[0], valorTa[0], derivadaTa[0], intensidade[1]);
-  }
-  //==============================================================================================================================
-
-
-
-
-  delay(3);
-}
 }
 
 
@@ -250,7 +251,7 @@ void serialCalib(int pTum, int dpTum, int iTum, int pTa, int dpTa, int iTa){
     Serial.write(iTum);                                     //manda o velocity midi da pisada e zero quando n tiver nada
     checksum += sendValueAsTwo7bitBytes(pTa);               //manda o valor da pressao do Ta e armazena o valor dos bytes no checksum
     checksum += sendNegativeAsTwo7bitBytes(dpTa);           //manda o valor da derivada do Ta e armazena o valor dos bytes no checksumt
-    if (iTa > 127) iTa = 127;
+    if (iTa > 200) iTa = 200;
     if (iTa < 0) iTa = 0;                                   //garante que o valor da intensidade esteja em um byte de 7 bits
     Serial.write(iTa);                                      //manda a intensidade da pisada e zero quando n tiver nada
     checksum += STARTBYTE + iTum + iTa;
@@ -297,6 +298,7 @@ int sendNegativeAsTwo7bitBytes(int value)     //Faz com que um numero de -127 a 
   }
   return LSB + MSB;                          //Manda a soma dos Bytes pra o checksum
 }
+
 
 
 
