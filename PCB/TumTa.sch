@@ -2271,147 +2271,6 @@ These are standard SMD and PTH capacitors. Normally 10uF, 47uF, and 100uF in ele
 </deviceset>
 </devicesets>
 </library>
-<library name="SparkFun-Retired">
-<description>&lt;h3&gt;SparkFun Electronics' preferred foot prints&lt;/h3&gt;
-In this library you'll find all manner of retired footprints for resistors, capacitors, board names, ICs, etc., that are no longer used in our catalog.&lt;br&gt;&lt;br&gt;
-We've spent an enormous amount of time creating and checking these footprints and parts, but it is the end user's responsibility to ensure correctness and suitablity for a given componet or application. If you enjoy using this library, please buy one of our products at www.sparkfun.com.
-&lt;br&gt;&lt;br&gt;
-&lt;b&gt;Licensing:&lt;/b&gt;Creative Commons ShareAlike 4.0 International - https://creativecommons.org/licenses/by-sa/4.0/
-&lt;br&gt;&lt;br&gt;
-You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
-<packages>
-<package name="BATEBIT">
-<text x="-6.35" y="-7.825" size="2.54" layer="21" font="vector">BateBit</text>
-<circle x="0" y="2" radius="7.071065625" width="0.127" layer="21"/>
-<circle x="0" y="2" radius="5.83095" width="0.127" layer="21"/>
-<circle x="0" y="2" radius="5.3851625" width="0.127" layer="21"/>
-<wire x1="0" y1="-5" x2="-1.3" y2="-3.7" width="0.127" layer="21"/>
-<wire x1="-1.3" y1="-3.7" x2="-3" y2="-4.4" width="0.127" layer="21"/>
-<wire x1="-3" y1="-4.4" x2="-3.1" y2="-3" width="0.127" layer="21"/>
-<wire x1="-3.1" y1="-3" x2="-5" y2="-3" width="0.127" layer="21"/>
-<wire x1="-5" y1="-3" x2="-5" y2="-1" width="0.127" layer="21"/>
-<wire x1="-5" y1="-1" x2="-6.6" y2="-0.4" width="0.127" layer="21"/>
-<wire x1="-6.6" y1="-0.4" x2="-5.8" y2="1.1" width="0.127" layer="21"/>
-<wire x1="-5.8" y1="1.1" x2="-7.1" y2="2" width="0.127" layer="21"/>
-<wire x1="-7.1" y1="2" x2="-5.8" y2="3" width="0.127" layer="21"/>
-<wire x1="-5.8" y1="3" x2="-6.5" y2="4.9" width="0.127" layer="21"/>
-<wire x1="-6.5" y1="4.9" x2="-4.8" y2="5.2" width="0.127" layer="21"/>
-<wire x1="-4.8" y1="5.2" x2="-5.1" y2="6.9" width="0.127" layer="21"/>
-<wire x1="-5.1" y1="6.9" x2="-3" y2="7" width="0.127" layer="21"/>
-<wire x1="-3" y1="7" x2="-2.8" y2="8.5" width="0.127" layer="21"/>
-<wire x1="-2.8" y1="8.5" x2="-1.4" y2="7.6" width="0.127" layer="21"/>
-<wire x1="-1.4" y1="7.6" x2="-0.5" y2="9.1" width="0.127" layer="21"/>
-<wire x1="-0.5" y1="9.1" x2="0.7" y2="7.8" width="0.127" layer="21"/>
-<wire x1="0.7" y1="7.8" x2="2.3" y2="8.7" width="0.127" layer="21"/>
-<wire x1="2.3" y1="8.7" x2="2.4" y2="7.3" width="0.127" layer="21"/>
-<wire x1="2.4" y1="7.3" x2="4.6" y2="7.4" width="0.127" layer="21"/>
-<wire x1="4.6" y1="7.4" x2="4.7" y2="5.5" width="0.127" layer="21"/>
-<wire x1="4.7" y1="5.5" x2="6.4" y2="5.1" width="0.127" layer="21"/>
-<wire x1="6.4" y1="5.1" x2="5.7" y2="3.3" width="0.127" layer="21"/>
-<wire x1="5.7" y1="3.3" x2="7" y2="1.3" width="0.127" layer="21"/>
-<wire x1="7" y1="1.3" x2="5.3" y2="-0.6" width="0.127" layer="21"/>
-<wire x1="5.3" y1="-0.6" x2="5.3" y2="-2.8" width="0.127" layer="21"/>
-<wire x1="5.3" y1="-2.8" x2="3.7" y2="-2.6" width="0.127" layer="21"/>
-<wire x1="3.7" y1="-2.6" x2="3.7" y2="-4" width="0.127" layer="21"/>
-<wire x1="3.7" y1="-4" x2="2.1" y2="-3.5" width="0.127" layer="21"/>
-<wire x1="2.1" y1="-3.5" x2="1.4" y2="-4.9" width="0.127" layer="21"/>
-<wire x1="1.4" y1="-4.9" x2="0" y2="-3.9" width="0.127" layer="21"/>
-<wire x1="0" y1="-3.9" x2="-1.6" y2="-4.9" width="0.127" layer="21"/>
-<wire x1="-1.6" y1="-4.9" x2="-2.4" y2="-3.4" width="0.127" layer="21"/>
-<wire x1="-2.4" y1="-3.4" x2="-4" y2="-3.8" width="0.127" layer="21"/>
-<wire x1="-4" y1="-3.8" x2="-4.3" y2="-2" width="0.127" layer="21"/>
-<wire x1="-4.3" y1="-2" x2="-6" y2="-1.8" width="0.127" layer="21"/>
-<wire x1="-6" y1="-1.8" x2="-5.6" y2="0.1" width="0.127" layer="21"/>
-<wire x1="-5.6" y1="0.1" x2="-7" y2="0.8" width="0.127" layer="21"/>
-<wire x1="-7" y1="0.8" x2="-5.9" y2="2.1" width="0.127" layer="21"/>
-<wire x1="-5.9" y1="2.1" x2="-6.8" y2="3.8" width="0.127" layer="21"/>
-<wire x1="-6.8" y1="3.8" x2="-5.3" y2="4.4" width="0.127" layer="21"/>
-<wire x1="-5.3" y1="4.4" x2="-5.8" y2="6.1" width="0.127" layer="21"/>
-<wire x1="-5.8" y1="6.1" x2="-4.1" y2="6.2" width="0.127" layer="21"/>
-<wire x1="-4.1" y1="6.2" x2="-3.8" y2="8" width="0.127" layer="21"/>
-<wire x1="-3.8" y1="8" x2="-2.3" y2="7.4" width="0.127" layer="21"/>
-<wire x1="-2.3" y1="7.4" x2="-1.7" y2="8.9" width="0.127" layer="21"/>
-<wire x1="-1.7" y1="8.9" x2="-0.3" y2="7.9" width="0.127" layer="21"/>
-<wire x1="-0.3" y1="7.9" x2="1" y2="9" width="0.127" layer="21"/>
-<wire x1="1" y1="9" x2="1.7" y2="7.6" width="0.127" layer="21"/>
-<wire x1="1.7" y1="7.6" x2="3.5" y2="8.2" width="0.127" layer="21"/>
-<wire x1="3.5" y1="8.2" x2="4" y2="6.4" width="0.127" layer="21"/>
-<wire x1="4" y1="6.4" x2="5.9" y2="6" width="0.127" layer="21"/>
-<wire x1="5.9" y1="6" x2="5.3" y2="4.5" width="0.127" layer="21"/>
-<wire x1="5.3" y1="4.5" x2="7.1" y2="3" width="0.127" layer="21"/>
-<wire x1="7.1" y1="3" x2="5.8" y2="1.1" width="0.127" layer="21"/>
-<wire x1="5.8" y1="1.1" x2="6.3" y2="-1.1" width="0.127" layer="21"/>
-<wire x1="6.3" y1="-1.1" x2="4.5" y2="-1.8" width="0.127" layer="21"/>
-<wire x1="4.5" y1="-1.8" x2="4.5" y2="-3.5" width="0.127" layer="21"/>
-<wire x1="4.5" y1="-3.5" x2="3.1" y2="-3.1" width="0.127" layer="21"/>
-<wire x1="3.1" y1="-3.1" x2="2.4" y2="-4.6" width="0.127" layer="21"/>
-<wire x1="2.4" y1="-4.6" x2="1.2" y2="-3.8" width="0.127" layer="21"/>
-<wire x1="1.2" y1="-3.8" x2="0.1" y2="-5.1" width="0.127" layer="21"/>
-<wire x1="-0.3" y1="5.7" x2="-0.3" y2="2.5" width="0.254" layer="21"/>
-<wire x1="-0.3" y1="2.5" x2="-0.3" y2="-1.9" width="0.254" layer="21"/>
-<wire x1="0.7" y1="5.7" x2="0.7" y2="2.5" width="0.254" layer="21"/>
-<wire x1="0.7" y1="2.5" x2="0.7" y2="-2" width="0.254" layer="21"/>
-<wire x1="0.7" y1="5.7" x2="0.7" y2="2.5" width="0.254" layer="21" curve="-180"/>
-<wire x1="-0.4" y1="2.5" x2="-0.3" y2="5.7" width="0.254" layer="21" curve="-180"/>
-<wire x1="0.7" y1="2.5" x2="0.7" y2="-2" width="0.254" layer="21" curve="-180"/>
-<wire x1="-0.3" y1="-1.9" x2="-0.3" y2="2.5" width="0.254" layer="21" curve="-180"/>
-<text x="-8.255" y="-9.525" size="1.27" layer="21" font="vector">Artesania Digital</text>
-</package>
-</packages>
-<symbols>
-<symbol name="LETTER_L">
-<wire x1="0" y1="185.42" x2="248.92" y2="185.42" width="0.4064" layer="94"/>
-<wire x1="248.92" y1="185.42" x2="248.92" y2="0" width="0.4064" layer="94"/>
-<wire x1="0" y1="185.42" x2="0" y2="0" width="0.4064" layer="94"/>
-<wire x1="0" y1="0" x2="248.92" y2="0" width="0.4064" layer="94"/>
-</symbol>
-<symbol name="DOC_BATEBIT">
-<wire x1="0" y1="0" x2="71.12" y2="0" width="0.254" layer="94"/>
-<wire x1="101.6" y1="15.24" x2="87.63" y2="15.24" width="0.254" layer="94"/>
-<wire x1="0" y1="0" x2="0" y2="5.08" width="0.254" layer="94"/>
-<wire x1="0" y1="5.08" x2="71.12" y2="5.08" width="0.254" layer="94"/>
-<wire x1="0" y1="5.08" x2="0" y2="15.24" width="0.254" layer="94"/>
-<wire x1="101.6" y1="15.24" x2="101.6" y2="5.08" width="0.254" layer="94"/>
-<wire x1="71.12" y1="5.08" x2="71.12" y2="0" width="0.254" layer="94"/>
-<wire x1="71.12" y1="5.08" x2="87.63" y2="5.08" width="0.254" layer="94"/>
-<wire x1="71.12" y1="0" x2="101.6" y2="0" width="0.254" layer="94"/>
-<wire x1="87.63" y1="15.24" x2="87.63" y2="5.08" width="0.254" layer="94"/>
-<wire x1="87.63" y1="15.24" x2="0" y2="15.24" width="0.254" layer="94"/>
-<wire x1="87.63" y1="5.08" x2="101.6" y2="5.08" width="0.254" layer="94"/>
-<wire x1="101.6" y1="5.08" x2="101.6" y2="0" width="0.254" layer="94"/>
-<wire x1="0" y1="15.24" x2="0" y2="22.86" width="0.254" layer="94"/>
-<wire x1="101.6" y1="35.56" x2="0" y2="35.56" width="0.254" layer="94"/>
-<wire x1="101.6" y1="35.56" x2="101.6" y2="22.86" width="0.254" layer="94"/>
-<wire x1="0" y1="22.86" x2="101.6" y2="22.86" width="0.254" layer="94"/>
-<wire x1="0" y1="22.86" x2="0" y2="35.56" width="0.254" layer="94"/>
-<wire x1="101.6" y1="22.86" x2="101.6" y2="15.24" width="0.254" layer="94"/>
-<text x="1.27" y="1.27" size="2.54" layer="94" font="vector">Date:</text>
-<text x="12.7" y="1.27" size="2.54" layer="94" font="vector">&gt;LAST_DATE_TIME</text>
-<text x="72.39" y="1.27" size="2.54" layer="94" font="vector">Sheet:</text>
-<text x="86.36" y="1.27" size="2.54" layer="94" font="vector">&gt;SHEET</text>
-<text x="88.9" y="11.43" size="2.54" layer="94" font="vector">REV:</text>
-<text x="1.524" y="17.78" size="2.54" layer="94" font="vector">TITLE:</text>
-<text x="15.494" y="17.78" size="2.7432" layer="94" font="vector">&gt;DRAWING_NAME</text>
-<text x="1.27" y="11.43" size="2.54" layer="94">Design by:</text>
-<text x="2.54" y="27.94" size="4.572" layer="94" font="vector">BateBit Artesania Digital</text>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="FRAME-LETTER_BATEBIT" prefix="FL">
-<gates>
-<gate name="G$1" symbol="LETTER_L" x="-121.92" y="0"/>
-<gate name="G$2" symbol="DOC_BATEBIT" x="25.4" y="0"/>
-</gates>
-<devices>
-<device name="" package="BATEBIT">
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 <library name="SparkFun-Electromechanical">
 <description>&lt;h3&gt;SparkFun Electronics' preferred foot prints&lt;/h3&gt;
 In this library you'll find anything that moves- switches, relays, buttons, potentiometers. Also, anything that goes on a board but isn't electrical in nature- screws, standoffs, etc.&lt;br&gt;&lt;br&gt;
@@ -3136,7 +2995,6 @@ LILYPAD- DIO-09910&lt;br&gt;
 <part name="JP1" library="SparkFun-Connectors" deviceset="ARDUINO_SERIAL_PROGRAM" device="PTH"/>
 <part name="GND5" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY1" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
-<part name="FL1" library="SparkFun-Retired" deviceset="FRAME-LETTER_BATEBIT" device=""/>
 <part name="C2" library="SparkFun-Passives" deviceset="CAP_POL" device="PTH2"/>
 <part name="C5" library="SparkFun-Passives" deviceset="CAP_POL" device="PTH2"/>
 <part name="GND1" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
@@ -3183,8 +3041,6 @@ LILYPAD- DIO-09910&lt;br&gt;
 <instance part="JP1" gate="G$1" x="104.14" y="35.56" rot="MR0"/>
 <instance part="GND5" gate="1" x="38.1" y="7.62"/>
 <instance part="SUPPLY1" gate="G$1" x="68.58" y="10.16"/>
-<instance part="FL1" gate="G$1" x="-116.84" y="-91.44"/>
-<instance part="FL1" gate="G$2" x="30.734" y="-91.44"/>
 <instance part="C2" gate="G$1" x="48.26" y="-2.54"/>
 <instance part="C5" gate="G$1" x="48.26" y="-25.4"/>
 <instance part="GND1" gate="1" x="48.26" y="-33.02"/>
