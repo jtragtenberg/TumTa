@@ -16,6 +16,7 @@ void mztGraphicI::draw()
 	ofPushMatrix();
 	ofTranslate(pos->x, pos->y);
 	ofSetColor(fillColor);
+	ofSetLineWidth(1);
    	ofBeginShape();
     ofVertex(0, size->y);
     for(unsigned x = 0; x < value->size(); x++)
@@ -32,7 +33,7 @@ void mztGraphicI::draw()
 void mztGraphicI::iniGui(string name)
 {
 	parameters.setName(name);
-	parameters.add(pos.set("Position", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f(ofGetWidth(), ofGetHeight())));
+	parameters.add(pos.set("Position", ofVec2f(0, 0), ofVec2f(-ofGetWidth(), -ofGetHeight()), ofVec2f(ofGetWidth(), ofGetHeight())));
 	parameters.add(size.set("Size", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f(ofGetWidth(), ofGetHeight())));
 	parameters.add(fillColor.set("Color", ofColor(0, 0, 0, 255), ofColor(0, 0, 0, 0), ofColor(255, 255, 255, 255)));
 }

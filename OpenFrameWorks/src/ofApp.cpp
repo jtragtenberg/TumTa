@@ -85,10 +85,10 @@ void ofApp::updateData()
 		{
 			data.setTumIntensity(serial.getTumIntensity()[i]);
 		}
-		for(int i = 0; i < serial.getTumInterval().size(); i++)
-		{
-			data.setTumInterval(serial.getTumInterval()[i]);
-		}
+//		for(int i = 0; i < serial.getTumInterval().size(); i++)
+//		{
+//			data.setTumInterval(serial.getTumInterval()[i]);
+//		}
 		// Ta
 		for(int i = 0; i < serial.getTaPressure().size(); i++)
 		{
@@ -102,10 +102,10 @@ void ofApp::updateData()
 		{
 			data.setTaIntensity(serial.getTaIntensity()[i]);
 		}
-		for(int i = 0; i < serial.getTaInterval().size(); i++)
-		{
-			data.setTaInterval(serial.getTaInterval()[i]);
-		}
+//		for(int i = 0; i < serial.getTaInterval().size(); i++)
+//		{
+//			data.setTaInterval(serial.getTaInterval()[i]);
+//		}
 	}
 }
 
@@ -128,48 +128,7 @@ void ofApp::iniMidi()
 
 void ofApp::updateMidi()
 {
-	// TODO: Actualizar con midi
-	if(isDebugWithoutSensorsEnabled)
-	{
-		midi.updateWithData(&data);
-	}
-	else
-	{
-		// Tum
-		for(int i = 0; i < serial.getTumPressure().size(); i++)
-		{
-			data.setTumPressure(serial.getTumPressure()[i]);
-		}
-		for(int i = 0; i < serial.getTumDerivative().size(); i++)
-		{
-			data.setTumDerivative(serial.getTumDerivative()[i]);
-		}
-		for(int i = 0; i < serial.getTumIntensity().size(); i++)
-		{
-			data.setTumIntensity(serial.getTumIntensity()[i]);
-		}
-		for(int i = 0; i < serial.getTumInterval().size(); i++)
-		{
-			data.setTumInterval(serial.getTumInterval()[i]);
-		}
-		// Ta
-		for(int i = 0; i < serial.getTaPressure().size(); i++)
-		{
-			data.setTaPressure(serial.getTaPressure()[i]);
-		}
-		for(int i = 0; i < serial.getTaDerivative().size(); i++)
-		{
-			data.setTaDerivative(serial.getTaDerivative()[i]);
-		}
-		for(int i = 0; i < serial.getTaIntensity().size(); i++)
-		{
-			data.setTaIntensity(serial.getTaIntensity()[i]);
-		}
-		for(int i = 0; i < serial.getTaInterval().size(); i++)
-		{
-			data.setTaInterval(serial.getTaInterval()[i]);
-		}
-	}
+	midi.updateWithData(&data);
 }
 
 // GRAPHIC

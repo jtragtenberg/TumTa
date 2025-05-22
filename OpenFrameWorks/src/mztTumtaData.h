@@ -72,6 +72,8 @@ private:
 	void setValueToVector(int newValue, vector<int> * vec);
 	void setValueToVector(float newValue, vector<float> * vec);
 	void setValueToVector(bool newValue, vector<bool> * vec);
+	void setInterval(vector<int> * intervalVector);
+	
     
     // GUI
 	void iniGui();

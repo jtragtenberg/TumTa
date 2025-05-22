@@ -1,5 +1,5 @@
 <group>
-	<Debug__no_Sensors_>1</Debug__no_Sensors_>
+	<Debug__no_Sensors_>0</Debug__no_Sensors_>
 	<Data>
 		<Tum_Pressure>762</Tum_Pressure>
 		<Tum_Derivative>433</Tum_Derivative>
@@ -28,7 +28,7 @@
 	<Tum_Interval>
 		<Position>0, 0</Position>
 		<Size>1000, 300</Size>
-		<Color>0, 0, 0, 255</Color>
+		<Color>0, 0, 0, 0</Color>
 	</Tum_Interval>
 	<Ta_Pressure>
 		<Position>0, 300</Position>
@@ -48,15 +48,15 @@
 	<Ta_Interval>
 		<Position>0, 300</Position>
 		<Size>1000, 300</Size>
-		<Color>0, 0, 0, 255</Color>
+		<Color>0, 0, 0, 0</Color>
 	</Ta_Interval>
 	<Midi>
-		<Tum_Sensor_Intensity_Min>300</Tum_Sensor_Intensity_Min>
-		<Tum_Sensor_Intensity_Max>800</Tum_Sensor_Intensity_Max>
+		<Tum_Sensor_Intensity_Min>20</Tum_Sensor_Intensity_Min>
+		<Tum_Sensor_Intensity_Max>57</Tum_Sensor_Intensity_Max>
 		<Tum_Midi_Velocity_Min>30</Tum_Midi_Velocity_Min>
 		<Tum_Midi_Note_Delay>300</Tum_Midi_Note_Delay>
-		<Ta_Sensor_Intensity_Min>300</Ta_Sensor_Intensity_Min>
-		<Ta_Sensor_Intensity_Max>800</Ta_Sensor_Intensity_Max>
+		<Ta_Sensor_Intensity_Min>20</Ta_Sensor_Intensity_Min>
+		<Ta_Sensor_Intensity_Max>62</Ta_Sensor_Intensity_Max>
 		<Ta_Midi_Velocity_Min>30</Ta_Midi_Velocity_Min>
 		<Ta_Midi_Note_Delay>300</Ta_Midi_Note_Delay>
 	</Midi>
@@ -83,7 +83,7 @@
 	</Ta_Sensor_Intensity_Min>
 	<Ta_Sensor_Intensity_Max>
 		<Position>0, 300</Position>
-		<Size_X>0, 300</Size_X>
+		<Size_X>1000, 300</Size_X>
 		<Color>0, 50, 50, 127</Color>
 	</Ta_Sensor_Intensity_Max>
 	<Ta_Midi_Velocity_Min>
