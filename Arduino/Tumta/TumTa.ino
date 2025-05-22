@@ -1,9 +1,11 @@
 //Joao Tragtenberg - 4/07/2015
-//TumTa 0.2.0 - Arduino - Para rodar com o arquivo de Max 1.0.7 e com a placa 0.2.6
+//TumTa 0.2.3 - Arduino - Para rodar com o arquivo de Max 1.0.8 e com a placa 0.2.8
 //
+//coloquei dois bytes para mandar o sinal de pisada
 
 byte TUMBYTE = 0xA0;
 byte TABYTE = 0xB0;
+byte NEMTUMNEMTA = 0xBF;
 byte EXECUCAOBYTE = 0xC0;
 byte CALIBRACAOBYTE = 0xC1;
 byte STARTBYTE = 0xF0;
@@ -73,8 +75,8 @@ void setup (){
           calibration[i] = Serial.read();
         }
         if (calibration[0] == THRESHOLDTUMBYTE && calibration[2] == THRESHOLDTABYTE && calibration[4] == DEBOUNCETIMEBYTE){        //se o primeiro e o terceiro forem os bytes de Threshold e debounceTime
-          threshold[0] = calibration[1];                              //threshold do Tum (Intensidade Minima)
-          threshold[1] = calibration[3];                              //threshold do Ta
+          threshold[0] = map(calibration[1],0,127,0,255);              //threshold do Tum (Intensidade Minima)
+          threshold[1] = map(calibration[3],0,127,0,255);              //threshold do Ta
           debounceTime = map(calibration[5],0,127,0,1000);             //debounceTime mapeados de 0 a 1000
           modo = calibration[6];                                      //e do ultimo modo usado (execucao ou calibracao)
           break  ;                                                      //so assim ele sai do loop.
@@ -94,7 +96,7 @@ void loop(){
   digitalWrite(led1Pin, HIGH);
   butao = digitalRead(butaoPin);
   if (!butao) digitalWrite(led2Pin, LOW);
-  if (butao){
+  if (butao) {
     digitalWrite(led2Pin, HIGH);
     if (Serial.available() > 0){
       serialIn = Serial.read();
@@ -103,11 +105,11 @@ void loop(){
         delay(50);
       }                                                   //EXECUCAOBYTE ou CALIBRACAOBYTE
       if (serialIn == THRESHOLDTUMBYTE){
-        threshold[0] = Serial.read();                        //threshold do Tum (ja vem de 0 a 127)      
+        threshold[0] = map(Serial.read(),0,127,0,255);                        //threshold do Tum (vem de 0 a 127)      
         delay(50);
       }
       if (serialIn == THRESHOLDTABYTE){
-        threshold[1] = Serial.read();                        //threshold do Ta 
+        threshold[1] = map(Serial.read(),0,127,0,255);                        //threshold do Ta 
         delay(50);
       }
       if (serialIn == DEBOUNCETIMEBYTE){
@@ -198,6 +200,7 @@ void loop(){
         }
         else {                                          //se o grafico da derivada parar de crescer
           intensidade[1] = maximo[1];                   //pega o ultimo valor do maximo e guarda o valor na variavel intensidade
+          if intensidade[1] >= 
           //===============================================  MODO EXECUCAO  ==============================================================
           if(modo == EXECUCAOBYTE) {                    //se estiver no modo execucao
             serialExec(TABYTE, intensidade[1]);         //ja manda um noteOn com a intensidade da pisada
@@ -211,8 +214,10 @@ void loop(){
 
     //==============================================  MODO CALIBRACAO  =============================================================
     if (modo == CALIBRACAOBYTE) {
-      intensidade[0] = round(map(intensidade[0],0,250,0,127));
       serialCalib(valorTum[0], derivadaTum[0], intensidade[0], valorTa[0], derivadaTa[0], intensidade[1]);
+    }
+    if(modo == EXECUCAOBYTE) {                    //se estiver no modo execucao
+      serialExec(NEMTUMNEMTA, 0);         //ja manda um noteOn com a intensidade da pisada
     }
     //==============================================================================================================================
 
@@ -229,10 +234,11 @@ void serialExec(byte tumOuTa, int intensidade){
   if (modo == EXECUCAOBYTE) {
     Serial.write(STARTBYTE);                           //manda o starbyte do TumTa, que eh 0xF0
     Serial.write(tumOuTa);                        //manda o startbyte do Tum (0xA0) ou do Ta (0xB0)
-    if (intensidade > 127) intensidade = 127;
-    if (intensidade < 0) intensidade = 0;  
-    Serial.write(intensidade);                   //manda a intensidade da pisada e zero quando n tiver nada
-    checksum = STARTBYTE + tumOuTa + intensidade;
+    //    if (intensidade > 127) intensidade = 127;
+    //    if (intensidade < 0) intensidade = 0;  
+    //    Serial.write(intensidade);                   //manda a intensidade da pisada e zero quando n tiver nada
+    checksum = sendValueAsTwo7bitBytes(intensidade); 
+    checksum += STARTBYTE + tumOuTa;
     checksum = checksum & B01111111;
     Serial.write(checksum);
     Serial.write(ENDBYTE);                         //manda o EndByte do TumTa, que eh 0xFF    
@@ -246,15 +252,20 @@ void serialCalib(int pTum, int dpTum, int iTum, int pTa, int dpTa, int iTa){
     Serial.write(STARTBYTE);                                     //manda o starbyte do TumTa, que eh 0xF0
     checksum = sendValueAsTwo7bitBytes(pTum);               //manda o valor da pressao do Tum e armazena o valor dos bytes no checksum
     checksum += sendNegativeAsTwo7bitBytes(dpTum);          //manda o valor da derivada do Tum e armazena o valor dos bytes no checksum
-    if (iTum > 127) iTum = 127;
-    if (iTum < 0) iTum = 0;                                 //garante que o valor da intensidade esteja em um byte de 7 bits
-    Serial.write(iTum);                                     //manda o velocity midi da pisada e zero quando n tiver nada
+    //    if (iTum > 127) iTum = 127;
+    //    if (iTum < 0) iTum = 0;                                 //garante que o valor da intensidade esteja em um byte de 7 bits
+    //    Serial.write(iTum);    //manda o velocity midi da pisada e zero quando n tiver nada
+    checksum += sendValueAsTwo7bitBytes(iTum); 
+
     checksum += sendValueAsTwo7bitBytes(pTa);               //manda o valor da pressao do Ta e armazena o valor dos bytes no checksum
     checksum += sendNegativeAsTwo7bitBytes(dpTa);           //manda o valor da derivada do Ta e armazena o valor dos bytes no checksumt
-    if (iTa > 200) iTa = 200;
-    if (iTa < 0) iTa = 0;                                   //garante que o valor da intensidade esteja em um byte de 7 bits
-    Serial.write(iTa);                                      //manda a intensidade da pisada e zero quando n tiver nada
-    checksum += STARTBYTE + iTum + iTa;
+    //    if (iTa > 127) iTa = 127;
+    //    if (iTa < 0) iTa = 0;                                   //garante que o valor da intensidade esteja em um byte de 7 bits
+    //    Serial.write(iTa);                                      //manda a intensidade da pisada e zero quando n tiver nada
+    checksum += sendValueAsTwo7bitBytes(iTa);
+
+    //    checksum += STARTBYTE + iTum + iTa;
+    checksum += STARTBYTE;
     checksum = checksum & B01111111;                        //trunca o valor do checksum pra 7 bits
     Serial.write(checksum);
     Serial.write(ENDBYTE);                                     //manda o EndByte do TumTa, que eh 0xFF
@@ -298,6 +309,8 @@ int sendNegativeAsTwo7bitBytes(int value)     //Faz com que um numero de -127 a 
   }
   return LSB + MSB;                          //Manda a soma dos Bytes pra o checksum
 }
+
+
 
 
 
