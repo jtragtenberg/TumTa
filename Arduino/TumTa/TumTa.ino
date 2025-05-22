@@ -17,18 +17,13 @@
 //Led
 #define LED_PIN 6
 
+
 bool isDebugging = false;
 byte debugMessage[15];
 byte liveMessage[7];
-byte tumMessage[3];
-byte taMessage[3];
-
-bool soUmTum = true;
-bool soUmTa = true;
 
 int threshold = 20;
 int debounceTime = 150;
-int detectionTime = 15;
 
 void setup()
 {
@@ -40,8 +35,8 @@ void setup()
   pinMode(STANDBY_SWITCH_PIN, INPUT);
   pinMode(LED_PIN, OUTPUT);
   //analogReference(EXTERNAL);
-  digitalWrite(LED_PIN, LOW);
 
+  
 }
 
 boolean standby = false;
@@ -59,10 +54,10 @@ void loop()
   {
     if (millis() - tempoStandby > tempoBlink) {
       if (blinkFlag) {
-        digitalWrite(LED_PIN, LOW);
+        //temp digitalWrite(LED_PIN, LOW);
       }
       else {
-        digitalWrite(LED_PIN, HIGH);
+        //temp digitalWrite(LED_PIN, HIGH);
       }
       tempoStandby = millis();
       blinkFlag = !blinkFlag;
@@ -70,7 +65,7 @@ void loop()
   }
   else
   {
-    digitalWrite(LED_PIN, HIGH);
+    //temp digitalWrite(LED_PIN, HIGH);
     isDebugging = digitalRead(MODE_SWITCH_PIN);
 
     // Tum
@@ -87,29 +82,13 @@ void loop()
     if (isDebugging)
     {
       //setDebugMessage(tumPressure, taPressure, tumDerivative + 512, taDerivative + 512, tumIntensity, taIntensity);
-      //setDebugMessage(tumDerivative, taDerivative, 0, 0, tumIntensity, taIntensity);
-      //setDebugMessage(tumDerivative, taDerivative, threshold, threshold, tumIntensity, taIntensity);
-      setDebugMessage(tumDerivative, taDerivative, threshold, threshold, tumIntensity, taIntensity);
-      Serial.write(debugMessage, sizeof(debugMessage));
+      setDebugMessage(tumDerivative, taDerivative, 0, 0, tumIntensity, taIntensity);
+      //Serial.write(debugMessage, sizeof(debugMessage));
     }
     else
     {
-      if (tumIntensity > 0 && soUmTum) {
-        setTumMessage(tumIntensity);
-        soUmTum = false;
-        Serial.write(tumMessage, sizeof(tumMessage));
-      }
-      if (tumIntensity == 0 && !soUmTum) {
-        soUmTum = true;
-      }
-      if (taIntensity > 0 && soUmTa) {
-        setTaMessage(taIntensity);
-        soUmTa = false;
-        Serial.write(taMessage, sizeof(taMessage));
-      }
-      if (taIntensity == 0 && !soUmTa) {
-        soUmTa = true;
-      }
+      setLiveMessage(tumIntensity, taIntensity);
+      //Serial.write(liveMessage, sizeof(liveMessage));
     }
     delayMicroseconds(1000);
   }
@@ -166,22 +145,6 @@ void setLiveMessage(int tumIntensity, int taIntensity)
   }
 }
 
-void setTumMessage(int tumIntensity) {
-  // Intensity Tum
-
-  tumMessage[0] = 0xFF;
-  tumMessage[1] = lowByte(tumIntensity);
-  tumMessage[2] = highByte(tumIntensity);
-}
-
-void setTaMessage(int taIntensity) {
-  // Intensity Tum
-
-  taMessage[0] = 0xFE;
-  taMessage[1] = lowByte(taIntensity);
-  taMessage[2] = highByte(taIntensity);
-}
-
 // Avarage
 
 #define numReadings 5
@@ -228,25 +191,19 @@ int getDerivative(int channel, int value)
 // Intensity
 
 
-int intensity[2];
+int intensity[2] = {0, 0};
 int debouncing[2];
 long lastDebounceTime[2];
 int aindaNao[2];
 int maximo[2];
-int max_n = 0;
-
-int detecting[2];
-long lastDetectionTime[2];
-boolean umaVez[2];
 
 int getIntensity(int channel, int newDerivative)
 {
+
   if (!debouncing[channel]) {                   //se nao estiver no meio de uma outro pisada
     if (newDerivative > threshold) {     //define a pisada quando a derivada passa de um threshold
       lastDebounceTime[channel] = millis();     //guarda na memoria o instante que aconteceu a pisada no Tum
-      lastDetectionTime[channel] = millis();
       debouncing[channel] = true;                                      //diz que ainda esta debouncing
-      detecting[channel] = true;
     }
   }
 
@@ -254,36 +211,25 @@ int getIntensity(int channel, int newDerivative)
   if ((millis() - lastDebounceTime[channel]) > debounceTime) {       //Controla quando esta debouncing. Se ja passou o tempo de debounce
     debouncing[channel] = false;                                     //apos a ultima pisada diz que ja saiu do debounce
     intensity[channel] = 0;                             //avisa que parou o tempo de debounce do Ta
-    //aindaNao[channel] = true;                             //reinicia o aindaNao para permitir que a proxima pisada venha e que nao role outro noteOff...
-    //umaVez[channel] = false;
+    aindaNao[channel] = true;                             //reinicia o aindaNao para permitir que a proxima pisada venha e que nao role outro noteOff...
+    digitalWrite(LED_PIN,LOW); //temp
     maximo[channel] = 0;                                  //zera o valor do maximo para a proxima poder chegar...
   }
 
-  //Algoritmo para controlar o estado de detecção
-  if ((millis() - lastDetectionTime[channel]) > detectionTime) {
-    detecting[channel] = false;
-  }
 
   //Algoritmo para deteccao da pisada
   if (debouncing[channel]) {                               //enquanto estiver no tempo do debounce
-    //if (aindaNao[channel]) {                               //se ainda nao tiver descoberto o maximo da derivada (a intensidade da pisada)
-    if (detecting[channel]) {
+    if (aindaNao[channel]) {                               //se ainda nao tiver descoberto o maximo da derivada (a intensidade da pisada)
       if (newDerivative > maximo[channel]) {              //se o grafico da derivada esta crescendo
         maximo[channel] = newDerivative;                  //continue colocando no valor da derivada na variavel maximo
       }
       else {                                         //se o grafico da derivada parar de crescer
-        //intensity[channel] = maximo[channel];                   //pega o ultimo valor do maximo e guarda o valor na variavel intensidade
+        intensity[channel] = maximo[channel];                   //pega o ultimo valor do maximo e guarda o valor na variavel intensidade
         aindaNao[channel] = false;                         //a pisada ja rolou
+        digitalWrite(LED_PIN,HIGH); //temp
+        Serial.write(intensity[channel]/10); //temp
       }
     }
-    //}
-  }
-  if (!detecting[channel]) {
-    //if (!umaVez) {
-    intensity[channel] = maximo[channel];
-    //umaVez[channel] = true;
-    //aindaNao[channel] = false;
-    //}
   }
   return intensity[channel];
 }
