@@ -43,8 +43,8 @@ boolean standby = false;
 
 void loop()
 {
-  standby = !digitalRead(STANDBY_SWITCH_PIN);
-  threshold = analogRead(THRESHOLD_PIN);
+  standby = digitalRead(STANDBY_SWITCH_PIN);
+  threshold = analogRead(THRESHOLD_PIN)/4; //TODO: colocar /8
 
   if (standby)
   {
@@ -207,7 +207,7 @@ int getIntensity(int channel, int newDerivative)
         maximo[channel] = newDerivative;                  //continue colocando no valor da derivada na variavel maximo
       }
       else {                                         //se o grafico da derivada parar de crescer
-        intensity[channel] = maximo[channel] - threshold;                  //pega o ultimo valor do maximo e guarda o valor na variavel intensidade
+        intensity[channel] = maximo[channel];                   //pega o ultimo valor do maximo e guarda o valor na variavel intensidade
         aindaNao[channel] = false;                         //a pisada ja rolou
       }
     }
