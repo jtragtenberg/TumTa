@@ -1,7 +1,7 @@
 //Joao Tragtenberg - 4/07/2015
-//TumTa 0.2.3 - Arduino - Para rodar com o arquivo de Max 1.0.8 e com a placa 0.2.8
+//TumTa 0.2.0 - Arduino - Para rodar com o arquivo de Max 1.0.7 e com a placa 0.2.6
 //
-//coloquei dois bytes para mandar o sinal de pisada
+
 
 byte TUMBYTE = 0xA0;
 byte TABYTE = 0xB0;
@@ -21,6 +21,7 @@ int taPin = A1;
 int led1Pin = 9; //led que avista o estado, se est' em standby ou nao
 int led2Pin = 10; //led do aperto de mao, que diz se o programa deu um aperto de mao ou nao
 int butaoPin = 6; //botao liga e desliga modo standby
+
 
 boolean butao = LOW;
 
@@ -155,6 +156,7 @@ void loop(){
         }
         else {                                         //se o grafico da derivada parar de crescer
           intensidade[0] = maximo[0];                  //pega o ultimo valor do maximo e guarda o valor na variavel intensidade
+          if
           //===============================================  MODO EXECUCAO  ==============================================================
           if(modo == EXECUCAOBYTE) {                   //se estiver no modo execucao
             serialExec(TUMBYTE, intensidade[0]);       //ja manda um noteOn com a intensidade da pisada
@@ -200,7 +202,6 @@ void loop(){
         }
         else {                                          //se o grafico da derivada parar de crescer
           intensidade[1] = maximo[1];                   //pega o ultimo valor do maximo e guarda o valor na variavel intensidade
-          if intensidade[1] >= 
           //===============================================  MODO EXECUCAO  ==============================================================
           if(modo == EXECUCAOBYTE) {                    //se estiver no modo execucao
             serialExec(TABYTE, intensidade[1]);         //ja manda um noteOn com a intensidade da pisada
