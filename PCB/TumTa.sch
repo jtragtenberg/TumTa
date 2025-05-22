@@ -1916,8 +1916,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <sheet>
 <plain>
 <text x="48.26" y="-83.82" size="2.54" layer="94" font="fixed">JOÃO TRAGTENBERG</text>
-<text x="120.65" y="-84.328" size="2.54" layer="94" font="fixed">0.2.4</text>
-<text x="81.28" y="-73.66" size="1.778" layer="94" font="vector">Versao sem auto-route</text>
+<text x="120.65" y="-84.328" size="2.54" layer="94" font="fixed">0.2.5</text>
+<text x="81.28" y="-73.66" size="1.778" layer="94" font="vector">Versao com trilhas</text>
 </plain>
 <instances>
 <instance part="FIO_SHIELD" gate="G$1" x="0" y="2.54"/>
