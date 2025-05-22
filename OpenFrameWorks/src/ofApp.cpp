@@ -6,7 +6,8 @@ void ofApp::setup()
 	iniData();
 	iniSerial();
 	iniMidi();
-	iniGraphic();
+	//joao iniGraphic();
+    iniGraphic();
 	iniGui();
 }
 
@@ -15,13 +16,15 @@ void ofApp::update()
 	updateSerial();
 	updateData();
 	updateMidi();
-	updateGraphic();
+	//joao updateGraphic();
+    updateGraphic();
 }
 
 void ofApp::draw()
 {
 	ofBackground(255);
-	drawGraphic();
+	//joao drawGraphic();
+    drawGraphic();
 	ofDrawBitmapStringHighlight(ofToString(ofGetFrameRate()), 0, 10);
 	if(showGui)
 	{
