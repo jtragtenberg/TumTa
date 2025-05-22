@@ -54,10 +54,10 @@ void loop()
   {
     if (millis() - tempoStandby > tempoBlink) {
       if (blinkFlag) {
-        digitalWrite(LED_PIN, LOW);
+        //temp digitalWrite(LED_PIN, LOW);
       }
       else {
-        digitalWrite(LED_PIN, HIGH);
+        //temp digitalWrite(LED_PIN, HIGH);
       }
       tempoStandby = millis();
       blinkFlag = !blinkFlag;
@@ -65,7 +65,7 @@ void loop()
   }
   else
   {
-    digitalWrite(LED_PIN, HIGH);
+    //temp digitalWrite(LED_PIN, HIGH);
     isDebugging = digitalRead(MODE_SWITCH_PIN);
 
     // Tum
@@ -83,12 +83,12 @@ void loop()
     {
       //setDebugMessage(tumPressure, taPressure, tumDerivative + 512, taDerivative + 512, tumIntensity, taIntensity);
       setDebugMessage(tumDerivative, taDerivative, 0, 0, tumIntensity, taIntensity);
-      Serial.write(debugMessage, sizeof(debugMessage));
+      //Serial.write(debugMessage, sizeof(debugMessage));
     }
     else
     {
       setLiveMessage(tumIntensity, taIntensity);
-      Serial.write(liveMessage, sizeof(liveMessage));
+      //Serial.write(liveMessage, sizeof(liveMessage));
     }
     delayMicroseconds(1000);
   }
@@ -212,6 +212,7 @@ int getIntensity(int channel, int newDerivative)
     debouncing[channel] = false;                                     //apos a ultima pisada diz que ja saiu do debounce
     intensity[channel] = 0;                             //avisa que parou o tempo de debounce do Ta
     aindaNao[channel] = true;                             //reinicia o aindaNao para permitir que a proxima pisada venha e que nao role outro noteOff...
+    digitalWrite(LED_PIN,LOW); //temp
     maximo[channel] = 0;                                  //zera o valor do maximo para a proxima poder chegar...
   }
 
@@ -225,6 +226,8 @@ int getIntensity(int channel, int newDerivative)
       else {                                         //se o grafico da derivada parar de crescer
         intensity[channel] = maximo[channel];                   //pega o ultimo valor do maximo e guarda o valor na variavel intensidade
         aindaNao[channel] = false;                         //a pisada ja rolou
+        digitalWrite(LED_PIN,HIGH); //temp
+        Serial.write(intensity[channel]/10); //temp
       }
     }
   }
