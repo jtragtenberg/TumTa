@@ -1,13 +1,15 @@
+//versão pro arduino FIO
+
 #include "TimerOne.h"
-#include "TimerThree.h"
-#include "MIDIUSB.h"
+//#include "TimerThree.h"
+
 
 // Tum
 #define TUM_PIN A0
 #define TUM_CHANNEL 0
 
 //Threshold Pot
-#define THRESHOLD_PIN A5
+#define THRESHOLD_PIN A7
 
 const int LED_PIN = LED_BUILTIN;  // the pin with a LED
 
@@ -15,7 +17,7 @@ int tumPressure = 0;
 int tumIntensity = 0;
 
 int threshold = 100;
-int debounceTime = 100;//80;
+int debounceTime = 10;//80;
 int midiNoteTum = 60;
 int midiChannelTum = 0;
 
@@ -23,11 +25,7 @@ int midiChannelTum = 0;
 int intensityMax = 700;
 int midiVelocityMin = 20;
 int midiVelocityMax = 127;
-long noteDuration = 200;
-
-
-bool janelaDeTempoFlag = false;
-long janelaDeTempo;
+unsigned long noteDuration = 80;
 
 
 void setup() {
@@ -37,11 +35,11 @@ void setup() {
   pinMode(THRESHOLD_PIN, INPUT);
 
 
-  Timer1.initialize(300); //500us
-  Timer1.attachInterrupt(readTum);
+  Timer1.initialize(2000); //500us
+  Timer1.attachInterrupt(sendMessage);
 
-  Timer3.initialize(5000); //5ms
-  Timer3.attachInterrupt(sendMessage);
+//  Timer3.initialize(5000); //5ms
+//  Timer3.attachInterrupt(sendMessage);
 }
 
 void loop() {
@@ -50,7 +48,7 @@ void loop() {
 
 int c = 0; //zera contador
 bool noteOnFlag = false;
-long noteTime;
+unsigned long noteTime;
 
 
 void readTum() {
@@ -72,14 +70,15 @@ void readTum() {
     noteTime = millis();
     //Serial.println("Sending note on");
     int midiVelocityTum = truncamento(mapeamento(tumIntensity, threshold, intensityMax, midiVelocityMin, midiVelocityMax), midiVelocityMin, midiVelocityMax);
-    noteOn(midiChannelTum, midiNoteTum, midiVelocityTum);   // Channel 0, middle C, normal velocity
-    MidiUSB.flush();
+//    noteOn(midiChannelTum, midiNoteTum, midiVelocityTum);   // Channel 0, middle C, normal velocity
+//    MidiUSB.flush();
     noteOnFlag = true;
   }
-  if ((millis() - noteTime > noteDuration) && noteOnFlag) {
+  //if ((millis() - noteTime > noteDuration) && noteOnFlag) {
+  if (tumIntensity <= 0 && noteOnFlag) {
     //Serial.println("Sending note off");
-    noteOff(midiChannelTum, midiNoteTum, 0);  // Channel 0, middle C, normal velocity
-    MidiUSB.flush();
+//    noteOff(midiChannelTum, midiNoteTum, 0);  // Channel 0, middle C, normal velocity
+//    MidiUSB.flush();
     noteOnFlag = false;
   }
 
@@ -91,8 +90,6 @@ void sendMessage() {
   Serial.print(threshold);
   Serial.print(" ");
   Serial.print(tumPressure);
-  Serial.print(" ");
-  Serial.print(janelaDeTempo);
   Serial.print(" ");
   Serial.println(tumIntensity);
 }
@@ -132,9 +129,6 @@ long lastDebounceTime[2];
 int aindaNao[2];
 int maximo[2];
 
-//long janelaDeTempo;
-//bool janelaDeTempoFlag = false;
-
 int getIntensity(int channel, int newDerivative)
 {
 
@@ -147,69 +141,37 @@ int getIntensity(int channel, int newDerivative)
   //Agoritmo para controlar o estado de debounce
   if ((millis() - lastDebounceTime[channel]) > debounceTime) {       //Controla quando esta debouncing. Se ja passou o tempo de debounce
     debouncing[channel] = false;                                     //apos a ultima pisada diz que ja saiu do debounce
-    //intensity[channel] = 0;                             //avisa que parou o tempo de debounce do Ta
-    //aindaNao[channel] = true;                             //reinicia o aindaNao para permitir que a proxima pisada venha e que nao role outro noteOff...
-    //maximo[channel] = 0;                                  //zera o valor do maximo para a proxima poder chegar...
-  }
-
-  /*
-    //Algoritmo para deteccao da pisada
-    if (debouncing[channel]) {                               //enquanto estiver no tempo do debounce
-      if (aindaNao[channel]) {                               //se ainda nao tiver descoberto o maximo da derivada (a intensidade da pisada)
-        if (newDerivative > maximo[channel]) {              //se o grafico da derivada esta crescendo
-          maximo[channel] = newDerivative;                  //continue colocando no valor da derivada na variavel maximo
-        }
-        else {                                         //se o grafico da derivada parar de crescer
-          intensity[channel] = maximo[channel];                   //pega o ultimo valor do maximo e guarda o valor na variavel intensidade
-          aindaNao[channel] = false;                         //a pisada ja rolou
-        }
-      }
-
-    }
-    return intensity[channel];
-  */
-
-  if (debouncing[channel]) {
-    if (newDerivative > maximo[channel]) {              //se o grafico da derivada esta crescendo
-      maximo[channel] = newDerivative;                  //continue colocando no valor da derivada na variavel maximo
-    }
-  }
-  if (!debouncing[channel] && aindaNao[channel]) { //se não estiver debouncing e se ainda não mudou o valor da intensidade
-    janelaDeTempo = millis();
-    janelaDeTempoFlag = true;
-    intensity[channel] = maximo[channel]; //muda o valor da intensidade pro maior máximo que rolou durante o tempo de debounce
-    aindaNao[channel] = false; //e diz já mudou o valor
-  }
-
-  if ((millis() - janelaDeTempo) > 1000.0) {
-    janelaDeTempoFlag = false;
+    intensity[channel] = 0;                             //avisa que parou o tempo de debounce do Ta
     aindaNao[channel] = true;                             //reinicia o aindaNao para permitir que a proxima pisada venha e que nao role outro noteOff...
     maximo[channel] = 0;                                  //zera o valor do maximo para a proxima poder chegar...
-    intensity[channel] = 0;                             //avisa que parou o tempo de debounce do Ta
+  }
+
+
+  //Algoritmo para deteccao da pisada
+  if (debouncing[channel]) {                               //enquanto estiver no tempo do debounce
+    if (aindaNao[channel]) {                               //se ainda nao tiver descoberto o maximo da derivada (a intensidade da pisada)
+      if (newDerivative > maximo[channel]) {              //se o grafico da derivada esta crescendo
+        maximo[channel] = newDerivative;                  //continue colocando no valor da derivada na variavel maximo
+      }
+      else {                                         //se o grafico da derivada parar de crescer
+        intensity[channel] = maximo[channel];                   //pega o ultimo valor do maximo e guarda o valor na variavel intensidade
+        aindaNao[channel] = false;                         //a pisada ja rolou
+      }
+    }
+    
   }
   return intensity[channel];
 }
 
 
-
-void noteOn(byte channel, byte pitch, byte velocity) {
-  midiEventPacket_t noteOn = {0x09, 0x90 | channel, pitch, velocity};
-  MidiUSB.sendMIDI(noteOn);
+int mapeamento(float inputVal, float inputMin, float inputMax, float outputMin, float outputMax){ 
+  float m = (outputMax - outputMin)/(inputMax - inputMin);
+  return round(outputMin + m*(inputVal - inputMin)); //equacao da reta a partir de dois pontos
 }
 
-void noteOff(byte channel, byte pitch, byte velocity) {
-  midiEventPacket_t noteOff = {0x08, 0x80 | channel, pitch, velocity};
-  MidiUSB.sendMIDI(noteOff);
-}
-
-int mapeamento(float inputVal, float inputMin, float inputMax, float outputMin, float outputMax) {
-  float m = (outputMax - outputMin) / (inputMax - inputMin);
-  return round(outputMin + m * (inputVal - inputMin)); //equacao da reta a partir de dois pontos
-}
-
-int truncamento(int inputVal, int minVal, int maxVal) {
+int truncamento(int inputVal, int minVal, int maxVal){
   if (inputVal > maxVal) return maxVal;
-  else if (inputVal < minVal) return minVal;
+  else if (inputVal < minVal) return minVal;  
   else return inputVal;
 }
 
