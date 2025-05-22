@@ -6,13 +6,13 @@
 #define TA_CHANNEL 1
 
 //Mode Switch
-#define MODE_SWITCH_PIN 12
+#define MODE_SWITCH_PIN 2 //changes
 
 //Threshold Pot
 #define THRESHOLD_PIN A7
 
 //Standby Switch
-#define STANDBY_SWITCH_PIN 2
+#define STANDBY_SWITCH_PIN 12 //changes
 
 //Led
 #define LED_PIN 6
@@ -41,14 +41,27 @@ void setup()
 
 boolean standby = false;
 
+long tempoStandby; //joao
+int tempoBlink = 500;
+bool blinkFlag = false;
+
 void loop()
 {
   standby = digitalRead(STANDBY_SWITCH_PIN);
-  threshold = analogRead(THRESHOLD_PIN)/4; //TODO: colocar /8
+  threshold = analogRead(THRESHOLD_PIN) / 4; //TODO: colocar /8
 
   if (standby)
   {
-    digitalWrite(LED_PIN, LOW);
+    if (millis() - tempoStandby > tempoBlink) {
+      if (blinkFlag) {
+        digitalWrite(LED_PIN, LOW);
+      }
+      else {
+        digitalWrite(LED_PIN, HIGH);
+      }
+      tempoStandby = millis();
+      blinkFlag = !blinkFlag;
+    }
   }
   else
   {
