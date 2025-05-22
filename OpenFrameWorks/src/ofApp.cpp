@@ -1,0 +1,271 @@
+#include "ofApp.h"
+
+void ofApp::setup()
+{
+    iniSetup();
+	iniData();
+	iniSerial();
+	iniMidi();
+	iniGraphic();
+	iniGui();
+}
+
+void ofApp::update()
+{
+	updateSerial();
+	updateData();
+	updateMidi();
+	updateGraphic();
+}
+
+void ofApp::draw()
+{
+	ofBackground(255);
+	drawGraphic();
+	ofDrawBitmapStringHighlight(ofToString(ofGetFrameRate()), 0, 10);
+	if(showGui)
+	{
+		gui.draw();
+		ofShowCursor();
+	}
+	else
+	{
+		ofHideCursor();
+	}
+}
+
+void ofApp::keyPressed(int key)
+{
+	switch(key)
+	{
+		// GUI
+		case OF_KEY_TAB:
+			showGui = !showGui;
+			break;
+		case 's':
+			gui.saveToFile("settings.xml");
+			break;
+		case 'l':
+			gui.loadFromFile("settings.xml");
+			break;
+	}
+}
+
+// ---
+void ofApp::iniSetup()
+{
+    ofSetVerticalSync(true);
+    ofSetFrameRate(60);
+}
+
+// DATA
+void ofApp::iniData()
+{
+	data.setup();
+}
+
+void ofApp::updateData()
+{
+	if(isDebugWithoutSensorsEnabled)
+	{
+		data.updateWithDataGui();
+	}
+	else
+	{
+		// Tum
+		for(int i = 0; i < serial.getTumPressure().size(); i++)
+		{
+			data.setTumPressure(serial.getTumPressure()[i]);
+		}
+		for(int i = 0; i < serial.getTumDerivative().size(); i++)
+		{
+			data.setTumDerivative(serial.getTumDerivative()[i]);
+		}
+		for(int i = 0; i < serial.getTumIntensity().size(); i++)
+		{
+			data.setTumIntensity(serial.getTumIntensity()[i]);
+		}
+		for(int i = 0; i < serial.getTumInterval().size(); i++)
+		{
+			data.setTumInterval(serial.getTumInterval()[i]);
+		}
+		// Ta
+		for(int i = 0; i < serial.getTaPressure().size(); i++)
+		{
+			data.setTaPressure(serial.getTaPressure()[i]);
+		}
+		for(int i = 0; i < serial.getTaDerivative().size(); i++)
+		{
+			data.setTaDerivative(serial.getTaDerivative()[i]);
+		}
+		for(int i = 0; i < serial.getTaIntensity().size(); i++)
+		{
+			data.setTaIntensity(serial.getTaIntensity()[i]);
+		}
+		for(int i = 0; i < serial.getTaInterval().size(); i++)
+		{
+			data.setTaInterval(serial.getTaInterval()[i]);
+		}
+	}
+}
+
+//SERIAL
+void ofApp::iniSerial()
+{
+	serial.setup();
+}
+
+void ofApp::updateSerial()
+{
+	serial.updateSerialValues();
+}
+
+// MIDI
+void ofApp::iniMidi()
+{
+	midi.setup();
+}
+
+void ofApp::updateMidi()
+{
+	// TODO: Actualizar con midi
+	if(isDebugWithoutSensorsEnabled)
+	{
+		midi.updateWithData(&data);
+	}
+	else
+	{
+		// Tum
+		for(int i = 0; i < serial.getTumPressure().size(); i++)
+		{
+			data.setTumPressure(serial.getTumPressure()[i]);
+		}
+		for(int i = 0; i < serial.getTumDerivative().size(); i++)
+		{
+			data.setTumDerivative(serial.getTumDerivative()[i]);
+		}
+		for(int i = 0; i < serial.getTumIntensity().size(); i++)
+		{
+			data.setTumIntensity(serial.getTumIntensity()[i]);
+		}
+		for(int i = 0; i < serial.getTumInterval().size(); i++)
+		{
+			data.setTumInterval(serial.getTumInterval()[i]);
+		}
+		// Ta
+		for(int i = 0; i < serial.getTaPressure().size(); i++)
+		{
+			data.setTaPressure(serial.getTaPressure()[i]);
+		}
+		for(int i = 0; i < serial.getTaDerivative().size(); i++)
+		{
+			data.setTaDerivative(serial.getTaDerivative()[i]);
+		}
+		for(int i = 0; i < serial.getTaIntensity().size(); i++)
+		{
+			data.setTaIntensity(serial.getTaIntensity()[i]);
+		}
+		for(int i = 0; i < serial.getTaInterval().size(); i++)
+		{
+			data.setTaInterval(serial.getTaInterval()[i]);
+		}
+	}
+}
+
+// GRAPHIC
+void ofApp::iniGraphic()
+{
+	// Tum
+	graphicI[0].setup("Tum Pressure", ofVec2f(data.paramTumPressure.getMin(), data.paramTumPressure.getMax()));
+	graphicI[1].setup("Tum Derivative", ofVec2f(data.paramTumDerivative.getMin(), data.paramTumDerivative.getMax()));
+	graphicI[2].setup("Tum Intensity", ofVec2f(data.paramTumIntensity.getMin(), data.paramTumIntensity.getMax()));
+	graphicI[3].setup("Tum Interval", ofVec2f(data.paramTumInterval.getMin(), data.paramTumInterval.getMax()));
+	// Ta
+	graphicI[4].setup("Ta Pressure", ofVec2f(data.paramTaPressure.getMin(), data.paramTaPressure.getMax()));
+	graphicI[5].setup("Ta Derivative", ofVec2f(data.paramTaDerivative.getMin(), data.paramTaDerivative.getMax()));
+	graphicI[6].setup("Ta Intensity", ofVec2f(data.paramTaIntensity.getMin(), data.paramTaIntensity.getMax()));
+	graphicI[7].setup("Ta Interval", ofVec2f(data.paramTaInterval.getMin(), data.paramTaInterval.getMax()));
+	// MIDI Tum
+	lineI[0].setup("Tum Sensor Intensity Min", ofVec2f(midi.paramTumIntensityMin.getMin(), midi.paramTumIntensityMin.getMax()));
+	lineI[1].setup("Tum Sensor Intensity Max", ofVec2f(midi.paramTumIntensityMax.getMin(), midi.paramTumIntensityMax.getMax()));
+	lineI[2].setup("Tum Midi Velocity Min", ofVec2f(midi.paramTumVelocityMin.getMin(), midi.paramTumVelocityMin.getMax()));
+	// MIDI Ta
+	lineI[3].setup("Ta Sensor Intensity Min", ofVec2f(midi.paramTaIntensityMin.getMin(), midi.paramTaIntensityMin.getMax()));
+	lineI[4].setup("Ta Sensor Intensity Max", ofVec2f(midi.paramTaIntensityMax.getMin(), midi.paramTaIntensityMax.getMax()));
+	lineI[5].setup("Ta Midi Velocity Min", ofVec2f(midi.paramTaVelocityMin.getMin(), midi.paramTaVelocityMin.getMax()));
+	
+}
+
+void ofApp::updateGraphic()
+{
+	// Tum
+	graphicI[0].update(data.getTumPressurePtr());
+	graphicI[1].update(data.getTumDerivativePtr());
+	graphicI[2].update(data.getTumIntensityPtr());
+	graphicI[3].update(data.getTumIntervalPtr());
+	// Ta
+	graphicI[4].update(data.getTaPressurePtr());
+	graphicI[5].update(data.getTaDerivativePtr());
+	graphicI[6].update(data.getTaIntensityPtr());
+	graphicI[7].update(data.getTaIntervalPtr());
+	// MIDI Tum
+	lineI[0].update(midi.paramTumIntensityMin);
+	lineI[1].update(midi.paramTumIntensityMax);
+	lineI[2].update(midi.paramTumVelocityMin);
+	// MIDI Ta
+	lineI[3].update(midi.paramTaIntensityMin);
+	lineI[4].update(midi.paramTaIntensityMax);
+	lineI[5].update(midi.paramTaVelocityMin);
+}
+
+void ofApp::drawGraphic()
+{
+	// Tum
+	graphicI[0].draw();
+	graphicI[1].draw();
+	graphicI[2].draw();
+	graphicI[3].draw();
+	// Ta
+	graphicI[4].draw();
+	graphicI[5].draw();
+	graphicI[6].draw();
+	graphicI[7].draw();
+	// MIDI Tum
+	lineI[0].draw();
+	lineI[1].draw();
+	lineI[2].draw();
+	// MIDI Ta
+	lineI[3].draw();
+	lineI[4].draw();
+	lineI[5].draw();
+}
+
+// GUI
+void ofApp::iniGui()
+{
+	showGui = false;
+	parameters.add(isDebugWithoutSensorsEnabled.set("Debug (no Sensors)", true));
+	parameters.add(data.parameters);
+	parameters.add(midi.parameters);
+	// Tum
+	parameters.add(graphicI[0].parameters);
+	parameters.add(graphicI[1].parameters);
+	parameters.add(graphicI[2].parameters);
+	parameters.add(graphicI[3].parameters);
+	// Ta
+	parameters.add(graphicI[4].parameters);
+	parameters.add(graphicI[5].parameters);
+	parameters.add(graphicI[6].parameters);
+	parameters.add(graphicI[7].parameters);
+	// Midi Tum
+	parameters.add(lineI[0].parameters);
+	parameters.add(lineI[1].parameters);
+	parameters.add(lineI[2].parameters);
+	// Midi Ta
+	parameters.add(lineI[3].parameters);
+	parameters.add(lineI[4].parameters);
+	parameters.add(lineI[5].parameters);
+	gui.setup(parameters);
+	gui.loadFromFile("settings.xml");
+	gui.minimizeAll();
+}
