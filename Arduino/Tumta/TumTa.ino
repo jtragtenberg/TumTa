@@ -44,13 +44,16 @@ boolean standby = false;
 void loop()
 {
   standby = !digitalRead(STANDBY_SWITCH_PIN);
-  if (standby) {
+  threshold = analogRead(THRESHOLD_PIN);
+
+  if (standby)
+  {
     digitalWrite(LED_PIN, LOW);
   }
-  else {
+  else
+  {
     digitalWrite(LED_PIN, HIGH);
-    //isDebugging = digitalRead(MODE_SWITCH_PIN);
-
+    isDebugging = digitalRead(MODE_SWITCH_PIN);
 
     // Tum
     int tumPressure = getAvarage(TUM_CHANNEL, analogRead(TUM_PIN));
@@ -61,14 +64,14 @@ void loop()
     int taDerivative = getDerivative(TA_CHANNEL, taPressure);
     int taIntensity = getIntensity(TA_CHANNEL, taDerivative);
     // Message
-    if(isDebugging)
+    if (isDebugging)
     {
-      setDebugMessage(tumPressure, taPressure, tumDerivative, taDerivative, tumIntensity, taIntensity); 
+      setDebugMessage(tumPressure, taPressure, tumDerivative + 512, taDerivative + 512, tumIntensity, taIntensity);
       Serial.write(debugMessage, sizeof(debugMessage));
     }
     else
     {
-      setLiveMessage(tumIntensity, taIntensity); 
+      setLiveMessage(tumIntensity, taIntensity);
       Serial.write(liveMessage, sizeof(liveMessage));
     }
     delay(5);
@@ -101,7 +104,7 @@ void setDebugMessage(int tumPressure, int taPressure, int tumDerivative, int taD
   debugMessage[13] = highByte(taIntensity);
   // Checksum
   debugMessage[14] = 0;
-  for(int i = 2; i < 14; i++)
+  for (int i = 2; i < 14; i++)
   {
     debugMessage[14] += debugMessage[i];
   }
@@ -120,7 +123,7 @@ void setLiveMessage(int tumIntensity, int taIntensity)
   liveMessage[5] = highByte(taIntensity);
   // Checksum
   liveMessage[6] = 0;
-  for(int i = 2; i < 6; i++)
+  for (int i = 2; i < 6; i++)
   {
     liveMessage[6] += liveMessage[i];
   }
@@ -153,8 +156,7 @@ int getAvarage(int channel, int value)
 // Derivative
 
 int valuesForDerivative[2][5];
-float derivativeValues[10] = {
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+float derivativeValues[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 int getDerivative(int channel, int value)
 {
@@ -172,23 +174,46 @@ int getDerivative(int channel, int value)
 
 // Intensity
 
-bool isAboveThreshold = false;
-int intensity = 0;
-int antDerivative;
-int derivativeMaxValue;
+
+int intensity[2] = {0, 0};
+int debouncing[2];
+long lastDebounceTime[2];
+int aindaNao[2];
+int maximo[2];
 
 int getIntensity(int channel, int newDerivative)
 {
-  intensity = 0;
-  derivativeMaxValue = (derivativeMaxValue < newDerivative) ? newDerivative : derivativeMaxValue;
-  if (antDerivative > newDerivative && newDerivative > threshold)
-  {
-    intensity = derivativeMaxValue;
-    derivativeMaxValue = 0;
-  }
-  antDerivative = newDerivative;
 
-  return intensity;
+  if (!debouncing[channel]) {                   //se nao estiver no meio de uma outro pisada
+    if (newDerivative > threshold) {     //define a pisada quando a derivada passa de um threshold
+      lastDebounceTime[channel] = millis();     //guarda na memoria o instante que aconteceu a pisada no Tum
+      debouncing[channel] = true;                                      //diz que ainda esta debouncing
+    }
+  }
+
+  //Agoritmo para controlar o estado de debounce
+  if ((millis() - lastDebounceTime[channel]) > debounceTime) {       //Controla quando esta debouncing. Se ja passou o tempo de debounce
+    debouncing[channel] = false;                                     //apos a ultima pisada diz que ja saiu do debounce
+    intensity[channel] = 0;                             //avisa que parou o tempo de debounce do Ta
+    aindaNao[channel] = true;                             //reinicia o aindaNao para permitir que a proxima pisada venha e que nao role outro noteOff...
+    maximo[channel] = 0;                                  //zera o valor do maximo para a proxima poder chegar...
+  }
+
+
+  //Algoritmo para deteccao da pisada
+  if (debouncing[channel]) {                               //enquanto estiver no tempo do debounce
+    if (aindaNao[channel]) {                               //se ainda nao tiver descoberto o maximo da derivada (a intensidade da pisada)
+      if (newDerivative > maximo[channel]) {              //se o grafico da derivada esta crescendo
+        maximo[channel] = newDerivative;                  //continue colocando no valor da derivada na variavel maximo
+      }
+      else {                                         //se o grafico da derivada parar de crescer
+        intensity[channel] = maximo[channel] - threshold;                  //pega o ultimo valor do maximo e guarda o valor na variavel intensidade
+        aindaNao[channel] = false;                         //a pisada ja rolou
+      }
+    }
+  }
+  return intensity[channel];
 }
+
 
 
