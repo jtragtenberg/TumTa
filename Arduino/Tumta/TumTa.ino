@@ -48,7 +48,7 @@ bool blinkFlag = false;
 void loop()
 {
   standby = digitalRead(STANDBY_SWITCH_PIN);
-  threshold = analogRead(THRESHOLD_PIN) / 4; //TODO: colocar /8
+  threshold = analogRead(THRESHOLD_PIN) / 32; //novidade da versao
 
   if (standby)
   {
