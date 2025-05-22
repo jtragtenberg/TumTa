@@ -1,7 +1,8 @@
 //Joao Tragtenberg - 4/07/2015
-//TumTa 0.2.0 - Arduino - Para rodar com o arquivo de Max 1.0.7 e com a placa 0.2.6
+//TumTa 0.2.4 - Arduino - Para rodar com o arquivo de Max 1.0.9 e com a placa 0.2.8
 //
-
+//0.2.4 tirei a calibracao enquanto o programa roda
+//0.2.3 coloquei dois bytes para mandar o sinal de pisada
 
 byte TUMBYTE = 0xA0;
 byte TABYTE = 0xB0;
@@ -21,7 +22,6 @@ int taPin = A1;
 int led1Pin = 9; //led que avista o estado, se est' em standby ou nao
 int led2Pin = 10; //led do aperto de mao, que diz se o programa deu um aperto de mao ou nao
 int butaoPin = 6; //botao liga e desliga modo standby
-
 
 boolean butao = LOW;
 
@@ -76,8 +76,8 @@ void setup (){
           calibration[i] = Serial.read();
         }
         if (calibration[0] == THRESHOLDTUMBYTE && calibration[2] == THRESHOLDTABYTE && calibration[4] == DEBOUNCETIMEBYTE){        //se o primeiro e o terceiro forem os bytes de Threshold e debounceTime
-          threshold[0] = map(calibration[1],0,127,0,255);              //threshold do Tum (Intensidade Minima)
-          threshold[1] = map(calibration[3],0,127,0,255);              //threshold do Ta
+          threshold[0] = map(calibration[1],0,127,0,255)+2;              //threshold do Tum (Intensidade Minima)
+          threshold[1] = map(calibration[3],0,127,0,255)+2;              //threshold do Ta
           debounceTime = map(calibration[5],0,127,0,1000);             //debounceTime mapeados de 0 a 1000
           modo = calibration[6];                                      //e do ultimo modo usado (execucao ou calibracao)
           break  ;                                                      //so assim ele sai do loop.
@@ -99,27 +99,7 @@ void loop(){
   if (!butao) digitalWrite(led2Pin, LOW);
   if (butao) {
     digitalWrite(led2Pin, HIGH);
-    if (Serial.available() > 0){
-      serialIn = Serial.read();
-      if (serialIn == EXECUCAOBYTE || serialIn == CALIBRACAOBYTE) {
-        modo = serialIn;                                  //recebe na variavel serialIn o modo de operacao, que pode ser o byte do
-        delay(50);
-      }                                                   //EXECUCAOBYTE ou CALIBRACAOBYTE
-      if (serialIn == THRESHOLDTUMBYTE){
-        threshold[0] = map(Serial.read(),0,127,0,255);                        //threshold do Tum (vem de 0 a 127)      
-        delay(50);
-      }
-      if (serialIn == THRESHOLDTABYTE){
-        threshold[1] = map(Serial.read(),0,127,0,255);                        //threshold do Ta 
-        delay(50);
-      }
-      if (serialIn == DEBOUNCETIMEBYTE){
-        debounceTime = map(Serial.read(),0,127,0,1000);    //mapeia o valor que vem de 0-127 para um debounceTime de 0 a 400
-        delay(50);
-      }
-    }
-
-
+        
     //TUM
     valorTum[4] = valorTum[3];
     valorTum[3] = valorTum[2];
@@ -156,7 +136,6 @@ void loop(){
         }
         else {                                         //se o grafico da derivada parar de crescer
           intensidade[0] = maximo[0];                  //pega o ultimo valor do maximo e guarda o valor na variavel intensidade
-          if
           //===============================================  MODO EXECUCAO  ==============================================================
           if(modo == EXECUCAOBYTE) {                   //se estiver no modo execucao
             serialExec(TUMBYTE, intensidade[0]);       //ja manda um noteOn com a intensidade da pisada
@@ -310,6 +289,7 @@ int sendNegativeAsTwo7bitBytes(int value)     //Faz com que um numero de -127 a 
   }
   return LSB + MSB;                          //Manda a soma dos Bytes pra o checksum
 }
+
 
 
 
