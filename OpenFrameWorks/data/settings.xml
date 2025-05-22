@@ -1,0 +1,175 @@
+<TumTa>
+	<Calibracao>
+		<Tum>
+			<Intensity>
+				<Tum_Intensity_Min>27</Tum_Intensity_Min>
+				<Tum_Intensity_Max>80</Tum_Intensity_Max>
+			</Intensity>
+			<Midi>
+				<Tum_MIDI_Channel>1</Tum_MIDI_Channel>
+				<Tum_MIDI_Note>31</Tum_MIDI_Note>
+				<Tum_Velocity_Min>30</Tum_Velocity_Min>
+				<Tum_Velocity_Max>127</Tum_Velocity_Max>
+				<Tum_Note_Delay>150</Tum_Note_Delay>
+			<Tum_Note_Duration>176</Tum_Note_Duration>
+			</Midi>
+		</Tum>
+		<Ta>
+			<Intensity>
+				<Ta_Intensity_Min>29</Ta_Intensity_Min>
+				<Ta_Intensity_Max>77</Ta_Intensity_Max>
+			</Intensity>
+			<group>
+				<Ta_MIDI_Channel>2</Ta_MIDI_Channel>
+				<Ta_MIDI_Note>31</Ta_MIDI_Note>
+				<Ta_Midi_Velocity_Min>30</Ta_Midi_Velocity_Min>
+				<Ta_Midi_Velocity_Max>127</Ta_Midi_Velocity_Max>
+				<Ta_Midi_Note_Delay>150</Ta_Midi_Note_Delay>
+			<Ta_Midi_Note_Duration>235</Ta_Midi_Note_Duration>
+			</group>
+		</Ta>
+	</Calibracao>
+	<Serial>
+		<Serial>
+			<Active>1</Active>
+			<Serial_Ports>
+				<tty.usbserial-A900XY10>1</tty.usbserial-A900XY10>
+				<cu.usbserial-A900XY10>0</cu.usbserial-A900XY10>
+				<tty.Bluetooth-Incoming-Port>0</tty.Bluetooth-Incoming-Port>
+				<cu.Bluetooth-Incoming-Port>0</cu.Bluetooth-Incoming-Port>
+			<cu.Bluetooth-Modem>0</cu.Bluetooth-Modem>
+				<tty.Bluetooth-Modem>0</tty.Bluetooth-Modem>
+				<cu.BlueBodega-DevB>0</cu.BlueBodega-DevB>
+				<tty.BlueBodega-DevB>0</tty.BlueBodega-DevB>
+			<tty.usbserial>1</tty.usbserial>
+				<cu.usbserial>0</cu.usbserial>
+			<tty.usbserial-AD02673E>1</tty.usbserial-AD02673E>
+				<cu.usbserial-AD02673E>0</cu.usbserial-AD02673E>
+				<cu.JBLFlip3-SPPDev>0</cu.JBLFlip3-SPPDev>
+				<tty.JBLFlip3-SPPDev>0</tty.JBLFlip3-SPPDev>
+			</Serial_Ports>
+		</Serial>
+	</Serial>
+	<Debug>
+		<Debug__no_Sensors_>0</Debug__no_Sensors_>
+		<Data>
+			<Tum_Pressure>0</Tum_Pressure>
+			<Tum_Derivative>0</Tum_Derivative>
+			<Tum_Intensity>0</Tum_Intensity>
+			<Tum_Interval>0</Tum_Interval>
+			<Ta_Pressure>0</Ta_Pressure>
+			<Ta_Derivative>0</Ta_Derivative>
+			<Ta_Intensity>0</Ta_Intensity>
+			<Ta_Interval>0</Ta_Interval>
+		</Data>
+		<Tum>
+			<Intensity>
+				<Tum_Intensity_Min>27</Tum_Intensity_Min>
+				<Tum_Intensity_Max>80</Tum_Intensity_Max>
+			</Intensity>
+			<Midi>
+				<Tum_MIDI_Channel>1</Tum_MIDI_Channel>
+				<Tum_MIDI_Note>31</Tum_MIDI_Note>
+				<Tum_Velocity_Min>30</Tum_Velocity_Min>
+				<Tum_Velocity_Max>127</Tum_Velocity_Max>
+				<Tum_Note_Delay>150</Tum_Note_Delay>
+			<Tum_Note_Duration>176</Tum_Note_Duration>
+			</Midi>
+		</Tum>
+		<Ta>
+			<Intensity>
+				<Ta_Intensity_Min>29</Ta_Intensity_Min>
+				<Ta_Intensity_Max>77</Ta_Intensity_Max>
+			</Intensity>
+			<group>
+				<Ta_MIDI_Channel>2</Ta_MIDI_Channel>
+				<Ta_MIDI_Note>31</Ta_MIDI_Note>
+				<Ta_Midi_Velocity_Min>30</Ta_Midi_Velocity_Min>
+				<Ta_Midi_Velocity_Max>127</Ta_Midi_Velocity_Max>
+				<Ta_Midi_Note_Delay>150</Ta_Midi_Note_Delay>
+			<Ta_Midi_Note_Duration>235</Ta_Midi_Note_Duration>
+			</group>
+		</Ta>
+		<Tum_Pressure>
+			<Position>0, 0</Position>
+			<Size>1000, 300</Size>
+			<Color>0, 0, 0, 114</Color>
+		</Tum_Pressure>
+		<Tum_Derivative>
+			<Position>0, 0</Position>
+			<Size>1000, 300</Size>
+			<Color>0, 0, 0, 134</Color>
+		</Tum_Derivative>
+		<Tum_Intensity>
+			<Position>0, 0</Position>
+			<Size>1000, 300</Size>
+			<Color>255, 0, 0, 133</Color>
+		</Tum_Intensity>
+		<Tum_Interval>
+			<Position>0, 300</Position>
+			<Size>1000, 300</Size>
+			<Color>0, 95, 0, 172</Color>
+		</Tum_Interval>
+		<Ta_Pressure>
+			<Position>0, 300</Position>
+			<Size>1000, 300</Size>
+			<Color>0, 0, 0, 150</Color>
+		</Ta_Pressure>
+		<Ta_Derivative>
+			<Position>0, 300</Position>
+			<Size>1000, 300</Size>
+			<Color>0, 0, 0, 143</Color>
+		</Ta_Derivative>
+		<Ta_Intensity>
+			<Position>0, 300</Position>
+			<Size>1000, 300</Size>
+			<Color>255, 0, 0, 134</Color>
+		</Ta_Intensity>
+		<Ta_Interval>
+			<Position>0, 300</Position>
+			<Size>1000, 300</Size>
+			<Color>255, 206, 0, 255</Color>
+		</Ta_Interval>
+		<Tum_Sensor_Intensity_Min>
+			<Position>0, 0</Position>
+			<Size_X>1000, 300</Size_X>
+			<Color>126, 0, 255, 255</Color>
+		</Tum_Sensor_Intensity_Min>
+		<Tum_Sensor_Intensity_Max>
+			<Position>0, 0</Position>
+			<Size_X>1000, 300</Size_X>
+			<Color>218, 0, 255, 255</Color>
+		</Tum_Sensor_Intensity_Max>
+		<Tum_Midi_Velocity_Min>
+			<Position>0, 0</Position>
+			<Size_X>1000, 300</Size_X>
+			<Color>255, 108, 0, 255</Color>
+		</Tum_Midi_Velocity_Min>
+		<Ta_Sensor_Intensity_Min>
+			<Position>0, 300</Position>
+			<Size_X>1000, 300</Size_X>
+			<Color>114, 0, 255, 255</Color>
+		</Ta_Sensor_Intensity_Min>
+		<Ta_Sensor_Intensity_Max>
+			<Position>0, 300</Position>
+			<Size_X>1000, 300</Size_X>
+			<Color>179, 0, 255, 255</Color>
+		</Ta_Sensor_Intensity_Max>
+		<Ta_Midi_Velocity_Min>
+			<Position>0, 300</Position>
+			<Size_X>1000, 300</Size_X>
+			<Color>255, 105, 0, 255</Color>
+		</Ta_Midi_Velocity_Min>
+	<Tum_Midi_Velocity_Max>
+			<Position>0, 0</Position>
+			<Size_X>1000, 300</Size_X>
+			<Color>255, 161, 0, 255</Color>
+		</Tum_Midi_Velocity_Max>
+		<Ta_Midi_Velocity_Max>
+			<Position>0, 300</Position>
+			<Size_X>1000, 300</Size_X>
+			<Color>255, 180, 0, 255</Color>
+		</Ta_Midi_Velocity_Max>
+	</Debug>
+<TumTa/>
+</TumTa>
