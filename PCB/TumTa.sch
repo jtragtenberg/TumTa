@@ -1894,55 +1894,64 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="JP1" library="SparkFun-Connectors" deviceset="ARDUINO_SERIAL_PROGRAM" device="PTH"/>
 <part name="GND5" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY1" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
-<part name="GND6" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="TUM" library="SparkFun-Connectors" deviceset="SCREWTERMINAL-2" device="5MM"/>
 <part name="SUPPLY2" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
 <part name="GND8" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="CAL_TUM" library="SparkFun-Electromechanical" deviceset="TRIMPOT_MULTIVOLTAS" device=""/>
-<part name="GND7" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="TA" library="SparkFun-Connectors" deviceset="SCREWTERMINAL-2" device="5MM"/>
 <part name="SUPPLY3" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
 <part name="GND9" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="CAL_TA" library="SparkFun-Electromechanical" deviceset="TRIMPOT_MULTIVOLTAS" device=""/>
 <part name="C1" library="SparkFun-Passives" deviceset="CAP_POL" device="PTH2"/>
-<part name="C2" library="SparkFun-Passives" deviceset="CAP_POL" device="PTH2"/>
+<part name="C4" library="SparkFun-Passives" deviceset="CAP_POL" device="PTH2"/>
 <part name="FL1" library="SparkFun-Retired" deviceset="FRAME-LETTER_BATEBIT" device=""/>
+<part name="C2" library="SparkFun-Passives" deviceset="CAP_POL" device="PTH2"/>
+<part name="C3" library="SparkFun-Passives" deviceset="CAP_POL" device="PTH2"/>
+<part name="C5" library="SparkFun-Passives" deviceset="CAP_POL" device="PTH2"/>
+<part name="C6" library="SparkFun-Passives" deviceset="CAP_POL" device="PTH2"/>
+<part name="GND1" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="GND11" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
 <text x="48.26" y="-83.82" size="2.54" layer="94" font="fixed">JOÃO TRAGTENBERG</text>
-<text x="120.65" y="-84.328" size="2.54" layer="94" font="fixed">0.2.2</text>
+<text x="120.65" y="-84.328" size="2.54" layer="94" font="fixed">0.2.4</text>
+<text x="81.28" y="-73.66" size="1.778" layer="94" font="vector">Versao sem auto-route</text>
 </plain>
 <instances>
 <instance part="FIO_SHIELD" gate="G$1" x="0" y="2.54"/>
-<instance part="R1" gate="G$1" x="-30.48" y="-15.24"/>
-<instance part="R2" gate="G$1" x="-30.48" y="-25.4"/>
+<instance part="R1" gate="G$1" x="-30.48" y="-10.16"/>
+<instance part="R2" gate="G$1" x="-30.48" y="-22.86"/>
 <instance part="R4" gate="G$1" x="-30.48" y="2.54"/>
-<instance part="LED1(VERDE)" gate="G$1" x="-55.88" y="-15.24"/>
-<instance part="LED2(AMARELO)" gate="G$1" x="-68.58" y="-25.4"/>
+<instance part="LED1(VERDE)" gate="G$1" x="-53.34" y="-10.16"/>
+<instance part="LED2(AMARELO)" gate="G$1" x="-53.34" y="-22.86"/>
 <instance part="SWITCH_STANDBY" gate="G$1" x="-53.34" y="2.54"/>
-<instance part="GND2" gate="1" x="-60.96" y="-30.48"/>
-<instance part="GND3" gate="1" x="-45.72" y="-20.32"/>
+<instance part="GND2" gate="1" x="-43.18" y="-27.94"/>
+<instance part="GND3" gate="1" x="-43.18" y="-15.24"/>
 <instance part="GND4" gate="1" x="-43.18" y="-2.54"/>
 <instance part="CAL_TETO" gate="G$1" x="50.8" y="10.16"/>
 <instance part="JP1" gate="G$1" x="83.82" y="15.24" rot="MR0"/>
 <instance part="GND5" gate="1" x="43.18" y="7.62"/>
 <instance part="SUPPLY1" gate="G$1" x="68.58" y="10.16"/>
-<instance part="GND6" gate="1" x="66.04" y="-15.24"/>
-<instance part="TUM" gate="G$1" x="81.28" y="0" rot="MR0"/>
-<instance part="SUPPLY2" gate="G$1" x="33.02" y="-7.62"/>
-<instance part="GND8" gate="1" x="73.66" y="-5.08"/>
-<instance part="CAL_TUM" gate="G$1" x="40.64" y="-7.62"/>
-<instance part="GND7" gate="1" x="66.04" y="-38.1"/>
-<instance part="TA" gate="G$1" x="81.28" y="-22.86" rot="MR0"/>
-<instance part="SUPPLY3" gate="G$1" x="33.02" y="-30.48"/>
-<instance part="GND9" gate="1" x="73.66" y="-27.94"/>
-<instance part="CAL_TA" gate="G$1" x="40.64" y="-30.48"/>
-<instance part="C1" gate="G$1" x="66.04" y="-5.08"/>
-<instance part="C2" gate="G$1" x="66.04" y="-27.94"/>
+<instance part="TUM" gate="G$1" x="93.98" y="2.54" rot="MR0"/>
+<instance part="SUPPLY2" gate="G$1" x="33.02" y="-5.08"/>
+<instance part="GND8" gate="1" x="86.36" y="-2.54"/>
+<instance part="CAL_TUM" gate="G$1" x="40.64" y="-5.08"/>
+<instance part="TA" gate="G$1" x="93.98" y="-17.78" rot="MR0"/>
+<instance part="SUPPLY3" gate="G$1" x="33.02" y="-25.4"/>
+<instance part="GND9" gate="1" x="86.36" y="-22.86"/>
+<instance part="CAL_TA" gate="G$1" x="40.64" y="-25.4"/>
+<instance part="C1" gate="G$1" x="60.96" y="-2.54"/>
+<instance part="C4" gate="G$1" x="60.96" y="-25.4"/>
 <instance part="FL1" gate="G$1" x="-116.84" y="-91.44"/>
 <instance part="FL1" gate="G$2" x="30.734" y="-91.44"/>
+<instance part="C2" gate="G$1" x="68.58" y="-2.54"/>
+<instance part="C3" gate="G$1" x="76.2" y="-2.54"/>
+<instance part="C5" gate="G$1" x="68.58" y="-25.4"/>
+<instance part="C6" gate="G$1" x="76.2" y="-25.4"/>
+<instance part="GND1" gate="1" x="68.58" y="-35.56"/>
+<instance part="GND11" gate="1" x="68.58" y="-12.7"/>
 </instances>
 <busses>
 </busses>
@@ -1958,22 +1967,22 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <segment>
 <pinref part="R1" gate="G$1" pin="1"/>
 <pinref part="LED1(VERDE)" gate="G$1" pin="ESQ"/>
-<wire x1="-35.56" y1="-15.24" x2="-50.8" y2="-15.24" width="0.1524" layer="91"/>
+<wire x1="-35.56" y1="-10.16" x2="-48.26" y2="-10.16" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$4" class="0">
+<net name="D9" class="0">
 <segment>
 <pinref part="R1" gate="G$1" pin="2"/>
-<wire x1="-25.4" y1="-5.08" x2="-25.4" y2="-15.24" width="0.1524" layer="91"/>
+<wire x1="-25.4" y1="-5.08" x2="-25.4" y2="-10.16" width="0.1524" layer="91"/>
 <pinref part="FIO_SHIELD" gate="G$1" pin="D9*"/>
 <wire x1="-25.4" y1="-5.08" x2="-17.78" y2="-5.08" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$5" class="0">
+<net name="D10" class="0">
 <segment>
-<wire x1="-22.86" y1="-7.62" x2="-22.86" y2="-25.4" width="0.1524" layer="91"/>
+<wire x1="-22.86" y1="-7.62" x2="-22.86" y2="-22.86" width="0.1524" layer="91"/>
 <pinref part="R2" gate="G$1" pin="2"/>
-<wire x1="-22.86" y1="-25.4" x2="-25.4" y2="-25.4" width="0.1524" layer="91"/>
+<wire x1="-22.86" y1="-22.86" x2="-25.4" y2="-22.86" width="0.1524" layer="91"/>
 <pinref part="FIO_SHIELD" gate="G$1" pin="D10*"/>
 <wire x1="-22.86" y1="-7.62" x2="-17.78" y2="-7.62" width="0.1524" layer="91"/>
 </segment>
@@ -1982,19 +1991,19 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <segment>
 <pinref part="R2" gate="G$1" pin="1"/>
 <pinref part="LED2(AMARELO)" gate="G$1" pin="ESQ"/>
-<wire x1="-35.56" y1="-25.4" x2="-63.5" y2="-25.4" width="0.1524" layer="91"/>
+<wire x1="-35.56" y1="-22.86" x2="-48.26" y2="-22.86" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="GND" class="0">
 <segment>
 <pinref part="LED2(AMARELO)" gate="G$1" pin="DIR"/>
 <pinref part="GND2" gate="1" pin="GND"/>
-<wire x1="-63.5" y1="-27.94" x2="-60.96" y2="-27.94" width="0.1524" layer="91"/>
+<wire x1="-48.26" y1="-25.4" x2="-43.18" y2="-25.4" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="LED1(VERDE)" gate="G$1" pin="DIR"/>
 <pinref part="GND3" gate="1" pin="GND"/>
-<wire x1="-50.8" y1="-17.78" x2="-45.72" y2="-17.78" width="0.1524" layer="91"/>
+<wire x1="-48.26" y1="-12.7" x2="-43.18" y2="-12.7" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="SWITCH_STANDBY" gate="G$1" pin="DIR"/>
@@ -2008,7 +2017,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </segment>
 <segment>
 <pinref part="FIO_SHIELD" gate="G$1" pin="GND@15"/>
-<wire x1="17.78" y1="17.78" x2="20.32" y2="17.78" width="0.1524" layer="91"/>
+<wire x1="17.78" y1="17.78" x2="25.4" y2="17.78" width="0.1524" layer="91"/>
 <label x="20.32" y="17.78" size="1.778" layer="95"/>
 </segment>
 <segment>
@@ -2017,24 +2026,43 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="45.72" y1="10.16" x2="43.18" y2="10.16" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="GND6" gate="1" pin="GND"/>
-<wire x1="66.04" y1="-10.16" x2="66.04" y2="-12.7" width="0.1524" layer="91"/>
-<pinref part="C1" gate="G$1" pin="-"/>
-</segment>
-<segment>
 <pinref part="TUM" gate="G$1" pin="DIR"/>
-<wire x1="76.2" y1="-2.54" x2="73.66" y2="-2.54" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="0" x2="86.36" y2="0" width="0.1524" layer="91"/>
 <pinref part="GND8" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="GND7" gate="1" pin="GND"/>
-<wire x1="66.04" y1="-33.02" x2="66.04" y2="-35.56" width="0.1524" layer="91"/>
-<pinref part="C2" gate="G$1" pin="-"/>
-</segment>
-<segment>
-<wire x1="76.2" y1="-25.4" x2="73.66" y2="-25.4" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="-20.32" x2="86.36" y2="-20.32" width="0.1524" layer="91"/>
 <pinref part="TA" gate="G$1" pin="DIR"/>
 <pinref part="GND9" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="FIO_SHIELD" gate="G$1" pin="GND@2"/>
+<wire x1="-17.78" y1="15.24" x2="-22.86" y2="15.24" width="0.1524" layer="91"/>
+<label x="-22.86" y="15.24" size="1.778" layer="95" font="vector"/>
+</segment>
+<segment>
+<pinref part="C2" gate="G$1" pin="-"/>
+<pinref part="GND11" gate="1" pin="GND"/>
+<wire x1="68.58" y1="-7.62" x2="68.58" y2="-10.16" width="0.1524" layer="91"/>
+<junction x="68.58" y="-7.62"/>
+</segment>
+<segment>
+<pinref part="C5" gate="G$1" pin="-"/>
+<pinref part="GND1" gate="1" pin="GND"/>
+<wire x1="68.58" y1="-30.48" x2="68.58" y2="-33.02" width="0.1524" layer="91"/>
+<pinref part="C4" gate="G$1" pin="-"/>
+<wire x1="68.58" y1="-30.48" x2="60.96" y2="-30.48" width="0.1524" layer="91"/>
+<pinref part="C6" gate="G$1" pin="-"/>
+<wire x1="76.2" y1="-30.48" x2="68.58" y2="-30.48" width="0.1524" layer="91"/>
+<junction x="68.58" y="-30.48"/>
+</segment>
+<segment>
+<pinref part="C3" gate="G$1" pin="-"/>
+<wire x1="76.2" y1="-7.62" x2="68.58" y2="-7.62" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<wire x1="60.96" y1="-7.62" x2="68.58" y2="-7.62" width="0.1524" layer="91"/>
+<pinref part="C1" gate="G$1" pin="-"/>
 </segment>
 </net>
 <net name="AREF" class="0">
@@ -2102,56 +2130,73 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pinref part="SUPPLY1" gate="G$1" pin="3.3V"/>
 <wire x1="55.88" y1="10.16" x2="68.58" y2="10.16" width="0.1524" layer="91"/>
 </segment>
-</net>
-<net name="N$9" class="0">
 <segment>
-<pinref part="FIO_SHIELD" gate="G$1" pin="A1"/>
-<pinref part="TUM" gate="G$1" pin="ESQ"/>
-<wire x1="66.04" y1="0" x2="76.2" y2="0" width="0.1524" layer="91"/>
-<wire x1="66.04" y1="0" x2="66.04" y2="-2.54" width="0.1524" layer="91"/>
-<wire x1="17.78" y1="0" x2="40.64" y2="0" width="0.1524" layer="91"/>
-<junction x="66.04" y="0"/>
-<junction x="40.64" y="0"/>
-<wire x1="40.64" y1="0" x2="66.04" y2="0" width="0.1524" layer="91"/>
-<wire x1="40.64" y1="0" x2="40.64" y2="-2.54" width="0.1524" layer="91"/>
-<pinref part="CAL_TUM" gate="G$1" pin="WIPER"/>
-<pinref part="C1" gate="G$1" pin="+"/>
-</segment>
-</net>
-<net name="3.3V" class="0">
-<segment>
-<wire x1="35.56" y1="-7.62" x2="33.02" y2="-7.62" width="0.1524" layer="91"/>
+<wire x1="35.56" y1="-5.08" x2="33.02" y2="-5.08" width="0.1524" layer="91"/>
 <pinref part="SUPPLY2" gate="G$1" pin="3.3V"/>
 <pinref part="CAL_TUM" gate="G$1" pin="CCW"/>
 </segment>
 <segment>
 <pinref part="SUPPLY3" gate="G$1" pin="3.3V"/>
 <pinref part="CAL_TA" gate="G$1" pin="CCW"/>
-<wire x1="33.02" y1="-30.48" x2="35.56" y2="-30.48" width="0.1524" layer="91"/>
+<wire x1="33.02" y1="-25.4" x2="35.56" y2="-25.4" width="0.1524" layer="91"/>
 </segment>
-</net>
-<net name="N$11" class="0">
 <segment>
-<pinref part="FIO_SHIELD" gate="G$1" pin="A3"/>
-<wire x1="17.78" y1="-5.08" x2="27.94" y2="-5.08" width="0.1524" layer="91"/>
-<wire x1="27.94" y1="-5.08" x2="27.94" y2="-22.86" width="0.1524" layer="91"/>
+<pinref part="FIO_SHIELD" gate="G$1" pin="3V3@1"/>
+<wire x1="-17.78" y1="17.78" x2="-22.86" y2="17.78" width="0.1524" layer="91"/>
+<label x="-22.86" y="17.78" size="1.778" layer="95" font="vector"/>
 </segment>
 </net>
-<net name="N$12" class="0">
+<net name="A0" class="0">
+<segment>
+<pinref part="TUM" gate="G$1" pin="ESQ"/>
+<wire x1="60.96" y1="2.54" x2="68.58" y2="2.54" width="0.1524" layer="91"/>
+<wire x1="68.58" y1="2.54" x2="76.2" y2="2.54" width="0.1524" layer="91"/>
+<wire x1="76.2" y1="2.54" x2="88.9" y2="2.54" width="0.1524" layer="91"/>
+<wire x1="60.96" y1="2.54" x2="60.96" y2="0" width="0.1524" layer="91"/>
+<junction x="60.96" y="2.54"/>
+<wire x1="40.64" y1="2.54" x2="60.96" y2="2.54" width="0.1524" layer="91"/>
+<wire x1="40.64" y1="2.54" x2="40.64" y2="0" width="0.1524" layer="91"/>
+<pinref part="CAL_TUM" gate="G$1" pin="WIPER"/>
+<pinref part="C1" gate="G$1" pin="+"/>
+<pinref part="FIO_SHIELD" gate="G$1" pin="A0"/>
+<wire x1="40.64" y1="2.54" x2="17.78" y2="2.54" width="0.1524" layer="91"/>
+<junction x="40.64" y="2.54"/>
+<junction x="68.58" y="2.54"/>
+<junction x="76.2" y="2.54"/>
+<pinref part="C2" gate="G$1" pin="+"/>
+<wire x1="68.58" y1="2.54" x2="68.58" y2="0" width="0.1524" layer="91"/>
+<pinref part="C3" gate="G$1" pin="+"/>
+<wire x1="76.2" y1="2.54" x2="76.2" y2="0" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="A1" class="0">
+<segment>
+<wire x1="27.94" y1="0" x2="27.94" y2="-17.78" width="0.1524" layer="91"/>
+<pinref part="FIO_SHIELD" gate="G$1" pin="A1"/>
+<wire x1="17.78" y1="0" x2="27.94" y2="0" width="0.1524" layer="91"/>
+</segment>
 <segment>
 <pinref part="TA" gate="G$1" pin="ESQ"/>
-<wire x1="66.04" y1="-22.86" x2="76.2" y2="-22.86" width="0.1524" layer="91"/>
-<wire x1="66.04" y1="-22.86" x2="66.04" y2="-25.4" width="0.1524" layer="91"/>
-<wire x1="27.94" y1="-22.86" x2="40.64" y2="-22.86" width="0.1524" layer="91"/>
-<junction x="66.04" y="-22.86"/>
-<junction x="40.64" y="-22.86"/>
-<wire x1="40.64" y1="-22.86" x2="66.04" y2="-22.86" width="0.1524" layer="91"/>
-<wire x1="40.64" y1="-22.86" x2="40.64" y2="-25.4" width="0.1524" layer="91"/>
+<wire x1="60.96" y1="-17.78" x2="68.58" y2="-17.78" width="0.1524" layer="91"/>
+<wire x1="68.58" y1="-17.78" x2="76.2" y2="-17.78" width="0.1524" layer="91"/>
+<wire x1="76.2" y1="-17.78" x2="88.9" y2="-17.78" width="0.1524" layer="91"/>
+<wire x1="60.96" y1="-17.78" x2="60.96" y2="-22.86" width="0.1524" layer="91"/>
+<wire x1="27.94" y1="-17.78" x2="40.64" y2="-17.78" width="0.1524" layer="91"/>
+<junction x="60.96" y="-17.78"/>
+<junction x="40.64" y="-17.78"/>
+<wire x1="40.64" y1="-17.78" x2="60.96" y2="-17.78" width="0.1524" layer="91"/>
+<wire x1="40.64" y1="-17.78" x2="40.64" y2="-20.32" width="0.1524" layer="91"/>
 <pinref part="CAL_TA" gate="G$1" pin="WIPER"/>
-<pinref part="C2" gate="G$1" pin="+"/>
+<pinref part="C4" gate="G$1" pin="+"/>
+<junction x="68.58" y="-17.78"/>
+<junction x="76.2" y="-17.78"/>
+<pinref part="C5" gate="G$1" pin="+"/>
+<wire x1="68.58" y1="-17.78" x2="68.58" y2="-22.86" width="0.1524" layer="91"/>
+<pinref part="C6" gate="G$1" pin="+"/>
+<wire x1="76.2" y1="-17.78" x2="76.2" y2="-22.86" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$1" class="0">
+<net name="D6" class="0">
 <segment>
 <pinref part="R4" gate="G$1" pin="2"/>
 <pinref part="FIO_SHIELD" gate="G$1" pin="D6*"/>
@@ -2161,6 +2206,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </nets>
 </sheet>
 </sheets>
+<errors>
+<approved hash="102,1,68.58,10.16,3.3V,3V3,,,,"/>
+</errors>
 </schematic>
 </drawing>
 </eagle>
